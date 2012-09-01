@@ -1,7 +1,4 @@
 
-</div>
-<div class="span1"></div>
-</di>
 
 </div>
 	<footer>
