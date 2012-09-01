@@ -1,20 +1,42 @@
 body
 {
 	background-color:#8DD404;
-	background-image: url('../img/texture-green.png');
+	background-image: url('../img/texture-white.png');
 
 }
-
+.my-nav-full
+{
+	background-color: #000;
+	height: 100px;
+}
 .my-nav
 {
 	background-color: #000;
+	height: 100px;
 }
 
 .my-tab
 {
-
+	height: 100px;
+	width: 150px;
+	
+	text-align: center;
+	vertical-align: middle;
+	float: left;
+	border-right: 2px dotted #333;
+	font-size: 0px;
+	color: #8DD404;
 }
 .my-tab:hover
 {
+	-webkit-transition:.3s;
 	background-color: #8DD404;
+	background-image: url('../img/texture-green.png');
+	height: 120px;
+	box-shadow: 0px 0px 20px #000;
+	border: none;
+	width: 152px;
+	font-size: 20px;
+	color: #333;
+	font-weight: bold;
 }

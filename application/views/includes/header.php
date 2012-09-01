@@ -10,13 +10,17 @@
 	</head>
 	<body>
 	<header>
-		<div span="row-fluid">
-			<div class="span12">
-				<ul class="my-nav">
-					<a class="my-tab" href="">hey</a>
-
-				<ul>
-			</div>
-		</div>
-
+		
+			
+				<div class="row-fluid">
+				<div class="span12 my-nav">
+					<a  href=""> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/icon-home-white.png"><div>Inicio</div></div></a>
+					<a  href=""> <div class="my-tab">Maestros</div></a>
+					</div>
+				</div>
+				<div class="row-fluid">
+				<div class="span12 my-green"></div>
+				</div>
+		
 	</header>
+	<div class="my container">
