@@ -29,6 +29,7 @@ class Alumnos extends CI_Controller{
     	$crud->set_table('alumnos');
     	$crud->columns('matricula','nombre','apellido_pat','apellido_mat','genero');
     	$crud->display_as('apellido_pat','Apellido paterno');
+    	$crud->display_as('apellido_mat','Apellido materno');
     	$crud->fields('matricula','nombre','apellido_pat','apellido_mat','genero');
     	$crud->add_action('Ver', '', 'alumnos/show','ui-icon-plus');
     	$crud->unset_delete();
