@@ -1,4 +1,4 @@
 secundarias
 ===========
 
-proyecto hack day secundarias generales del valle de mexico
+proyecto hack day secundarias generales del valle de méxico.
