@@ -48,11 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'instance22764.db.xeround.com:14988';
+$db['default']['hostname'] = 'tunnel.pagodabox.com:3306';
 //$db['default']['port']	   = '14988';
-$db['default']['username'] = 'entrecalle_admin';
-$db['default']['password'] = '8uc4asWA';
-$db['default']['database'] = 'secundaria';
+$db['default']['username'] = 'danica';
+$db['default']['password'] = 'Zutbc3Rz';
+$db['default']['database'] = 'secundarias';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
