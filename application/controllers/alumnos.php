@@ -25,6 +25,7 @@ class Alumnos extends CI_Controller{
 
 		$crud = new grocery_CRUD();
 		$crud->set_theme('datatables');
+		$crud->set_subject('alumno');
     	$crud->set_table('alumnos');
     	$crud->columns('matricula','nombre','apellido_pat','apellido_mat','genero');
     	$crud->display_as('apellido_pat','Apellido paterno');
@@ -44,15 +45,6 @@ class Alumnos extends CI_Controller{
 		$this->load->view('alumnos/show.html',$data);
 	}
 
-	public function eliminar()
-	{
-
-	}
-
-	public function editar()
-	{
-
-	}
 
 
 }
