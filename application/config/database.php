@@ -48,11 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'tunnel.pagodabox.com:3306';
-//$db['default']['port']	   = '14988';
-$db['default']['username'] = 'danica';
-$db['default']['password'] = 'Zutbc3Rz';
-$db['default']['database'] = 'secundarias';
+$db['default']['hostname'] = '127.0.0.1';
+$db['default']['port']	   = '3307';
+$db['default']['username'] = 'blair';
+$db['default']['password'] = 'yGTheIwC';
+$db['default']['database'] = 'secundaria';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
