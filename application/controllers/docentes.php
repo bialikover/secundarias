@@ -27,10 +27,11 @@ class Docentes extends CI_Controller{
             $crud->set_theme('datatables');
             $crud->set_subject('docente');
       $crud->set_table('docentes');
-      $crud->columns('nombre','apellido_pat','apellido_mat','genero');
+      $crud->set_relation_n_n('materias', 'docente_materias', 'materias', 'id_docente', 'id_materia', 'nombre');
+      $crud->columns('nombre','apellido_pat','apellido_mat','genero', 'datos_personales', 'especialidad', 'materias');
       $crud->display_as('apellido_pat','Apellido paterno');
       $crud->display_as('apellido_mat','Apellido materno');
-      $crud->fields('nombre','apellido_pat','apellido_mat','genero');
+      $crud->fields('nombre','apellido_pat','apellido_mat','genero', 'datos_personales', 'especialidad', 'materias');
       $crud->add_action('Ver', '', 'alumnos/show','ui-icon-plus');
       $crud->unset_delete();
  

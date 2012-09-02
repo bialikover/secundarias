@@ -27,10 +27,18 @@ class Alumnos extends CI_Controller{
 		$crud->set_theme('datatables');
 		$crud->set_subject('alumno');
     	$crud->set_table('alumnos');
-    	$crud->columns('matricula','nombre','apellido_pat','apellido_mat','genero');
+
     	$crud->display_as('apellido_pat','Apellido paterno');
+    	$crud->display_as('fecha_nacimiento','Fecha de nacimiento');
     	$crud->display_as('apellido_mat','Apellido materno');
-    	$crud->fields('matricula','nombre','apellido_pat','apellido_mat','genero','fecha_nacimiento');
+    	$crud->display_as('id_grupo','Grupo');
+
+    	$crud->set_relation('id_grupo','grupos','clave');
+
+    	$crud->columns('matricula','nombre','apellido_pat','apellido_mat','id_grupo','correo_electronico');
+    	$crud->fields('matricula','nombre','apellido_pat','apellido_mat','genero','id_grupo','fecha_nacimiento','curp','direccion','telefono','correo_electronico');
+    	
+
     	$crud->add_action('Ver', '', 'alumnos/show','ui-icon-plus');
     	$crud->unset_delete();
  
@@ -45,7 +53,16 @@ class Alumnos extends CI_Controller{
 	{
 		$id = $this->uri->segment(3);
 		$data['alumno'] = $this->db->get_where( 'alumnos', array( 'id_alumno' => $id ) )->result();
+		$alumno1=$data['alumno'];
+		$id_grupo1=$alumno1[0]->id_grupo;
+
+		$data['grupo'] = $this->db->get_where( 'grupos', array( 'id_grupo' => $id_grupo1 ) )->result();
 		
+		$grupo1=$data['grupo'];
+		$id_escuela1=$grupo1[0]->id_escuela;
+		
+		$data['escuela'] = $this->db->get_where( 'escuelas', array( 'id_escuela' => $id_escuela1 ) )->result();
+
 		$this->load->view('includes/header');
 		$this->load->view('alumnos/show',$data);
 		$this->load->view('includes/footer');
