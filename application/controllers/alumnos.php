@@ -27,13 +27,17 @@ class Alumnos extends CI_Controller{
 		$crud->set_theme('datatables');
 		$crud->set_subject('alumno');
     	$crud->set_table('alumnos');
-    	$crud->columns('matricula','nombre','apellido_pat','apellido_mat','grupo','correo_electronico');
+
     	$crud->display_as('apellido_pat','Apellido paterno');
     	$crud->display_as('fecha_nacimiento','Fecha de nacimiento');
     	$crud->display_as('apellido_mat','Apellido materno');
     	$crud->display_as('id_grupo','Grupo');
+
     	$crud->set_relation('id_grupo','grupos','clave');
+
+    	$crud->columns('matricula','nombre','apellido_pat','apellido_mat','id_grupo','correo_electronico');
     	$crud->fields('matricula','nombre','apellido_pat','apellido_mat','genero','id_grupo','fecha_nacimiento','curp','direccion','telefono','correo_electronico');
+    	
     	$crud->add_action('Ver', '', 'alumnos/show','ui-icon-plus');
     	$crud->unset_delete();
  
