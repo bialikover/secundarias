@@ -17,15 +17,17 @@ class Grupos extends CI_Controller
 		$crud->set_theme('datatables');
 		$crud->set_subject('grupo');
     	$crud->set_table('grupos');
-        $crud->set_relation_n_n('materias', 'grupo_materia', 'materias', 'id_grupos', 'id_materias', 'nombre');
-    	$crud->columns('año','clave','ciclo_escolar', 'salon', 'turno', 'grado');
-        $crud->fields('año','clave','ciclo_escolar', 'salon', 'turno', 'grado', 'materias');    	
+        $crud->set_relation_n_n('materias', 'grupo_materia', 'materias', 'id_grupo', 'id_materia', 'nombre');
+    	$crud->columns('anio','clave','ciclo_escolar', 'salon', 'turno', 'grado');
+        $crud->fields('anio','clave','ciclo_escolar', 'salon', 'turno', 'grado', 'materias');    	
     	$crud->display_as('ciclo_escolar','Ciclo Escolar');
-        $crud->add_action('Ver', '', 'materia/show','ui-icon-plus');
+        $crud->add_action('Ver', '', 'grupos/show','ui-icon-plus');
     	$crud->unset_delete();
  
     	$output = $crud->render();
-    	$this->load->view('materias/index.html',$output);
+    	$this->load->view('includes/header');
+        $this->load->view('grupos/index',$output);
+        $this->load->view('includes/footer');
     	
     }
     //muestra una materia
@@ -60,3 +62,4 @@ class Grupos extends CI_Controller
     }
 
 }
+?>

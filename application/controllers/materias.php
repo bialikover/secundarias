@@ -19,11 +19,14 @@ class Materias extends CI_Controller
     	$crud->set_table('materias');
     	$crud->columns('nombre','grado','matricula');
     	$crud->fields('nombre','grado','matricula');
-    	$crud->add_action('Ver', '', 'materia/show','ui-icon-plus');
+    	$crud->add_action('Ver', '', 'materias/show','ui-icon-plus');
     	$crud->unset_delete();
  
     	$output = $crud->render();
-    	$this->load->view('materias/index.html',$output);
+        $this->load->view('includes/header');
+        $this->load->view('materias/index',$output);
+        $this->load->view('includes/footer');
+    	
     	
     }
     //muestra una materia
@@ -58,3 +61,4 @@ class Materias extends CI_Controller
     }
 
 }
+?>
