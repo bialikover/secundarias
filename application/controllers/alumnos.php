@@ -27,10 +27,13 @@ class Alumnos extends CI_Controller{
 		$crud->set_theme('datatables');
 		$crud->set_subject('alumno');
     	$crud->set_table('alumnos');
-    	$crud->columns('matricula','nombre','apellido_pat','apellido_mat','genero');
+    	$crud->columns('matricula','nombre','apellido_pat','apellido_mat','grupo','correo_electronico');
     	$crud->display_as('apellido_pat','Apellido paterno');
+    	$crud->display_as('fecha_nacimiento','Fecha de nacimiento');
     	$crud->display_as('apellido_mat','Apellido materno');
-    	$crud->fields('matricula','nombre','apellido_pat','apellido_mat','genero');
+    	$crud->display_as('id_grupo','Grupo');
+    	$crud->set_relation('id_grupo','grupos','clave');
+    	$crud->fields('matricula','nombre','apellido_pat','apellido_mat','genero','id_grupo','fecha_nacimiento','curp','direccion','telefono','correo_electronico');
     	$crud->add_action('Ver', '', 'alumnos/show','ui-icon-plus');
     	$crud->unset_delete();
  
@@ -44,7 +47,7 @@ class Alumnos extends CI_Controller{
 	public function show()
 	{
 		$id = $this->uri->segment(3);
-		$data['alumno'] = $this->db->get_where( 'alumnos', array( 'id' => $id ) )->result();
+		$data['alumno'] = $this->db->get_where( 'alumnos', array( 'id_alumno' => $id ) )->result();
 		
 		$this->load->view('includes/header');
 		$this->load->view('alumnos/show',$data);
