@@ -12,9 +12,9 @@ class Welcome extends CI_Controller {
 		
 		var_dump($this->db->get("escuelas")->row()->nombre);
 
-		echo 'Congratulations, you are logged in.';
+		echo 'Bienvenido!';
         
-        echo '<br /><a href="'.base_url().'home/do_logout">Logout Fool!</a>';
+        echo '<br /><a href="'.base_url().'index.php/welcome/do_logout">Desconectar</a>';
 		
 	}
 	private function check_isvalidated(){
