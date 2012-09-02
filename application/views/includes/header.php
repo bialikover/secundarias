@@ -11,19 +11,13 @@
 	</head>
 	<body>
 	<header>
-		
-			
-		
 				<div class=" my-nav">
-					<a  href=""> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/icon-home-white.png"><div>Inicio</div></div></a>
-					<a  href=""> <div class="my-tab"> Docentes </div></a>
-					<a  href=""> <div class="my-tab">Alumnos</div></a>
-					<a  href=""> <div class="my-tab">Materias</div></a>
-					<a  href=""> <div class="my-tab">Grupos</div></a>
+					<a  href="<?php echo base_url("index.php/evento/index")?>"> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/home-bco.png"><div>Inicio</div></div></a>
+					<a  href=""> <div class="my-tab"> <img src="<?php echo base_url();?>/assets/img/docente-bco.png"><div>Docentes</div></div></a>
+					<a  href=""> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/alumno-bco.png"><div>Alumnos</div></div></a>
+					<a  href=""> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/materia-bco.png"><div>Materias</div></div></a>
+					<a  href=""> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/grupo-bco.png"><div>Grupos</div></div></a>
 				</div>
-				
-				
-				
 		
 	</header>
 	<div class="my-container">
