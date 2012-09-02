@@ -22,6 +22,7 @@ footer
 {
 	background-color: #000;
 	height: 100px;
+	min-width: 727px;
 }
 
 .my-tab
@@ -58,4 +59,60 @@ footer
 	margin-left:5%;
 
 
+}
+
+.my-perfil-container
+{
+	width: 700px;
+	height: 900px;
+	background-color: #ffffff;
+	border-radius: 10px;
+	box-shadow: 0px 0px 20px #555;
+	margin: 0 auto;
+	padding: 50px;
+	font-family: 'Helvetica neue', Helvetica, Arial;
+}
+
+.my-foto
+{
+	width: 140px;
+	height: 180px;
+	background-color: #91ad52;
+	float: left;
+
+}
+
+.my-nombre
+{
+	
+	width: 700px;
+	height: 180px;
+}
+
+.my-header1-perfil
+{
+	background-color: #459E00;
+	height: 50px;
+	color: #fff;
+	text-align: center;
+	padding-top: 0px;
+	margin-bottom: 20px;
+}
+.my-header2-perfil
+{
+	background-color: #459E00;
+	height: 30px;
+	padding-left: 30px;
+	color: #fff;
+}
+.my-perfil-datos
+{
+	font-weight: normal;
+	font-size: 16px;
+	color: #459E00;
+}
+
+.my-div-container
+{
+	height: 120px;
 }

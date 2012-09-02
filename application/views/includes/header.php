@@ -16,7 +16,7 @@
 		
 				<div class=" my-nav">
 					<a  href=""> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/icon-home-white.png"><div>Inicio</div></div></a>
-					<a  href=""> <div class="my-tab"> Maestros </div></a>
+					<a  href=""> <div class="my-tab"> Docentes </div></a>
 					<a  href=""> <div class="my-tab">Alumnos</div></a>
 					<a  href=""> <div class="my-tab">Materias</div></a>
 					<a  href=""> <div class="my-tab">Grupos</div></a>

@@ -30,7 +30,7 @@ class Alumnos extends CI_Controller{
     	$crud->columns('matricula','nombre','apellido_pat','apellido_mat','genero');
     	$crud->display_as('apellido_pat','Apellido paterno');
     	$crud->display_as('apellido_mat','Apellido materno');
-    	$crud->fields('matricula','nombre','apellido_pat','apellido_mat','genero');
+    	$crud->fields('matricula','nombre','apellido_pat','apellido_mat','genero','fecha_nacimiento');
     	$crud->add_action('Ver', '', 'alumnos/show','ui-icon-plus');
     	$crud->unset_delete();
  
@@ -44,13 +44,12 @@ class Alumnos extends CI_Controller{
 	public function show()
 	{
 		$id = $this->uri->segment(3);
-		$data['alumno'] = $this->db->get_where( 'alumnos', array( 'id' => $id ) )->result();
+		$data['alumno'] = $this->db->get_where( 'alumnos', array( 'id_alumno' => $id ) )->result();
 		
 		$this->load->view('includes/header');
 		$this->load->view('alumnos/show',$data);
 		$this->load->view('includes/footer');
 	}
-
 
 
 }
