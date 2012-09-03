@@ -13,9 +13,10 @@ class Welcome extends CI_Controller {
         $id_user = $this->session->userdata('id_user');
 		$role = $this->session->userdata("role");
         $perfil_id = $this->session->userdata("perfil_id");        
+        $data = array();
 
         if ( $role === "Alumno"){
-
+            $data['nombre'] = $this->db->query("select nombre, apellido_pat, apellido_mat from alumnos where id_alumno =". $perfil_id)->row();
             $id_alumno = $this->db->query("select id_alumno from alumnos where id_alumno =". $perfil_id);
             $id_alumno = $id_alumno->row()->id_alumno;
             
@@ -27,13 +28,12 @@ class Welcome extends CI_Controller {
              );"
 
             );
-
-          foreach ($materias->result() as $materia){
-             echo $materia->nombre;
-          }
-
+          $data['materias'] = $materias->result();
         }
+
+
         else if($role === "Maestro"){
+            $data['nombre'] = $this->db->query("select nombre, apellido_pat, apellido_mat from docentes where id_docentes =". $perfil_id)->row();
             $id_docentes = $this->db->query("select id_docentes from docentes where id_docentes =". $perfil_id);
             $id_docentes = $id_docentes->row()->id_docentes;
 
@@ -42,15 +42,13 @@ class Welcome extends CI_Controller {
                  select `id_materia` from `docente_materias` where `id_docente` =". $id_docentes. "
              );"
             );
-
-          foreach ($materias->result() as $materia){
-             echo $materia->nombre;
-          }
+          $data['materias'] = $materias->result();
         }
 
-		echo 'Bienvenido!';
-        
-        echo '<br /><a href="'.base_url().'index.php/welcome/do_logout">Desconectar</a>';
+		$this->load->view('includes/header2');
+        $this->load->view('welcome/index', $data);
+        $this->load->view('includes/footer');
+                
 		
 	}
 	private function check_isvalidated(){
