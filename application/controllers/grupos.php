@@ -66,5 +66,12 @@ class Grupos extends CI_Controller
 
     }
 
+    public function prueba()
+    {
+        $this->load->view('includes/header2');
+        $this->load->view('welcome/index');
+        $this->load->view('includes/footer');
+    }
+
 }
 ?>
