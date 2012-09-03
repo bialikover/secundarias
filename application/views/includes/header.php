@@ -5,6 +5,7 @@
     	<title>Mi secu</title>
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/secundaria.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/aula_digital.css">
 		
 <!--	
 <style type='text/css'>

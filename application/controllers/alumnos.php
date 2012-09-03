@@ -68,6 +68,12 @@ class Alumnos extends CI_Controller{
 		$this->load->view('includes/footer');
 	}
 
+	public function comentarios()
+    {
+        $this->load->view('includes/header');
+        $this->load->view('aula_digital/comentarios');
+        $this->load->view('includes/footer');
+    }
 
 }
 
