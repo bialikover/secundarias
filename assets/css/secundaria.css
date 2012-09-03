@@ -23,12 +23,12 @@ footer
 	background-color: #000;
 	height: 100px;
 	min-width: 727px;
-	padding-top: 20px;
+	
 }
 
 .my-tab
 {
-	height: 100px;
+	height: 80px;
 	width: 150px;
 	
 	text-align: center;
@@ -37,6 +37,7 @@ footer
 	border-right: 2px dotted #333;
 	font-size: 0px;
 	color: #8DD404;
+	padding-top: 20px;
 }
 .my-tab:hover
 {
