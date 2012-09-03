@@ -21,8 +21,8 @@ class Aula_digital extends CI_Controller
 		$crud->set_subject('Aula digital');
     	$crud->set_table('contenidos');
 
-    	$crud->set_relation('Materia','materias','nombre');
-    	$crud->fields('Materia');
+    	$crud->set_relation('id_materias','materias','nombre');
+    	$crud->fields('Materia', 'texto');
     	//$crud->set_relation_n_n('grupo', 'film_actor', 'actor', 'film_id', 'actor_id', 'fullname','priority');
 
     	$crud->add_action('Ver', '', 'alumnos/show','ui-icon-plus');
