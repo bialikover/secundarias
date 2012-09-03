@@ -31,7 +31,7 @@ a:hover
 				<div class=" my-nav">
 					<a  href="<?php echo base_url("index.php/home/index")?>"> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/home-bco.png"><div>Inicio</div></div></a>
 					<a  href="<?php echo base_url("index.php/docentes/index")?>"> <div class="my-tab"> <img src="<?php echo base_url();?>/assets/img/docente-bco.png"><div>Docentes</div></div></a>
-					<a  href="<?php echo base_url("index.php/Alumnos/index")?>"> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/alumno-bco.png"><div>Alumnos</div></div></a>
+					<a  href="<?php echo base_url("index.php/alumnos/index")?>"> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/alumno-bco.png"><div>Alumnos</div></div></a>
 					<a  href="<?php echo base_url("index.php/materias/index")?>"> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/materia-bco.png"><div>Materias</div></div></a>
 					<a  href="<?php echo base_url("index.php/grupos/index")?>"> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/grupo-bco.png"><div>Grupos</div></div></a>
 				</div>
