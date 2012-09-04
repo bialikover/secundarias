@@ -10,7 +10,7 @@ class Login extends CI_Controller{
         // Load our view to be displayed
         // to the user
     	  $data['msg'] = $msg;
-    	  $this->load->view('includes/header');
+    	  $this->load->view('includes/header-escuela');
         $this->load->view('login/login_view', $data);
         $this->load->view('includes/footer');
         

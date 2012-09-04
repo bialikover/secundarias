@@ -45,7 +45,7 @@ class Publicacion extends CI_Controller
 
     	$output = $crud1->render();
 
-    	$this->load->view('includes/header');
+    	$this->load->view('includes/header-escuela');
     	$this->load->view('publicacion/index',$output);
     	$this->load->view('includes/footer');
 
