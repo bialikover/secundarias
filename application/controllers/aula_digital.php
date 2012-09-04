@@ -18,11 +18,14 @@ class Aula_digital extends CI_Controller
 	{
 		$crud = new grocery_CRUD();
 		$crud->set_theme('datatables');
-		$crud->set_subject('Aula digital');
+		$crud->set_subject('Contenido');
     	$crud->set_table('contenidos');
 
     	$crud->set_relation('id_materias','materias','nombre');
-    	$crud->fields('Materia', 'texto');
+    	$crud->fields('id_materias', 'texto');
+
+    	$crud->display_as('id_materias','Materia');
+    	$crud->unset_columns('id_docente','id_grupo','ruta_archivo');
     	//$crud->set_relation_n_n('grupo', 'film_actor', 'actor', 'film_id', 'actor_id', 'fullname','priority');
 
     	$crud->add_action('Ver', '', 'alumnos/show','ui-icon-plus');
@@ -30,7 +33,7 @@ class Aula_digital extends CI_Controller
  
     	$output = $crud->render();
     	$this->load->view('includes/header');
-    	$this->load->view('alumnos/index',$output);
+    	$this->load->view('publicacion/index',$output);
     	$this->load->view('includes/footer');
 	}
 
