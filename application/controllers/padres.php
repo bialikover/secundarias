@@ -5,7 +5,7 @@
  * @author neto
  */
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Padres {
+class Padres extends CI_Controller {
     public function __construct()
     {
             parent::__construct();
