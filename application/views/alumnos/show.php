@@ -1,16 +1,28 @@
 <div class="my-perfil-container">
-	<div class="my-header1-perfil">
-		<h1>Perfil de Alumno</h1>
-	</div>
-<div class="my-nombre">
-	<div class="my-foto">
-	</div>
-	<div class="my-div-container"></div>
-	<h2>&nbsp; <?php echo $alumno[0]->nombre.' '.$alumno[0]->apellido_pat.' '.$alumno[0]->apellido_mat; ?></h2>
-</div>
+	
 
-	<div class="my-header2-perfil">
-		<h3>Datos Personales</h3>
+	<div class="container-fluid">
+		<div class="row-fluid"> 
+			<div class="span12 my-header-perfil">
+				<h4>Perfil de Alumno</h4>
+			</div>
+		</div>
+		
+	<div class="row-fluid"> 
+			<div class="span3">
+				<div class="my-foto">
+					<img src="<?php echo base_url();?>/assets/img/user1.png">
+				</div>
+			</div>
+			<div class="span9">
+				<h2>&nbsp; <?php echo $alumno[0]->nombre.' '.$alumno[0]->apellido_pat.' '.$alumno[0]->apellido_mat; ?></h2>
+			</div>
+		</div>
+
+	<div class="row-fluid">
+		<div class="span12 my-sub-header-perfil"></div>
+			<h4>Datos Personales</h4>
+		</div>
 	</div>
 	<div>
 		<div class="my-perfil-campos">
@@ -81,3 +93,4 @@
 	</div>
 	
 </div>
+</div><!--=========================-->

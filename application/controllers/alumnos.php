@@ -43,7 +43,7 @@ class Alumnos extends CI_Controller{
     	$crud->unset_delete();
  
     	$output = $crud->render();
-    	$this->load->view('includes/header');
+    	$this->load->view('includes/header-escuela');
     	$this->load->view('alumnos/index',$output);
     	$this->load->view('includes/footer');
 
@@ -63,7 +63,7 @@ class Alumnos extends CI_Controller{
 		
 		$data['escuela'] = $this->db->get_where( 'escuelas', array( 'id_escuela' => $id_escuela1 ) )->result();
 
-		$this->load->view('includes/header');
+		$this->load->view('includes/header-escuela');
 		$this->load->view('alumnos/show',$data);
 		$this->load->view('includes/footer');
 	}

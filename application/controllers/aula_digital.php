@@ -29,7 +29,7 @@ class Aula_digital extends CI_Controller
     	$crud->unset_delete();
  
     	$output = $crud->render();
-    	$this->load->view('includes/header');
+    	$this->load->view('includes/header-escuela');
     	$this->load->view('alumnos/index',$output);
     	$this->load->view('includes/footer');
 	}

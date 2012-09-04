@@ -11306,7 +11306,7 @@
 		
 		/* Misc */
 		"sFooterTH": "ui-state-default",
-		"sJUIHeader": "fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix",
+		"sJUIHeader": "fg-toolbar ui-toolbar ui-corner-tl ui-corner-tr ui-helper-clearfix",
 		"sJUIFooter": "fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix"
 	} );
 	
