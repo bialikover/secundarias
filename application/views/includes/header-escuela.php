@@ -39,7 +39,7 @@
 						  	</a>
 						  </li>
 
-						  <li><a  href="<?php echo base_url("index.php/Alumnos/index")?>"> 
+						  <li><a  href="<?php echo base_url("index.php/alumnos/index")?>"> 
 						  	<img id="tab3" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/alumno-bco.png">
 						  	<div id="tab3_t" class="my-tex-nav">Alumnos</div>
 						  </a>
