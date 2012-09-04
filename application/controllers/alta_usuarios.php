@@ -23,7 +23,7 @@ class Alta_usuarios extends CI_Controller
 
     	$crud->display_as('user','Usuario');
 
-    	$crud->columns('user','role');
+    	$crud->columns('id_usuario', 'matricula','role');
 
     	$output = $crud->render();
     	

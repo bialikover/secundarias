@@ -41,7 +41,7 @@
 
 /*$route['default_controller'] = "docente";
 =======*/
-$route['default_controller'] = "";
+$route['default_controller'] = "welcome";
 
 $route['404_override'] = '';
 
