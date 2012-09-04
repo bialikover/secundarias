@@ -7,6 +7,7 @@
 	border-radius: 10px;
 	box-shadow: 0px 0px 20px #555;
 	margin: 0 auto;
+	margin-top: 20px;
 	padding: 50px;
 	font-family: 'Helvetica neue', Helvetica, Arial;
 }
@@ -30,13 +31,14 @@
 	text-align: center;
 	margin-bottom: 20px;
 	border-radius: 5px;
+	padding: 5px;
 }
 .my-sub-header-perfil
 { 
 	color:#459E00;
 	margin-top:20px;
 	margin-bottom:20px;
-	border-bottom: 3px solid #459E00;
+	border-bottom: 1px solid #459E00;
 	height: 50px;
 }
 .my-perfil-datos

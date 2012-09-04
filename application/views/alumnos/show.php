@@ -32,8 +32,8 @@
 		<h4>Genero</h4>
 		<h4>CURP</h4>
 		<h4>Dirección</h4>
-		<h4>Telefono</h4>
-		<h4>Correo Electronico</h4>
+		<h4>Teléfono</h4>
+		<h4>Correo Electrónico</h4>
 
 		</div>
 		<div class="span8">
@@ -48,7 +48,7 @@
 <!--================================================================-->
 	<div class="row-floud">
 		<div class="span12 my-sub-header-perfil">
-			<h3>Datos Academicos</h3>
+			<h3>Datos Académicos</h3>
 		</div>
 	</div>
 
@@ -57,7 +57,7 @@
 			<h4>Institución</h4>
 			<h4>Matricula</h4>
 			<h4>Grado</h4>
-			<h4>Salon</h4>
+			<h4>Salón</h4>
 			<h4>Turno</h4>
 			<h4>Ciclo Escolar</h4>
 		</div>
