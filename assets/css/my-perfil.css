@@ -15,8 +15,10 @@
 {
 	width: 140px;
 	height: 180px;
-	background-color: #91ad52;
+	background-color: #fff;
 	float: left;
+	box-shadow:0px 0px 10px #555;
+	padding: 10px;
 
 }
 
