@@ -1,6 +1,6 @@
 <?php  
 	if (!defined('BASEPATH')) exit('No direct script access allowed');
-?><table cellpadding="0" cellspacing="0" border="0" class="display" id="groceryCrudTable">
+?><table cellpadding="0" cellspacing="0" border="0" class="table table-striped" id="groceryCrudTable">
 	<thead>
 		<tr>
 			<?php foreach($columns as $column){?>
@@ -24,16 +24,16 @@
 					foreach($row->action_urls as $action_unique_id => $action_url){ 
 						$action = $actions[$action_unique_id];
 				?>
-						<a href="<?php echo $action_url; ?>" class="edit_button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button">
-							<span class="ui-button-icon-primary ui-icon <?php echo $action->css_class; ?> <?php echo $action_unique_id;?>"></span><span class="ui-button-text">&nbsp;<?php echo $action->label?></span>
+						<a href="<?php echo $action_url; ?>" class="btn " role="button">
+							<i class="icon-user "></i>
+							<!--<span class="ui-button-icon-primary ui-icon <?php echo $action->css_class; ?> <?php echo $action_unique_id;?>"></span><span class="btn ">&nbsp;<?php echo $action->label?></span>-->
 						</a>		
 				<?php }
 				}
 				?>			
 				<?php if(!$unset_edit){?>
-					<a href="<?php echo $row->edit_url?>" class="edit_button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button">
-						<span class="ui-button-icon-primary ui-icon ui-icon-pencil"></span>
-						<span class="ui-button-text">&nbsp;<?php echo $this->l('list_edit'); ?></span>
+					<a href="<?php echo $row->edit_url?>" class="btn" role="button">
+						<i class="icon-pencil"></i>
 					</a>
 				<?php }?>
 				<?php if(!$unset_delete){?>
