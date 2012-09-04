@@ -7,7 +7,6 @@
 <div class="my-sub-header">
 	
 <h1>Mis Materias</h1>
-<hr/>
 
 </div>
 <div class="my-container-materias">
@@ -48,4 +47,8 @@
 			<h3>Matematicas 1</h3>
 	</div>
 
+</div>
+
+<div class="my-container-comentarios">
+	Comentarios..
 </div>

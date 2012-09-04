@@ -5,36 +5,70 @@
     	<title>Mi secu</title>
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/secundaria.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap-responsive.css">
 		
-<!--	
-<style type='text/css'>
-body
-{
-	font-family: Arial;
-	font-size: 14px;
-}
-a {
-    color: blue;
-    text-decoration: none;
-    font-size: 14px;
-}
-a:hover
-{
-	text-decoration: underline;
-}
-</style>-->
+		<script type="text/javascript" src="<?php echo base_url();?>/assets/js/jquery.js"></script> 
+		<script type="text/javascript" src="<?php echo base_url();?>/assets/js/bootstrap.js"></script> 
+		<script type="text/javascript" src="<?php echo base_url();?>/assets/js/my-menu-circle.js"></script>
 		
-		<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
 	</head>
 	<body>
 	<header>
-				<div class=" my-nav">
-					<a  href="<?php echo base_url("index.php/home/index")?>"> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/home-bco.png"><div>Inicio</div></div></a>
-					<a  href="<?php echo base_url("index.php/docentes/index")?>"> <div class="my-tab"> <img src="<?php echo base_url();?>/assets/img/docente-bco.png"><div>Docentes</div></div></a>
-					<a  href="<?php echo base_url("index.php/Alumnos/index")?>"> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/alumno-bco.png"><div>Alumnos</div></div></a>
-					<a  href="<?php echo base_url("index.php/materias/index")?>"> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/materia-bco.png"><div>Materias</div></div></a>
-					<a  href="<?php echo base_url("index.php/grupos/index")?>"> <div class="my-tab"><img src="<?php echo base_url();?>/assets/img/grupo-bco.png"><div>Grupos</div></div></a>
+			<div class="navbar my-nav">
+	  			<div class="navbar-inner">
+					
+						<div class="container-fluid">
+						<div class="row-fluid"> 
+							
+								<div id="my-menu" class="span12">
+									<ul class="nav">
+										<li><a class="" href="<?php echo base_url("index.php/home/index")?>">
+										  	<img id="tab1" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/home-bco.png">
+										  	<div id="tab1_t"  class="my-tex-nav">Inicio</div>
+										  	</a>
+										</li>
+									</ul>
+
+							<ul class="nav pull-right">
+
+						  <li><a class="my-a"  href="<?php echo base_url("index.php/docentes/index")?>">  
+						  	<img id="tab2" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/docente-bco.png">
+						  	<div id="tab2_t" class="my-tex-nav">Docentes</div>
+						  	</a>
+						  </li>
+
+						  <li><a  href="<?php echo base_url("index.php/Alumnos/index")?>"> 
+						  	<img id="tab3" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/alumno-bco.png">
+						  	<div id="tab3_t" class="my-tex-nav">Alumnos</div>
+						  </a>
+						</li>
+
+						  <li><a  href="<?php echo base_url("index.php/materias/index")?>"> 
+						  	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/materia-bco.png">
+						  	<div id="tab4_t" class="my-tex-nav">Materias</div>
+						  </a>
+						</li>
+
+						  <li><a  href="<?php echo base_url("index.php/grupos/index")?>"> 
+						  	<img id="tab5" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/grupo-bco.png">
+						  	<div id="tab5_t" class="my-tex-nav">Grupos</div>
+						  </a>
+						</li>
+					</ul>
+
 				</div>
-		
+				
+			</div>
+		</div>
+
+
+				</div>
+			</div>
 	</header>
-	<div class="my-container">
+	<div class="container-fluid">
+		<div class="row-fluid"> 
+			<div class="span1">
+				<!--margen izquierdo-->
+			</div>
+			<div class="span10">
