@@ -20,14 +20,6 @@
 
 }
 
-.my-nombre
-{
-	
-	width: 700px;
-	height: 180px;
-	font-size: 20px;
-}
-
 .my-header-perfil
 {
 	background-color: #459E00;
@@ -39,9 +31,11 @@
 }
 .my-sub-header-perfil
 { 
+	color:#459E00;
+	margin-top:20px;
+	margin-bottom:20px;
 	border-bottom: 3px solid #459E00;
 	height: 50px;
-	background-color: #879897;
 }
 .my-perfil-datos
 {
@@ -51,10 +45,7 @@
 	padding-left: 10px;
 }
 
-.my-div-container
-{
-	height: 135px;
-}
+
 .my-perfil-campos
 {
 	text-align: right;
