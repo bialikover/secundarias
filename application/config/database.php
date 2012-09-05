@@ -32,7 +32,7 @@ $db['production']['autoinit'] = TRUE;
 $db['production']['stricton'] = FALSE;
 
 $db['development']['hostname'] = 'localhost';
-$db['development']['port']     = '3306';
+$db['development']['port'] = '3306';
 $db['development']['username'] = 'root';
 $db['development']['password'] = 'moises';
 $db['development']['database'] = 'secundaria';
