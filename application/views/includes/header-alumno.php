@@ -33,14 +33,14 @@
 										</li>
 									</ul>
 									<ul class="nav pull-right">
-										<li><a  href="<?php echo base_url("index.php/mensajes/index")?>"> 
-						  					<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/materia-bco.png">
-						  					<div id="tab4_t" class="my-tex-nav">Mensajes</div>
+										<li><a  href="<?php echo base_url("index.php/materias/index")?>"> 
+						  					<img id="tab2" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/materia-bco.png">
+						  					<div id="tab2_t" class="my-tex-nav">Materias</div>
 						    				</a>
 										</li>
 										<li><a  href="<?php echo base_url("index.php/mensajes/index")?>"> 
-						  					<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
-						  					<div id="tab4_t" class="my-tex-nav">Mensajes</div>
+						  					<img id="tab3" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
+						  					<div id="tab3_t" class="my-tex-nav">Mensajes</div>
 						    				</a>
 										</li>
 									</ul>			
