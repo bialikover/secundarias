@@ -4,13 +4,11 @@ body
 	background-color: #fff;
 	background-image: url('../img/texture-white.png');
 	min-width: 700px;
-	margin: 0px;
 	font-family: 'Helvetica neue', Helvetica, Arial;
 }
 header
 {
-	background-color: #000;
-	height: 50px;
+	
 }
 
 .my-container
@@ -72,7 +70,7 @@ float: right;
 	height: 200px;
 	float: left;
 	background-color: #8DD404;
-	background-image: url('../img/texture-green.png');
+	background-image: url('../img/texture-green5.png');
 	padding: 20px;
 	text-align: center;
 

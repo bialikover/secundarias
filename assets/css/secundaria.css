@@ -1,8 +1,9 @@
 body
 {
-	background-color:#8DD404;
+	background-color:#fff;
 	background-image: url('../img/texture-white.png');
 	margin-top: 10px;
+	font-family: 'Helvetica neue', Helvetica, Arial;
 }
 
 header
@@ -36,13 +37,14 @@ footer
 	width: 50px;
 	height: 50px;	
 	background-color:#8DD404;
-	background-image: url('../img/texture-green.png');
+	background-image: url('../img/texture-green5.png');
 	-webkit-transition:.3s;
 }
 
 .my-img-tab:hover
 {
 	box-shadow: 0px 1px #fff,inset 0px 3px 5px #444;
+	background-image: url('../img/texture-green3.png');
 
 }
 

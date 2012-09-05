@@ -6,7 +6,7 @@
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/secundaria.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/my-perfil.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/aula-publicacion.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/aula-digital.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap-responsive.css">
 		
@@ -60,8 +60,8 @@
 						</li>
 
 						<li><a  href="<?php echo base_url("index.php/mensajes/index")?>"> 
-						  	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
-						  	<div id="tab4_t" class="my-tex-nav">Mensajes</div>
+						  	<img id="tab6" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
+						  	<div id="tab6_t" class="my-tex-nav">Mensajes</div>
 						    </a>
 						</li>
 					</ul>

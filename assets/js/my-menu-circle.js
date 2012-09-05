@@ -33,6 +33,11 @@ $(document).ready(function(){
 							}).mouseout(function(){
     		$('#tab5_t').removeClass('my-show-tex');
   			});
+			$('#tab6').mouseover(function(){
+				$('#tab6_t').addClass('my-show-tex');
+							}).mouseout(function(){
+    		$('#tab6_t').removeClass('my-show-tex');
+  			});
 
 		});
 //-------------------------------------------------------

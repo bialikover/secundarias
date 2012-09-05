@@ -21,7 +21,7 @@
 			<div class="navbar my-nav">
 	  			<div class="navbar-inner">
 					
-						<div class="container-fluid">
+					<div class="container-fluid">
 						<div class="row-fluid"> 
 							
 								<div id="my-menu" class="span12">
@@ -40,10 +40,10 @@
 										</li>
 									</ul>			
 
-				</div>
+								</div>
 				
-			</div>
-		</div>
+						</div>
+					</div>
 
 
 				</div>
