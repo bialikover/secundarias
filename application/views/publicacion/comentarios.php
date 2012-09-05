@@ -106,7 +106,7 @@
 			</div>
 		</div>
 		</div>
-		<div id="my-menu" class="span1">
+		<div class="span1">
 
 		</div>
 
