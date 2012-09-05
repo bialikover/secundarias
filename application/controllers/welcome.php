@@ -18,9 +18,9 @@ class Welcome extends CI_Controller {
         $perfil_id = $this->session->userdata("perfil_id");
         
         if ($role === "Alumno") {
-            redirect('alumnos/show/'.$id_user);
+            redirect('alumnos/show/'.$perfil_id);
         } else if ($role === "Maestro") {
-            redirect('docentes/show/'.$id_user);
+            redirect('docentes/show/'.$perfil_id);
         }
     }
 

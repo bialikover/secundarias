@@ -63,6 +63,35 @@ class Docentes extends CI_Controller {
         $this->load->view('includes/footer');
     }
 
+    public function materias() {
+        $id = $this->session->userdata('perfil_id');
+        $id_materias = $this->db->get_where('docente_materias', array('id_docente' => $id))->result();
+        $materias = array();
+        foreach ($id_materias as $id_materia) {
+            $materia = $this->db->get_where('materias', array('id_materia' => $id_materia->id_materia))->result();
+            array_push($materias, $materia[0]);
+        }
+        $data['materias'] = $materias;
+
+        $this->db->select('id_contenido, texto');
+        $this->db->order_by('fecha_modificacion', "desc");
+
+        $this->db->where(array('id_docente' => $id));
+        $contenidos1 = $this->db->get('contenidos', 5)->result();
+        $contenidos['contenidos'] = array();
+        foreach ($contenidos as $contenido) {
+            $comentarios = array();
+            echo "<h1/>" . $contenido->texto . "<h1/>";
+            $comentarios1 = $this->db->get_where('comentarios', array('id_contenidos' => $contenido->id_contenido))->result();
+            foreach ($comentarios1 as $comentario) {
+                echo "<h3>" . $comentario->contenido . "</h3>";
+                array_push($comentarios, $comentario);
+            }
+            array_push($contenidos, $contenido);
+            array_push($comentario, $comentario);
+        }
+    }
+
 }
 
 ?>
