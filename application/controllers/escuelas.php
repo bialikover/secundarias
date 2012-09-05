@@ -15,7 +15,6 @@ class Escuelas extends CI_Controller
 
 	public function nueva()
 	{
-
 		$crud = new grocery_CRUD();
 		$crud->set_theme('datatables');
 		$crud->set_subject('escuelas');
@@ -27,7 +26,6 @@ class Escuelas extends CI_Controller
     	$this->load->view('includes/header-escuela');
     	$this->load->view('escuelas/index',$output);
     	$this->load->view('includes/footer');
-
 
 	}
 
