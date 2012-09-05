@@ -6,10 +6,7 @@
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/secundaria.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/my-perfil.css">
-<<<<<<< HEAD
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/aula-publicacion.css">
-=======
->>>>>>> 8b8b2f89bd42f27028e3705db846412e1889a553
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap-responsive.css">
 		
@@ -43,11 +40,8 @@
 						  	</a>
 						  </li>
 
-<<<<<<< HEAD
+
 						  <li><a  href="<?php echo base_url("index.php/alumnos/index")?>"> 
-=======
-						  <li><a  href="<?php echo base_url("index.php/Alumnos/index")?>"> 
->>>>>>> 8b8b2f89bd42f27028e3705db846412e1889a553
 						  	<img id="tab3" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/alumno-bco.png">
 						  	<div id="tab3_t" class="my-tex-nav">Alumnos</div>
 						  </a>
@@ -80,8 +74,4 @@
 			<div class="span1">
 				<!--margen izquierdo-->
 			</div>
-<<<<<<< HEAD
 			<div class="span10">
-=======
-			<div class="span10">
->>>>>>> 8b8b2f89bd42f27028e3705db846412e1889a553

@@ -18,13 +18,11 @@
                 <h1><?php echo $docente->nombre . ' ' . $docente->apellido_pat . ' ' . $docente->apellido_mat; ?></h1>
             </div>
         </div>
-        <!--================================================================-->
         <div class="row-fluid">
             <div class="span12 my-sub-header-perfil">
                 <h3>Datos Personales</h3>
             </div>
         </div>
-        <!--================================================================-->
         <div class="row-fluid">
             <div class="span4 my-perfil-campos">
                 <h4>Dirección</h4>
@@ -38,7 +36,6 @@
                 <h4><span class="my-perfil-datos"><?php echo $docente->correo; ?></span></h4>
             </div>
         </div>
-        <!--================================================================-->
         <div class="row-floud">
             <div class="span12 my-sub-header-perfil">
                 <h3>Datos Académicos</h3>

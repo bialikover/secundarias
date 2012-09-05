@@ -45,11 +45,8 @@ class Alumnos extends CI_Controller{
     	$crud->unset_delete();
  
     	$output = $crud->render();
-<<<<<<< HEAD
-    	$this->load->view('includes/header-escuela');
-=======
+
     	$this->load->view('includes/header-alumno');
->>>>>>> 8b8b2f89bd42f27028e3705db846412e1889a553
     	$this->load->view('alumnos/index',$output);
     	$this->load->view('includes/footer');
 
@@ -72,11 +69,8 @@ class Alumnos extends CI_Controller{
         $id_padre1 = $alumno1[0]->id_padre;
         $data['tutor'] = $this->db->get_where('padres',  array('id_padre' => $id_padre1))->result();
 
-<<<<<<< HEAD
-		$this->load->view('includes/header-escuela');
-=======
+
 		$this->load->view('includes/header-alumno');
->>>>>>> 8b8b2f89bd42f27028e3705db846412e1889a553
 		$this->load->view('alumnos/show',$data);
 		$this->load->view('includes/footer');
 	}
