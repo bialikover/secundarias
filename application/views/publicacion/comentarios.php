@@ -30,7 +30,7 @@
 					<div class="span8">
 					<div class="comentary-footer">
 						<span>my archivo xxxx.docx </span>&nbsp
-						<span class="btn btn-success"><i class="icon-download-alt icon-white"></i> Descargar</span>
+						<span class="btn btn-success"><i class="icon-arrow-left icon-white"></i> Responder</span>
 					</div>
 				</div>
 			</div>
