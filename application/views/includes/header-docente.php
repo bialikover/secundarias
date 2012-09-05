@@ -30,8 +30,16 @@
 										  	</a>
 										</li>
 									</ul>
+									<ul class="nav pull-right">
 
-					</ul>
+									<li><a  href="<?php echo base_url("index.php/mensajes/index")?>"> 
+						 			 	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
+						  				<div id="tab4_t" class="my-tex-nav">Mensajes</div>
+						    			</a>
+									</li>
+								</ul>
+
+					
 
 				</div>
 				

@@ -31,13 +31,22 @@
 										  	</a>
 										</li>
 									</ul>
-									<ul class="nav pull-right">
-										<li><a  href="<?php echo base_url("index.php/mensajes/index")?>"> 
-						  					<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
-						  					<div id="tab4_t" class="my-tex-nav">Mensajes</div>
-						    				</a>
-										</li>
-									</ul>			
+									<ul class="nav pull-right">						
+									<li><a  href="<?php echo base_url("index.php/alumnos/index")?>"> 
+									  	<img id="tab3" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/alumno-bco.png">
+									  	<div id="tab3_t" class="my-tex-nav">Alumno</div>
+									  </a>
+									</li>
+									
+									<li><a  href="<?php echo base_url("index.php/mensajes/index")?>"> 
+									  	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
+									  	<div id="tab4_t" class="my-tex-nav">Mensajes</div>
+									  </a>
+									</li>
+
+						  
+								   </ul>
+					
 
 				</div>
 				
