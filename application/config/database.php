@@ -31,10 +31,10 @@ $db['production']['swap_pre'] = '';
 $db['production']['autoinit'] = TRUE;
 $db['production']['stricton'] = FALSE;
 
-$db['development']['hostname'] = '192.168.40.240';
+$db['development']['hostname'] = 'localhost';
 $db['development']['port']	   = '3306';
 $db['development']['username'] = 'root';
-$db['development']['password'] = 'moises';
+$db['development']['password'] = '';
 $db['development']['database'] = 'secundaria';
 $db['development']['dbdriver'] = 'mysql';
 $db['development']['dbprefix'] = '';
