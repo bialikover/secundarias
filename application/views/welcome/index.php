@@ -12,7 +12,7 @@
 </header>
 	<div class="my-container">
 <div class="my-sub-header">
-<?php if($this->session->userdata('role') != 'Escuela'):?>	
+<?php if($this->session->userdata('role') != 'Escuela'):?>
 <h1>Mis Materias</h1>
 
 </div>
