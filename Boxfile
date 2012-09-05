@@ -1,0 +1,7 @@
+web1:
+   php_display_errors: "1"
+   php_error_reporting: 30719
+   php_date_timezone: "America/Mexico_City"
+   php_extensions:
+      - mysql
+      - pdo_mysql
