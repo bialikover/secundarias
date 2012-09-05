@@ -6,6 +6,7 @@
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/secundaria.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/my-perfil.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/aula-digital.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap-responsive.css">
 		
@@ -30,15 +31,21 @@
 										  	</a>
 										</li>
 									</ul>
-									<ul class="nav pull-right">
-
-									<li><a  href="<?php echo base_url("index.php/mensajes/index")?>"> 
-						 			 	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
-						  				<div id="tab4_t" class="my-tex-nav">Mensajes</div>
-						    			</a>
+									<ul class="nav pull-right">						
+									<li><a  href="<?php echo base_url("index.php/alumnos/index")?>"> 
+									  	<img id="tab3" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/alumno-bco.png">
+									  	<div id="tab3_t" class="my-tex-nav">Alumno</div>
+									  </a>
 									</li>
-								</ul>
+									
+									<li><a  href="<?php echo base_url("index.php/mensajes/index")?>"> 
+									  	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
+									  	<div id="tab4_t" class="my-tex-nav">Mensajes</div>
+									  </a>
+									</li>
 
+						  
+								   </ul>
 					
 
 				</div>
@@ -55,4 +62,5 @@
 			<div class="span1">
 				<!--margen izquierdo-->
 			</div>
+
 			<div class="span10">

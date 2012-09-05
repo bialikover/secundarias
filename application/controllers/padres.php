@@ -26,7 +26,7 @@ class Padres extends CI_Controller {
     	$crud->unset_delete();
  
     	$output = $crud->render();
-        $this->load->view('includes/header');
+        $this->load->view('includes/header-padre');
         $this->load->view('padres/index',$output);
         $this->load->view('includes/footer');
     	
