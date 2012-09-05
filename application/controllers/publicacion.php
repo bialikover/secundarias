@@ -58,7 +58,7 @@ class Publicacion extends CI_Controller
 
 	public function comentarios()
 	{
-		$this->load->view('includes/header-docente');
+		$this->load->view('includes/header-alumno');
 		$this->load->view('publicacion/comentarios');
 		$this->load->view('includes/footer');
 	}

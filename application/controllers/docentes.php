@@ -78,20 +78,19 @@ class Docentes extends CI_Controller {
 
         $this->db->where(array('id_docente' => $id));
         $contenidos1 = $this->db->get('contenidos', 5)->result();
-        $contenidos['contenidos'] = array();
-        foreach ($contenidos as $contenido) {
+        $contenidos = array();
+        foreach ($contenidos1 as $contenido) {
             $comentarios = array();
-            echo "<h1/>" . $contenido->texto . "<h1/>";
             $comentarios1 = $this->db->get_where('comentarios', array('id_contenidos' => $contenido->id_contenido))->result();
             foreach ($comentarios1 as $comentario) {
-                echo "<h3>" . $comentario->contenido . "</h3>";
                 array_push($comentarios, $comentario);
             }
-            array_push($contenidos, $contenido);
-            array_push($comentario, $comentario);
+            array_push($comentarios, $comentario);
+            $contenido_comentarios = array('contenido'=>$contenido,'comentarios'=>$comentarios);
+            array_push($contenidos, $contenido_comentarios);
         }
+        $data['contenidos'] = $contenidos;
     }
-
 }
 
 ?>

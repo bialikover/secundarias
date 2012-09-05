@@ -12,27 +12,17 @@ class Login extends CI_Controller {
     public function index($msg = NULL) {
         // Load our view to be displayed
         // to the user
-<<<<<<< HEAD
 
-=======
->>>>>>> fb662b934ec02c99a931330c2f6111a2ce236e38
         if($this->session->userdata('validated')){
             redirect('welcome');
         }
         else{
     	  $data['msg'] = $msg;
-<<<<<<< HEAD
-    	  $this->load->view('includes/header');
-          $this->load->view('login/login_view', $data);
-          $this->load->view('includes/footer');
-        }
-        
-=======
+
     	  $this->load->view('includes/header-escuela');
           $this->load->view('login/login_view', $data);
           $this->load->view('includes/footer');
         }
->>>>>>> fb662b934ec02c99a931330c2f6111a2ce236e38
     }
 
     public function process() {
