@@ -17,6 +17,7 @@ class Contenidos extends CI_Controller
 
     $content = $this->input->post();
     $id_docente = $this->session->userdata('id_perfil');
+    
 
   }
 
