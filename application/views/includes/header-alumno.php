@@ -20,31 +20,20 @@
 	<header>
 			<div class="navbar my-nav">
 	  			<div class="navbar-inner">
-					
-					<div class="container-fluid">
-						<div class="row-fluid"> 
-							
-								<div id="my-menu" class="span12">
-									<ul class="nav">
-										<li><a class="" href="<?php echo base_url("index.php/home/index")?>">
-										  	<img id="tab1" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/home-bco.png">
-										  	<div id="tab1_t"  class="my-tex-nav">Inicio</div>
-										  	</a>
-										</li>
-									</ul>
-									<ul class="nav pull-right">
-										<li><a  href="<?php echo base_url("index.php/mensajes/index")?>"> 
-						  					<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
-						  					<div id="tab4_t" class="my-tex-nav">Mensajes</div>
-						    				</a>
-										</li>
-									</ul>			
-
-								</div>
-				
-						</div>
-					</div>
-
+					<ul class="nav">
+						<li><a  href="<?php echo base_url("index.php/home/index")?>">
+						  	<img id="tab1" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/home-bco.png">
+							  	<div id="tab1_t"  class="my-tex-nav">Inicio</div>
+						  	</a>
+						</li>
+					</ul>
+					<ul class="nav pull-right">
+						<li><a  href="<?php echo base_url("index.php/mensajes/index")?>"> 
+							<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
+						  		<div id="tab4_t" class="my-tex-nav">Mensajes</div>
+							</a>
+						</li>
+					</ul>			
 
 				</div>
 			</div>
