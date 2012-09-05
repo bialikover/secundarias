@@ -1,0 +1,46 @@
+.my-public-header
+{
+	margin-top: 20px;
+	box-shadow: 0px 3px 5px #777, inset 0px 1px #fff;
+	padding: 20px;
+	border-radius: 5px;
+	background-color: #eee;
+}
+.my-comentary-container
+{
+	margin-top: 20px;
+	border-radius: 5px;
+	box-shadow: 0px 3px 5px #777, inset 0px 1px #fff;
+	background-color: #fff;
+	border: 1px solid #eee;
+}
+.my-comentary-header
+{
+	font-size: 20px;
+	font-weight: bold;
+	padding: 10px;
+	border-bottom: 1px solid #eee;
+}
+
+.my-comentary
+{
+	padding: 20px;
+	border-bottom: 1px solid #eee;
+}
+.my-comentary:hover
+{
+	background-color: #f5f5f5;
+}
+.comentary-footer
+{
+	text-align: right;
+	border-top:1px solid #ccc;
+	padding-top:20px;
+}
+
+.date-footer
+{
+	color: #555;
+	padding-top:20px;
+	text-align: left;
+}
