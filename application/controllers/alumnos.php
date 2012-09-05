@@ -32,18 +32,24 @@ class Alumnos extends CI_Controller{
     	$crud->display_as('fecha_nacimiento','Fecha de nacimiento');
     	$crud->display_as('apellido_mat','Apellido materno');
     	$crud->display_as('id_grupo','Grupo');
+        $crud->display_as('id_padre','Tutor');
 
     	$crud->set_relation('id_grupo','grupos','clave');
+        $crud->set_relation('id_padre','padres','nombre');
 
     	$crud->columns('matricula','nombre','apellido_pat','apellido_mat','id_grupo','correo_electronico');
-    	$crud->fields('matricula','nombre','apellido_pat','apellido_mat','genero','id_grupo','fecha_nacimiento','curp','direccion','telefono','correo_electronico');
+    	$crud->fields('matricula','nombre','apellido_pat','apellido_mat','genero','id_grupo', 'id_padre', 'fecha_nacimiento','curp','direccion','telefono','correo_electronico');
     	
 
     	$crud->add_action('Ver', '', 'alumnos/show','ui-icon-plus');
     	$crud->unset_delete();
  
     	$output = $crud->render();
+<<<<<<< HEAD
     	$this->load->view('includes/header-escuela');
+=======
+    	$this->load->view('includes/header-alumno');
+>>>>>>> 8b8b2f89bd42f27028e3705db846412e1889a553
     	$this->load->view('alumnos/index',$output);
     	$this->load->view('includes/footer');
 
@@ -62,8 +68,15 @@ class Alumnos extends CI_Controller{
 		$id_escuela1=$grupo1[0]->id_escuela;
 		
 		$data['escuela'] = $this->db->get_where( 'escuelas', array( 'id_escuela' => $id_escuela1 ) )->result();
+        
+        $id_padre1 = $alumno1[0]->id_padre;
+        $data['tutor'] = $this->db->get_where('padres',  array('id_padre' => $id_padre1))->result();
 
+<<<<<<< HEAD
 		$this->load->view('includes/header-escuela');
+=======
+		$this->load->view('includes/header-alumno');
+>>>>>>> 8b8b2f89bd42f27028e3705db846412e1889a553
 		$this->load->view('alumnos/show',$data);
 		$this->load->view('includes/footer');
 	}

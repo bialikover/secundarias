@@ -6,10 +6,6 @@
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/secundaria.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/my-perfil.css">
-<<<<<<< HEAD
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/aula-digital.css">
-=======
->>>>>>> 8b8b2f89bd42f27028e3705db846412e1889a553
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap-responsive.css">
 		
@@ -51,8 +47,4 @@
 			<div class="span1">
 				<!--margen izquierdo-->
 			</div>
-<<<<<<< HEAD
 			<div class="span10">
-=======
-			<div class="span10">
->>>>>>> 8b8b2f89bd42f27028e3705db846412e1889a553
