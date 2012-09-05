@@ -34,7 +34,7 @@
 										</li>
 									</ul>
 									<ul class="nav pull-right">
-										<li><a  href="<?php echo base_url("index.php/materias/index")?>"> 
+										<li><a  href="<?php echo base_url("index.php/docentes/materias")?>"> 
 						  					<img id="tab2" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/materia-bco.png">
 						  					<div id="tab2_t" class="my-tex-nav">Materias</div>
 						    				</a>
