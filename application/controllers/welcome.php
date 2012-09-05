@@ -51,6 +51,13 @@ class Welcome extends CI_Controller {
           $this->load->view('includes/footer');
         }
 
+        else if($role === "Escuela"){
+            $data['nombre'] = $this->db->query("select nombre from escuelas where id_escuela =". $perfil_id)->row();            
+          $this->load->view('includes/header-escuela');
+          $this->load->view('welcome/index', $data);
+          $this->load->view('includes/footer');
+        }
+
 		
         
                 
