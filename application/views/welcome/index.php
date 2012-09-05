@@ -15,29 +15,9 @@
 	<div class="my-materia">
 			<h2><?php echo $materia->nombre;?></h2>
 	</div>
-<<<<<<< HEAD
-	<? endforeach;?>
-=======
+
 
 	<? endforeach;?>
-
->>>>>>> 41284bd4ff6994dcb7249c14462ff16b2c9e46e0
-
-	<div class="my-materia">
-			<h2>Matematicas 1</h2>
-	</div>
-
-	<div class="my-materia">
-			<h3>Matematicas 1</h3>
-	</div>
-
-	<div class="my-materia">
-			<h3>Matematicas 1</h3>
-	</div>
-
-	<div class="my-materia">
-			<h3>Matematicas 1</h3>
-	</div>
 
 </div>
 

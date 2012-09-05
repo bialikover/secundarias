@@ -29,6 +29,9 @@ class Welcome extends CI_Controller {
 
             );
           $data['materias'] = $materias->result();
+          $this->load->view('includes/header-alumno');
+          $this->load->view('welcome/index', $data);
+          $this->load->view('includes/footer');
         }
 
 
@@ -43,11 +46,13 @@ class Welcome extends CI_Controller {
              );"
             );
           $data['materias'] = $materias->result();
+          $this->load->view('includes/header-docente');
+          $this->load->view('welcome/index', $data);
+          $this->load->view('includes/footer');
         }
 
-		$this->load->view('includes/header2');
-        $this->load->view('welcome/index', $data);
-        $this->load->view('includes/footer');
+		
+        
                 
 		
 	}
