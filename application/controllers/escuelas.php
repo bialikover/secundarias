@@ -1,7 +1,7 @@
 <?php
 
 
-class Secundarias extends CI_Controller
+class Escuelas extends CI_Controller
 {
 	function __construct()
 	{
@@ -18,14 +18,14 @@ class Secundarias extends CI_Controller
 
 		$crud = new grocery_CRUD();
 		$crud->set_theme('datatables');
-		$crud->set_subject('secundarias');
-    	$crud->set_table('secundarias');    	
-    	$crud->columns('nombre', 'descripcion','direccion', 'telefono');
+		$crud->set_subject('escuelas');
+    	$crud->set_table('escuelas');    	
+    	$crud->columns('nombre', 'turno','clave', 'zona', 'sector', 'municipio', 'localidad', 'telefono', 'email', 'descripcion' );
 
     	$output = $crud->render();
     	
     	$this->load->view('includes/header-escuela');
-    	$this->load->view('secundarias/index',$output);
+    	$this->load->view('escuelas/index',$output);
     	$this->load->view('includes/footer');
 
 
@@ -36,7 +36,7 @@ class Secundarias extends CI_Controller
 
 
 		echo "la view principal";
-		
+
 
 	}
 
