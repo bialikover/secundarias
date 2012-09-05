@@ -13,7 +13,7 @@ header
 footer
 {
 	background-image: url('../img/texture-gray.png');
-	margin-top:50px;
+	margin-top:100px;
 	width: 100%;
 	color: #fff;
 	text-align: center;
@@ -25,6 +25,7 @@ footer
 
 .my-nav
 {
+	background-color: #eee;
 	background-image: url('../img/texture-gray1.png');
 	border-bottom: 1px solid #bbb;
 }
@@ -58,4 +59,9 @@ footer
 {
 	font-weight: bold;
 	font-size: 20px;
+}
+
+.my-center
+{
+	text-align: center;
 }

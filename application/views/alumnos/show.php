@@ -38,7 +38,7 @@
 		</div>
 		<div class="span8">
 		<h4><span class="my-perfil-datos"><?php echo $alumno[0]->fecha_nacimiento; ?></span></h4>
-		<h4><span class="my-perfil-datos"><?php echo $alumno[0]->genero; ?></span></h4>
+		<h4><span class="my-perfil-datos"><?php if($alumno[0]->genero=="M"){echo "Masculino";}else{echo "Femenino";} ?></span></h4>
 		<h4><span class="my-perfil-datos"><?php echo $alumno[0]->curp ?></span></h4>
 		<h4><span class="my-perfil-datos"><?php echo $alumno[0]->direccion; ?></span></h4>
 		<h4><span class="my-perfil-datos"><?php echo $alumno[0]->telefono; ?></span></h4>
