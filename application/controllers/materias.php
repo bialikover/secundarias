@@ -23,7 +23,7 @@ class Materias extends CI_Controller
     	$crud->unset_delete();
  
     	$output = $crud->render();
-        $this->load->view('includes/header');
+        $this->load->view('includes/header-escuela');
         $this->load->view('materias/index',$output);
         $this->load->view('includes/footer');
     	
