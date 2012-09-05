@@ -19,7 +19,7 @@ class Login extends CI_Controller {
         else{
     	  $data['msg'] = $msg;
 
-    	  $this->load->view('includes/header-escuela');
+    	  $this->load->view('includes/header');
           $this->load->view('login/login_view', $data);
           $this->load->view('includes/footer');
         }

@@ -67,7 +67,7 @@
 					</ul>
 
 				</div>
-				
+				<a  href="<?php echo base_url("index.php/welcome/do_logout")?>"> Salir</a>	
 			</div>
 		</div>
 

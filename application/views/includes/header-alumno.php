@@ -22,8 +22,8 @@
 	  			<div class="navbar-inner">
 					
 						<div class="container-fluid">
-						<div class="row-fluid"> 
-							
+						<div class="row-fluid"> 		
+
 								<div id="my-menu" class="span12">
 									<ul class="nav">
 										<li><a class="" href="<?php echo base_url("index.php/welcome")?>">
@@ -43,10 +43,10 @@
 						  					<div id="tab3_t" class="my-tex-nav">Mensajes</div>
 						    				</a>
 										</li>
-									</ul>			
+									</ul>	
 
 				</div>
-				
+				<a  href="<?php echo base_url("index.php/welcome/do_logout")?>"> Salir</a>	
 			</div>
 		</div>
 
