@@ -23,16 +23,25 @@ class Materias extends CI_Controller
     	$crud->unset_delete();
  
     	$output = $crud->render();
+<<<<<<< HEAD
         $this->load->view('includes/header-escuela');
+=======
+        $this->load->view('includes/header-materia');
+>>>>>>> edbb202111902d1e142c7506f3f0158a34caf425
         $this->load->view('materias/index',$output);
         $this->load->view('includes/footer');
-    	
     	
     }
     //muestra una materia
     public function show()
     {
-    	$this->load->view("materias/show");	
+        $id = $this->uri->segment(3);
+		$materia = $this->db->get_where( 'materias', array( 'id_materia' => $id ) )->result();
+		$data['materia'] = $materia[0];
+		
+		$this->load->view('includes/header-materia');
+		$this->load->view('materias/show',$data);
+		$this->load->view('includes/footer');
     }
 
     //muestra un formulario para crear una nueva materia

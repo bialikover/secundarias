@@ -23,8 +23,7 @@ a:hover
 	text-decoration: underline;
 }
 	</style>
-	
-		<div>
+			<div>
 		<?php echo $output; ?>
     </div>
     	
