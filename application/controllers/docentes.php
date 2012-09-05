@@ -18,42 +18,78 @@ class Docentes extends CI_Controller {
 
          */
 
-        $crud = new grocery_CRUD();
-        $crud->set_theme('datatables');
-        $crud->set_subject('docente');
-        $crud->set_table('docentes');
-        $crud->set_relation_n_n('materias', 'docente_materias', 'materias', 'id_docente', 'id_materia', 'nombre');
-        $crud->columns('nombre', 'apellido_pat', 'apellido_mat', 'genero', 'especialidad', 'materias');
-        $crud->display_as('apellido_pat', 'Apellido paterno');
-        $crud->display_as('apellido_mat', 'Apellido materno');
-        $crud->fields('nombre', 'apellido_pat', 'apellido_mat', 'genero', 'especialidad', 'materias');
-        $crud->add_action('Ver', '', 'docentes/show', 'ui-icon-plus');
-        $crud->unset_delete();
+        if (!$this->session->userdata('validated')) {
+            redirect('login');
+        } else {
+            if ($this->session->userdata("role") != 'Escuela') {
+                redirect('login');
+            }
+            $crud = new grocery_CRUD();
+            $crud->set_theme('datatables');
+            $crud->set_subject('docente');
+            $crud->set_table('docentes');
+            $crud->set_relation_n_n('materias', 'docente_materias', 'materias', 'id_docente', 'id_materia', 'nombre');
+            $crud->columns('nombre', 'apellido_pat', 'apellido_mat', 'genero', 'especialidad', 'materias');
+            $crud->display_as('apellido_pat', 'Apellido paterno');
+            $crud->display_as('apellido_mat', 'Apellido materno');
+            $crud->fields('nombre', 'apellido_pat', 'apellido_mat', 'genero', 'especialidad', 'materias');
+            $crud->add_action('Ver', '', 'docentes/show', 'ui-icon-plus');
+            $crud->unset_delete();
 
-        $output = $crud->render();
-        $this->load->view('includes/header-docente');
-        $this->load->view('docentes/index', $output);
-        $this->load->view('includes/footer');
+            $output = $crud->render();
+            $this->load->view('includes/header-docente');
+            $this->load->view('docentes/index', $output);
+            $this->load->view('includes/footer');
+        }
     }
 
     public function show() {
         $id = $this->uri->segment(3);
         $docente = $this->db->get_where('docentes', array('id_docentes' => $id))->result();
         $data['docente'] = $docente[0];
-        
+
         $id_materias = $this->db->get_where('docente_materias', array('id_docente' => $id))->result();
         $materias = array();
         foreach ($id_materias as $id_materia) {
             $materia = $this->db->get_where('materias', array('id_materia' => $id_materia->id_materia))->result();
-                array_push($materias, $materia[0]);
+            array_push($materias, $materia[0]);
         }
         $data['materias'] = $materias;
-        $escuela = $this->db->get_where( 'escuelas', array( 'id_escuela' => $docente[0]->id_escuela ) )->result();
+        $escuela = $this->db->get_where('escuelas', array('id_escuela' => $docente[0]->id_escuela))->result();
         $data['escuela'] = $escuela[0];
-        
+
         $this->load->view('includes/header-docente');
         $this->load->view('docentes/show', $data);
         $this->load->view('includes/footer');
+    }
+
+    public function materias() {
+        $id = $this->session->userdata('perfil_id');
+        $id_materias = $this->db->get_where('docente_materias', array('id_docente' => $id))->result();
+        $materias = array();
+        foreach ($id_materias as $id_materia) {
+            $materia = $this->db->get_where('materias', array('id_materia' => $id_materia->id_materia))->result();
+            array_push($materias, $materia[0]);
+        }
+        $data['materias'] = $materias;
+
+        $this->db->select('id_contenido, texto');
+        $this->db->order_by('fecha_modificacion', "desc");
+
+        $this->db->where(array('id_docente' => $id));
+        $contenidos1 = $this->db->get('contenidos', 5)->result();
+        $contenidos['contenidos'] = array();
+        foreach ($contenidos as $contenido) {
+            $comentarios = array();
+            echo "<h1/>" . $contenido->texto . "<h1/>";
+            $comentarios1 = $this->db->get_where('comentarios', array('id_contenidos' => $contenido->id_contenido))->result();
+            foreach ($comentarios1 as $comentario) {
+                echo "<h3>" . $comentario->contenido . "</h3>";
+                array_push($comentarios, $comentario);
+            }
+            array_push($contenidos, $contenido);
+            array_push($comentario, $comentario);
+        }
     }
 
 }

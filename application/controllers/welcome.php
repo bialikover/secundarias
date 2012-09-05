@@ -1,11 +1,15 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
- 	function __construct(){
+    function __construct() {
         parent::__construct();
         $this->check_isvalidated();
     }
+<<<<<<< HEAD
 	public function index()
 	{		
         //$consulta = 
@@ -49,8 +53,24 @@ class Welcome extends CI_Controller {
           $this->load->view('includes/header-docente');
           $this->load->view('welcome/index', $data);
           $this->load->view('includes/footer');
-        }
+=======
 
+    public function index() {
+        //$consulta = 
+        $this->load->database("secundaria");
+        $id_user = $this->session->userdata('id_usuario');
+        $role = $this->session->userdata("role");
+        $perfil_id = $this->session->userdata("perfil_id");
+        
+        if ($role === "Alumno") {
+            redirect('alumnos/show/'.$perfil_id);
+        } else if ($role === "Maestro") {
+            redirect('docentes/show/'.$perfil_id);
+>>>>>>> fb662b934ec02c99a931330c2f6111a2ce236e38
+        }
+    }
+
+<<<<<<< HEAD
         else if($role === "Escuela"){
             $data['nombre'] = $this->db->query("select nombre from escuelas where id_escuela =". $perfil_id)->row();            
           $this->load->view('includes/header-escuela');
@@ -65,13 +85,19 @@ class Welcome extends CI_Controller {
 	}
 	private function check_isvalidated(){
         if(! $this->session->userdata('validated')){
+=======
+    private function check_isvalidated() {
+        if (!$this->session->userdata('validated')) {
+>>>>>>> fb662b934ec02c99a931330c2f6111a2ce236e38
             redirect('login');
         }
     }
-    public function do_logout(){
+
+    public function do_logout() {
         $this->session->sess_destroy();
         redirect('login');
     }
+
 }
 
 /* End of file welcome.php */
