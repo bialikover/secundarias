@@ -20,7 +20,7 @@
 	<header>
 			<div class="navbar my-nav">
 	  			<div class="navbar-inner">
-<<<<<<< HEAD
+
 					
 						<div class="container-fluid">
 						<div class="row-fluid"> 		
@@ -51,22 +51,7 @@
 			</div>
 		</div>
 
-=======
-					<ul class="nav">
-						<li><a  href="<?php echo base_url("index.php/home/index")?>">
-						  	<img id="tab1" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/home-bco.png">
-							  	<div id="tab1_t"  class="my-tex-nav">Inicio</div>
-						  	</a>
-						</li>
-					</ul>
-					<ul class="nav pull-right">
-						<li><a  href="<?php echo base_url("index.php/mensajes/index")?>"> 
-							<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
-						  		<div id="tab4_t" class="my-tex-nav">Mensajes</div>
-							</a>
-						</li>
-					</ul>			
->>>>>>> c9d878b69320cd3718b8198c0e5149b5014f71f8
+
 
 				</div>
 			</div>

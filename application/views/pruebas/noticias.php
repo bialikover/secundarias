@@ -1,4 +1,12 @@
-<h1>Materias</h1>
+<br>
+<div class="row-fluid"> 
+	<div class="span8">
+		<h1>Materias</h1>
+	</div>
+	<div class="span4 my-right">
+		<span data-toggle="modal" data-target="#myModal" class="btn btn-success "><i class="icon-plus icon-white"></i></i> Nuevo Contenido</span>
+	</div>
+</div>
 <hr>
 <div class="row-fluid"> 
 	<div class="12">
@@ -27,6 +35,7 @@
 		</div>			
 	</div>
 </div>
+<br>
 <br>
 <h1>Lo Nuevo</h1>
 <hr>
@@ -163,4 +172,19 @@
 
 		</div>
 	</div>
+</div>
+
+<-- Modal -->
+<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Nuevo Contenido</h3>
+  </div>
+  <div class="modal-body">
+    <p>hey...</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+    <button class="btn btn-success">Crear</button>
+  </div>
 </div>
