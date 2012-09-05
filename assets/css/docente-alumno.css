@@ -34,15 +34,15 @@ margin-bottom: 20px;
 
 .my-nombre
 {
-	color: #8DD404;
-	text-align: right;
+	color: #008B00;
+	text-align: left;
 	padding-right: 20px;
 	padding-top: 15px;
 }
 
 .my-foto
 {
-float: right;
+float: left;
 }
 
 .my-container-materias
