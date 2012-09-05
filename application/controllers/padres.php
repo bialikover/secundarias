@@ -4,7 +4,6 @@
  *
  * @author neto
  */
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Padres extends CI_Controller {
     public function __construct()
     {
@@ -43,25 +42,6 @@ class Padres extends CI_Controller {
     public function new_view()
     {
     	$this->load->view("padres/new");
-    }
-
-    //muestra un formulario para editar una materia
-    public function edit()
-    {
-
-    }
-
-    //guarda el nuevo elemento materia en la base de datos
-    public function create()
-    {
-    	var_dump($this->input->post());
-    	die;
-    }
-
-    //actualiza la información en la base de datos correspondiente a materia
-    public function update()
-    {
-
     }
 }
 
