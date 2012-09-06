@@ -1,4 +1,12 @@
-<h1>Materias</h1>
+<div class="row-fluid"> 
+	<div class="span8">
+		<h1>Materias</h1>
+	</div>
+	<div class="span4 my-right">
+		<span data-toggle="modal" data-target="#myModal" class="btn btn-success "><i class="icon-plus icon-white"></i></i> Nuevo Contenido</span>
+	</div>
+</div>
+
 <hr>
 <div class="row-fluid"> 
     <div class="12">
