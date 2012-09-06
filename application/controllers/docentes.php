@@ -67,13 +67,16 @@ class Docentes extends CI_Controller {
         $id = $this->session->userdata('perfil_id');
         $id_materias = $this->db->get_where('docente_materias', array('id_docente' => $id))->result();
         $materias = array();
+
+        $docente = $this->db->get_where('docentes', array('id_docentes' => $id))->result();
+
         foreach ($id_materias as $id_materia) {
             $materia = $this->db->get_where('materias', array('id_materia' => $id_materia->id_materia))->result();
             array_push($materias, $materia[0]);
         }
         $data['materias'] = $materias;
 
-        $this->db->select('id_contenido, texto');
+        $this->db->select('*');
         $this->db->order_by('fecha_modificacion', "desc");
 
         $this->db->where(array('id_docente' => $id));
@@ -81,16 +84,26 @@ class Docentes extends CI_Controller {
         $contenidos = array();
         foreach ($contenidos1 as $contenido) {
             $comentarios = array();
+            
             $comentarios1 = $this->db->get_where('comentarios', array('id_contenidos' => $contenido->id_contenido))->result();
+            
+            $materia = $this->db->get_where('materias', array('id_materia' => $contenido->id_materias))->result();
             foreach ($comentarios1 as $comentario) {
-                array_push($comentarios, $comentario);
+                $user = $this->db->get_where('usuario', array('id_usuario' => $comentario->id_user))->result();
+                $autor = $this->db->get_where('alumnos', array('id_alumno' => $user[0]->perfil_id))->result();
+                array_push($comentarios, array('comentario' => $comentario, 'autor' => $autor[0]));
             }
-            array_push($comentarios, $comentario);
-            $contenido_comentarios = array('contenido'=>$contenido,'comentarios'=>$comentarios);
+            $contenido_comentarios = array('contenido' => $contenido, 'comentarios' => $comentarios, 'materia' => $materia[0]);
             array_push($contenidos, $contenido_comentarios);
         }
         $data['contenidos'] = $contenidos;
+        $data['docente'] = $docente[0];
+
+        $this->load->view('includes/header-docente');
+        $this->load->view('pruebas/noticias', $data);
+        $this->load->view('includes/footer');
     }
+
 }
 
 ?>
