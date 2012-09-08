@@ -16,21 +16,19 @@ class Escuelas extends CI_Controller
 	public function index(){
 		$crud = new grocery_CRUD();
 		$crud->set_theme('datatables');
-		$crud->set_subject('escuela');
-    	$crud->set_table('escuela');    	
+		$crud->set_subject('contacto_escuela');
+    	$crud->set_table('contacto_escuela');    	
 
-    	$crud->columns('escuelaId', 'escuela','claveEscuela', 'turno', 'administradorId');
-    	$crud->fields('escuela', 'clave_escuela','turno', 'descripcion', 'adicional', 'administradorId');
-    	$crud->set_relation('administradorId', 'usuario', 'usuarioId');
+    	$crud->columns('escuelaId', 'telEscuela','emailEscuela');
+    	$crud->fields('escuela', 'telefono_escuela','email_escuela');
+    	$crud->set_relation('escuelaId', 'escuela', 'escuelaId');
     	$crud->display_as('administradorId','Administrador Escuela');
-    	$crud->add_action('Contacto','', 'contacto_escuela');
-		$crud->add_action('Domicilio','', 'domicilio_escuela/index');
 		$crud->unset_add();
 
     	$output = $crud->render();
     	
     	$this->load->view('includes/header-escuela');
-    	$this->load->view('escuelas/index',$output);
+    	$this->load->view('contacto_escuela/index',$output);
     	$this->load->view('includes/footer');
 	}
 
@@ -40,7 +38,5 @@ class Escuelas extends CI_Controller
 
 	}
 }
-
-
 
 ?>

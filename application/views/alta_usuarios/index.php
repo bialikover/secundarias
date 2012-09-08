@@ -1,4 +1,4 @@
-<h1>Alumnos</h1>
+<h2>Usuarios</h2>
 <hr/>
 <?php 
 foreach($css_files as $file): ?>

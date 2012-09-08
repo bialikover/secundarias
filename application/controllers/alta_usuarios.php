@@ -21,12 +21,12 @@ class Alta_usuarios extends CI_Controller
     	$crud->set_table('usuario');
 		$crud->set_relation('tipoUsuarioId','tipo_usuario','tipoUsuario');
     	$crud->columns('usuarioId', 'usuario','password', 'tipoUsuarioId');
-    	$crud->fields('usuario','password', 'verify_password', 'tipoUsuarioId');
+    	$crud->fields('usuario','password', 'verificar_password', 'tipoUsuarioId');
     	$crud->display_as('tipoUsuarioId','Tipo de usuario');
 
         $crud->change_field_type('password', 'password');
         $crud->change_field_type('verify_password', 'password');
-        $crud->set_rules('verify_password', 'Verify Password', 'required|matches[password]');
+        $crud->set_rules('verify_password', 'Verificar Password', 'required|matches[password]');
  		
 
  		//callbacks
@@ -64,13 +64,7 @@ class Alta_usuarios extends CI_Controller
            unset($post_array['verify_password']);
            return $post_array;
 	}
-
-
-
-
-
 }
-
 
 
 ?>
