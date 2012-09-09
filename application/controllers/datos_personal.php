@@ -15,11 +15,7 @@ class Datos_personal extends CI_Controller
 
 	public function index()
 	{
-
-            if( $this->uri->segment(3) != 'edit' || !is_numeric($this->uri->segment(4)) || !$this->db->query('SELECT usuarioId FROM datos_personal WHERE datosPersonalesId="' . $this->uri->segment(4) . '"')->result() ){
-                  redirect('');
-            }
-            else{            
+      
 		$crud = new grocery_CRUD();
 
             $crud->set_theme('datatables');
@@ -50,7 +46,7 @@ class Datos_personal extends CI_Controller
             $this->load->view('includes/header-usuario-edit');
             $this->load->view('datos_personales/index', $output);
             $this->load->view('includes/footer');
-            }
+            
 	}
 
 }
