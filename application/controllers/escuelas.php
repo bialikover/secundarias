@@ -18,12 +18,13 @@ class Escuelas extends CI_Controller
 		$crud->set_subject('escuela');
     	$crud->set_table('escuela');    	
 
-    	$crud->columns('escuelaId','escuela','claveEscuela', 'turno', 'descEscuela', 'adicional' );
-    	$crud->fields('escuelaId','escuela', 'claveEscuela','turno', 'descEscuela', 'adicional');
+    	$crud->columns('escuela','claveEscuela', 'turno' );
+    	$crud->fields('escuela', 'claveEscuela','turno', 'descEscuela', 'adicional');
     	$crud->set_relation('administradorId', 'usuario', 'usuarioId');
     	$crud->display_as('administradorId','Administrador Escuela');
     	$crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
 		$crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));
+
 		$crud->unset_add();
 
     	$output = $crud->render();
