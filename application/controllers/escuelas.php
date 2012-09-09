@@ -41,7 +41,7 @@ class Escuelas extends CI_Controller
 
 	public function _idContacto($primary_key, $row){
 		$llave_contacto = $this->db->query('SELECT contactoEscuelaId FROM contacto_escuela WHERE escuelaId=' . $primary_key . '');
-		$contacto = $llave_contacto->row();		
+		$contacto = $llave_contacto->row();	
 		return site_url('contacto_escuela/index/edit/'.$contacto->contactoEscuelaId);
 	}
 	public function _idDomicilio($primary_key, $row){
