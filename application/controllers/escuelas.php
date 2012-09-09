@@ -7,7 +7,6 @@ class Escuelas extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->helper('url');
-		
 		$this->load->library('grocery_CRUD');
 	}
 
@@ -19,12 +18,12 @@ class Escuelas extends CI_Controller
 		$crud->set_subject('escuela');
     	$crud->set_table('escuela');    	
 
-    	$crud->columns('escuelaId', 'escuela','claveEscuela', 'turno', 'administradorId');
-    	$crud->fields('escuela', 'clave_escuela','turno', 'descripcion', 'adicional', 'administradorId');
+    	$crud->columns('escuelaId','escuela','claveEscuela', 'turno', 'descEscuela', 'adicional' );
+    	$crud->fields('escuelaId','escuela', 'claveEscuela','turno', 'descEscuela', 'adicional');
     	$crud->set_relation('administradorId', 'usuario', 'usuarioId');
     	$crud->display_as('administradorId','Administrador Escuela');
-    	$crud->add_action('Contacto','', 'contacto_escuela');
-		$crud->add_action('Domicilio','', 'domicilio_escuela/index');
+    	$crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
+		$crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));
 		$crud->unset_add();
 
     	$output = $crud->render();
@@ -38,6 +37,17 @@ class Escuelas extends CI_Controller
 	public function show(){
 		echo "la view para mostrar una secundaria.";
 
+	}
+
+	public function _idContacto($primary_key, $row){
+		$llave_contacto = $this->db->query('SELECT contactoEscuelaId FROM contacto_escuela WHERE escuelaId=' . $primary_key . '');
+		$contacto = $llave_contacto->row();		
+		return site_url('contacto_escuela/index/edit/'.$contacto->contactoEscuelaId);
+	}
+	public function _idDomicilio($primary_key, $row){
+		$llave_domicilio = $this->db->query('SELECT domicilioEscuelaId FROM domicilio_escuela WHERE escuelaId=' . $primary_key . '');
+		$domicilio = $llave_domicilio->row();		
+		return site_url('domicilio_escuela/index/edit/'.$domicilio->domicilioEscuelaId);
 	}
 }
 

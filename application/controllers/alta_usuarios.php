@@ -26,8 +26,14 @@ class Alta_usuarios extends CI_Controller
     	$crud->display_as('tipoUsuarioId','Tipo de usuario');
 
         $crud->change_field_type('password', 'password');
+<<<<<<< HEAD
         //$crud->change_field_type('verificar_password', 'password');
         //$crud->set_rules('verificar_password', 'Verificar Password', 'required|matches[password]');
+=======
+        $crud->change_field_type('verificar_password', 'password');
+        $crud->set_rules('verificar_password', 'Verificar Password', 'required|matches[password]');
+ 		
+>>>>>>> 3d80175f16e1775c971cb0fc96eb22f4277f5105
 
         $crud->add_action('domicilio', '', 'domicilio/index/edit', 'icon-image');
  		
@@ -64,7 +70,7 @@ class Alta_usuarios extends CI_Controller
 	}
 
 	function unset_verification($post_array) {
-           unset($post_array['verify_password']);
+           unset($post_array['verificar_password']);
            return $post_array;
 	}
 }
