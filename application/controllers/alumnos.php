@@ -76,6 +76,15 @@ class Alumnos extends CI_Controller {
         $this->load->view('includes/footer');
     }
 
+    public function perfil(){
+        $this->load->model('perfil');
+        $usuarioId = $this->session->userdata('usuarioId');
+        $data['alumno'] = $this->perfil->datos_perfil($usuarioId);
+        
+
+    }
+
+
     public function comentarios() {
         $this->load->view('includes/header');
         $this->load->view('aula_digital/comentarios');

@@ -3,8 +3,8 @@
             <h2>Inicio de Sesión</h2>
             <br />            
             <?php if(! is_null($msg)) echo $msg;?> 
-            <label for="matricula">Matricula</label>
-            <input type="text" name='matricula' id='matricula' size="25" /><br />
+            <label for="usuario">Usuario</label>
+            <input type="text" name='usuario' id='usuario' size="25" /><br />
          
             <label for="password">Contraseña</label>
             <input type="password" name="password" id='password' size="25" /><br />                         

@@ -1,3 +1,6 @@
+<?php var_dump($materias);?>
+<?php var_dump($contenidos);?>
+
 <div class="row-fluid"> 
 	<div class="span8">
 		<h1>Materias</h1>

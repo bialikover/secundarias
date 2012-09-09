@@ -33,12 +33,11 @@ class Login extends CI_Controller {
         // Now we verify the result
         if (!$result) {
             // If user did not validate, then show them login page again        	
-            $msg = '<font color=red>Numero de matricula invalido o password incorrecto.</font><br />';
+            $msg = '<font color=red>Usuario invalido o password incorrecto.</font><br />';
             $this->index($msg);
         } else {
             // If user did validate, 
-            // Send them to members area
-            //echo "estas adentro:  ". $this->session->userdata('matricula') .", rol: " . $this->session->userdata('role');
+            // Send them to members area            
             redirect('welcome');
         }
     }

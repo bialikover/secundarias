@@ -11,18 +11,8 @@ class Welcome extends CI_Controller {
     }
 
 
-    public function index() {
-        //$consulta = 
-        $this->load->database("secundaria");
-        $id_user = $this->session->userdata('id_usuario');
-        $role = $this->session->userdata("role");
-        $perfil_id = $this->session->userdata("perfil_id");
-        
-        if ($role === "Alumno") {
-            redirect('alumnos/show/'.$perfil_id);
-        } else if ($role === "Maestro") {
-            redirect('docentes/show/'.$perfil_id);
-        }
+    public function index() {                
+        redirect("panel");        
     }
 
     private function check_isvalidated() {
