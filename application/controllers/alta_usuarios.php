@@ -21,14 +21,17 @@ class Alta_usuarios extends CI_Controller
     	$crud->set_table('usuario');
 		$crud->set_relation('tipoUsuarioId','tipo_usuario','tipoUsuario');
     	$crud->columns('usuarioId', 'usuario','password', 'tipoUsuarioId');
-    	$crud->fields('usuario','password', 'verificar_password', 'tipoUsuarioId');
+
+    	$crud->fields('usuario','password', 'tipoUsuarioId');
     	$crud->display_as('tipoUsuarioId','Tipo de usuario');
 
         $crud->change_field_type('password', 'password');
-        $crud->change_field_type('verify_password', 'password');
-        $crud->set_rules('verify_password', 'Verificar Password', 'required|matches[password]');
- 		
+        //$crud->change_field_type('verificar_password', 'password');
+        //$crud->set_rules('verificar_password', 'Verificar Password', 'required|matches[password]');
 
+        $crud->add_action('domicilio', '', 'domicilio/index/edit', 'icon-image');
+ 		
+        
  		//callbacks
     	$crud->callback_before_insert(array($this,'encrypt_password_callback'));
     	$crud->callback_before_update(array($this,'encrypt_password_callback'));
