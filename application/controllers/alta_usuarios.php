@@ -39,11 +39,16 @@ class Alta_usuarios extends CI_Controller
         $crud->set_rules('usuario','Usuario','required|max_length[100]');
         $crud->set_rules('password','Password','required|min_length[4]');
         $crud->required_fields('tipoUsuarioId');
+
+        $crud->add_action('Contacto','', '', 'ui-icon-plus');
+        $crud->add_action('Domicilio','', '', 'ui-icon-plus');
+        $crud->add_action('Adicionales','', '', 'ui-icon-plus');
+        $crud->add_action('Personales','', '', 'ui-icon-plus');
         
-        $crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
+/*        $crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
         $crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));
         $crud->add_action('Adicionales','', '', 'ui-icon-plus', array($this, '_idAdicional'));
-        $crud->add_action('Personales','', '', 'ui-icon-plus', array($this, '_idPersonal'));
+        $crud->add_action('Personales','', '', 'ui-icon-plus', array($this, '_idPersonal'));*/
 
         $output = $crud->render();
         
@@ -75,22 +80,22 @@ class Alta_usuarios extends CI_Controller
     }
 
     public function _idContacto($primary_key, $row){
-        $llave_contacto = $this->db->query('SELECT datosContactoId FROM datos_contacto WHERE usuarioId=' . $primary_key . '');
+        $llave_contacto = $this->db->query('SELECT usuarioId FROM datos_contacto WHERE usuarioId=' . $primary_key . '');
         $contacto = $llave_contacto->row(); 
         return site_url('datos_contacto/index/edit/'.$contacto->datosContactoId);
     }
     public function _idDomicilio($primary_key, $row){
-        $llave_domicilio = $this->db->query('SELECT domicilioId FROM domicilio WHERE usuarioId=' . $primary_key . '');
+        $llave_domicilio = $this->db->query('SELECT usuarioId FROM domicilio WHERE usuarioId=' . $primary_key . '');
         $domicilio = $llave_domicilio->row();       
         return site_url('domicilio/index/edit/'.$domicilio->domicilioId);
     }
     public function _idAdicional($primary_key, $row){
-        $llave_domicilio = $this->db->query('SELECT adicionalesId FROM adicional WHERE usuarioId=' . $primary_key . '');
+        $llave_domicilio = $this->db->query('SELECT usuarioId FROM adicional WHERE usuarioId=' . $primary_key . '');
         $domicilio = $llave_domicilio->row();       
         return site_url('adicionales/index/edit/'.$domicilio->adicionalesId);
     }
     public function _idPersonal($primary_key, $row){
-        $llave_domicilio = $this->db->query('SELECT datosPersonalesId FROM datos_personal WHERE usuarioId=' . $primary_key . '');
+        $llave_domicilio = $this->db->query('SELECT usuarioId FROM datos_personal WHERE usuarioId=' . $primary_key . '');
         $domicilio = $llave_domicilio->row();       
         return site_url('datos_personal/index/edit/'.$domicilio->datosPersonalesId);
     }
