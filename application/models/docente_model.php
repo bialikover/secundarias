@@ -6,7 +6,11 @@
         parent::__construct();
     }
     
-
+	function all()
+    {
+    	$query = $this->db->get("docente");
+    	return $query->result();
+    }
     function materias_docente($usuarioId){
 
        // $this->db->select('materia_id');
@@ -16,7 +20,7 @@
         $sql = "SELECT `materia` FROM `materia` WHERE `materiaId` IN (
                     SELECT `materiaId` FROM `docente_materia` WHERE `usuarioId` =".$usuarioId.")";
         $query = $this->db->query($sql);
-        return $query->result ();
+        return $query->result();
     }
 
 
@@ -28,5 +32,18 @@
     			SELECT `docente_materiaId` FROM `docente_materia` WHERE `docenteId` = ".$usuarioId.")))";
     	$query = $this->db->query($sql);
         return $query->result ();
+    }
+
+    function relaciona_materia($array_materias, $usuarioId){
+    	   //var_dump($array_materias);
+           //die;
+    		foreach ($array_materias as $materia){
+    			$data = array(
+    				'docenteId' => $usuarioId,
+    				'materiaId' => $materia
+    				);
+    			$this->db->insert('docente_materia', $data);
+    		}
+
     }
 }

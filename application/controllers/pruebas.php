@@ -20,5 +20,23 @@ class Pruebas extends CI_Controller
     	$this->load->view('pruebas/noticias_materia',$data); 
     	$this->load->view('includes/footer');
 	}
+
+	public function relaciona_materia_docente(){
+		$this->load->helper('form');
+		$this->load->model("docente_model");
+		$this->load->model("materias_model");
+		$data['docentes']= $this->docente_model->all();
+		$data['materias']= $this->materias_model->all();
+		$this->load->view("pruebas/relaciona-materias",$data);
+	}
+	public function send(){
+		$this->load->model("docente_model");
+		$usuarioId = $this->input->post('docenteId');		
+		$array_materias = $this->input->post('materias');
+		$this->docente_model->relaciona_materia($array_materias, $usuarioId);
+
+		
+		
+	}
 }
 ?>
