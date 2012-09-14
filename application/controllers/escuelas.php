@@ -18,12 +18,13 @@ class Escuelas extends CI_Controller
 		$crud->set_subject('escuela');
     	$crud->set_table('escuela');    	
 
-    	$crud->columns('escuelaId','escuela','claveEscuela', 'turno', 'descEscuela', 'adicional' );
-    	$crud->fields('escuelaId','escuela', 'claveEscuela','turno', 'descEscuela', 'adicional');
+    	$crud->columns('escuela','claveEscuela', 'turno' );
+    	$crud->fields('escuela', 'claveEscuela','turno', 'descEscuela', 'adicional');
     	$crud->set_relation('administradorId', 'usuario', 'usuarioId');
     	$crud->display_as('administradorId','Administrador Escuela');
     	$crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
 		$crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));
+
 		$crud->unset_add();
 
     	$output = $crud->render();
@@ -41,7 +42,7 @@ class Escuelas extends CI_Controller
 
 	public function _idContacto($primary_key, $row){
 		$llave_contacto = $this->db->query('SELECT contactoEscuelaId FROM contacto_escuela WHERE escuelaId=' . $primary_key . '');
-		$contacto = $llave_contacto->row();		
+		$contacto = $llave_contacto->row();	
 		return site_url('contacto_escuela/index/edit/'.$contacto->contactoEscuelaId);
 	}
 	public function _idDomicilio($primary_key, $row){

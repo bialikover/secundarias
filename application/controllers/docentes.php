@@ -18,16 +18,16 @@ class Docentes extends CI_Controller {
 
          */
 
-        if (!$this->session->userdata('validated')) {
+       /* if (!$this->session->userdata('validated')) {
             redirect('login');
         } else {
             if ($this->session->userdata("role") != 'Escuela') {
                 redirect('login');
-            }
+            }*/
             $crud = new grocery_CRUD();
             $crud->set_theme('datatables');
             $crud->set_subject('docente');
-            $crud->set_table('docentes');
+            $crud->set_table('docente');
             $crud->set_relation_n_n('materias', 'docente_materias', 'materias', 'id_docente', 'id_materia', 'nombre');
             $crud->columns('nombre', 'apellido_pat', 'apellido_mat', 'genero', 'especialidad', 'materias');
             $crud->display_as('apellido_pat', 'Apellido paterno');
@@ -40,7 +40,7 @@ class Docentes extends CI_Controller {
             $this->load->view('includes/header-docente');
             $this->load->view('docentes/index', $output);
             $this->load->view('includes/footer');
-        }
+        //}
     }
 
     public function show() {

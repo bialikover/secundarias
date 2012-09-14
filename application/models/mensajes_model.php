@@ -14,11 +14,11 @@ class mensajes_model extends CI_Model {
             'id_destino' => $this->input->post('id_destino'),
             'mensaje' => $this->input->post('mensaje')
         );
-        return $this->db->insert('mensajes', $data);
+        return $this->db->insert('mensaje', $data);
     }
 
     public function read_mensajes(){
-	$eventos = $this->db->get('mensajes');
+	$eventos = $this->db->get('mensaje');
 	return $eventos->result_array();
     }	
 
@@ -32,7 +32,7 @@ class mensajes_model extends CI_Model {
 	);
 		
         $this->db->where('id', $this->input->post('id_mensaje'));
-	return $this->db->update('mensajes', $data);
+	return $this->db->update('mensaje', $data);
     }
 
     public function del_mensaje(){

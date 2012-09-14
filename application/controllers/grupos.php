@@ -14,12 +14,12 @@ class Grupos extends CI_Controller {
 
     //trae todas las materias
     public function index() {
-        if (!$this->session->userdata('validated')) {
+        /*if (!$this->session->userdata('validated')) {
             redirect('login');
         } else {
             if ($this->session->userdata("role") != 'Escuela') {
                 redirect('login');
-            }
+            } */
             $crud = new grocery_CRUD();
             $crud->set_theme('datatables');
             $crud->set_subject('grupo');
@@ -40,7 +40,7 @@ class Grupos extends CI_Controller {
             $this->load->view('includes/header-escuela');
             $this->load->view('grupos/index', $output);
             $this->load->view('includes/footer');
-        }
+        //}
     }
 
     //muestra una materia
