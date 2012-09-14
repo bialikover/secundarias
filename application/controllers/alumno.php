@@ -1,6 +1,6 @@
 <?php
 
-class Alumnos extends CI_Controller {
+class Alumno extends CI_Controller {
 
     function __construct() {
         parent::__construct();
@@ -49,7 +49,7 @@ class Alumnos extends CI_Controller {
             $output = $crud->render();
 
             $this->load->view('includes/header-alumno');
-            $this->load->view('alumnos/index', $output);
+            $this->load->view('alumno/index', $output);
             $this->load->view('includes/footer');
         }
     }
@@ -72,7 +72,7 @@ class Alumnos extends CI_Controller {
 
 
         $this->load->view('includes/header-alumno');
-        $this->load->view('alumnos/show', $data);
+        $this->load->view('alumno/show', $data);
         $this->load->view('includes/footer');
     }
 
@@ -80,10 +80,7 @@ class Alumnos extends CI_Controller {
         $this->load->model('perfil');
         $usuarioId = $this->session->userdata('usuarioId');
         $data['alumno'] = $this->perfil->datos_perfil($usuarioId);
-        
-
     }
-
 
     public function comentarios() {
         $this->load->view('includes/header');
