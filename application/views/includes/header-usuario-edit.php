@@ -36,7 +36,7 @@
 
 							<ul class="nav pull-right">
 
-						  <li><a class="my-a"  href="<?php echo base_url("index.php/alta_usuarios")?>">  
+						  <li><a class="my-a"  href="<?php echo base_url("index.php/alta_usuario")?>">  
 						  	<img id="tab2" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/regresar-bco.png">
 						  	<div id="tab2_t" class="my-tex-nav">Regresar</div>
 						  	</a>

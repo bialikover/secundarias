@@ -40,10 +40,10 @@ class Alta_usuario extends CI_Controller
         $crud->set_rules('password','Password','required|min_length[4]');
         $crud->required_fields('tipoUsuarioId');
 
-        $crud->add_action('Contacto','', 'datos_contacto/index/edit/', 'ui-icon-plus');
-        $crud->add_action('Domicilio','', 'domicilio/index/edit/', 'ui-icon-plus');
-        $crud->add_action('Adicionales','', 'adicional/index/edit/', 'ui-icon-plus');
-        $crud->add_action('Personales','', 'datos_personal/index/edit/', 'ui-icon-plus');
+        $crud->add_action('Contacto','', 'datos_contacto/index/edit', 'ui-icon-plus');
+        $crud->add_action('Domicilio','', 'domicilio/index/edit', 'ui-icon-plus');
+        $crud->add_action('Adicionales','', 'adicional/index/edit', 'ui-icon-plus');
+        $crud->add_action('Personales','', 'datos_personal/index/edit', 'ui-icon-plus');
         
 /*        $crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
         $crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));

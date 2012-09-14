@@ -1,6 +1,6 @@
 <?php
 
-class Mensajes extends CI_Controller {
+class Mensaje extends CI_Controller {
 
         function __construct() {
             parent::__construct();
