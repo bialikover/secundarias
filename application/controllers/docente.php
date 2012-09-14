@@ -27,7 +27,7 @@ class Docente extends CI_Controller
 
             $output = $crud->render();
             $this->load->view('includes/header-usuario-edit');
-            $this->load->view('docentes/index', $output);
+            $this->load->view('docente/index', $output);
             $this->load->view('includes/footer');
 
 	}

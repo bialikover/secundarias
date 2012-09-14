@@ -32,7 +32,7 @@ class Adicional extends CI_Controller
             $output = $crud->render();
 
             $this->load->view('includes/header-docente');
-            $this->load->view('adicionales/index', $output);
+            $this->load->view('adicional/index', $output);
             $this->load->view('includes/footer');
 	}
 

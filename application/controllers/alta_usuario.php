@@ -1,7 +1,7 @@
 <?php
 
 
-class Alta_usuarios extends CI_Controller
+class Alta_usuario extends CI_Controller
 {
     function __construct()
     {
@@ -40,10 +40,10 @@ class Alta_usuarios extends CI_Controller
         $crud->set_rules('password','Password','required|min_length[4]');
         $crud->required_fields('tipoUsuarioId');
 
-        $crud->add_action('Contacto','', '', 'ui-icon-plus');
-        $crud->add_action('Domicilio','', '', 'ui-icon-plus');
-        $crud->add_action('Adicionales','', '', 'ui-icon-plus');
-        $crud->add_action('Personales','', '', 'ui-icon-plus');
+        $crud->add_action('Contacto','', 'datos_contacto/index/edit/', 'ui-icon-plus');
+        $crud->add_action('Domicilio','', 'domicilio/index/edit/', 'ui-icon-plus');
+        $crud->add_action('Adicionales','', 'adicional/index/edit/', 'ui-icon-plus');
+        $crud->add_action('Personales','', 'datos_personal/index/edit/', 'ui-icon-plus');
         
 /*        $crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
         $crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));
@@ -53,7 +53,7 @@ class Alta_usuarios extends CI_Controller
         $output = $crud->render();
         
         $this->load->view('includes/header');
-        $this->load->view('alta_usuarios/index',$output);
+        $this->load->view('alta_usuario/index',$output);
         $this->load->view('includes/footer');
     }
 
@@ -92,7 +92,7 @@ class Alta_usuarios extends CI_Controller
     public function _idAdicional($primary_key, $row){
         $llave_domicilio = $this->db->query('SELECT usuarioId FROM adicional WHERE usuarioId=' . $primary_key . '');
         $domicilio = $llave_domicilio->row();       
-        return site_url('adicionales/index/edit/'.$domicilio->adicionalesId);
+        return site_url('adicional/index/edit/'.$domicilio->adicionalesId);
     }
     public function _idPersonal($primary_key, $row){
         $llave_domicilio = $this->db->query('SELECT usuarioId FROM datos_personal WHERE usuarioId=' . $primary_key . '');

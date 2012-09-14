@@ -44,7 +44,7 @@ class Datos_personal extends CI_Controller
             $output = $crud->render();
 
             $this->load->view('includes/header-usuario-edit');
-            $this->load->view('datos_personales/index', $output);
+            $this->load->view('datos_personal/index', $output);
             $this->load->view('includes/footer');
             
 	}
