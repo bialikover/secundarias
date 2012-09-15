@@ -36,32 +36,32 @@
 
 							<ul class="nav pull-right">
 
-						  <li><a class="my-a"  href="<?php echo base_url("index.php/docentes/index")?>">  
+						  <li><a class="my-a"  href="<?php echo base_url("index.php/docente/index")?>">  
 						  	<img id="tab2" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/docente-bco.png">
 						  	<div id="tab2_t" class="my-tex-nav">Docentes</div>
 						  	</a>
 						  </li>
 
 
-						  <li><a  href="<?php echo base_url("index.php/alumnos/index")?>"> 
+						  <li><a  href="<?php echo base_url("index.php/alumno/index")?>"> 
 						  	<img id="tab3" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/alumno-bco.png">
 						  	<div id="tab3_t" class="my-tex-nav">Alumnos</div>
 						  </a>
 						</li>
 
-						  <li><a  href="<?php echo base_url("index.php/materias/index")?>"> 
+						  <li><a  href="<?php echo base_url("index.php/materia/index")?>"> 
 						  	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/materia-bco.png">
 						  	<div id="tab4_t" class="my-tex-nav">Materias</div>
 						  </a>
 						</li>
 
-						  <li><a  href="<?php echo base_url("index.php/grupos/index")?>"> 
+						  <li><a  href="<?php echo base_url("index.php/grupo/index")?>"> 
 						  	<img id="tab5" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/grupo-bco.png">
 						  	<div id="tab5_t" class="my-tex-nav">Grupos</div>
 						  </a>
 						</li>
 
-						<li><a  href="<?php echo base_url("index.php/mensajes/index")?>"> 
+						<li><a  href="<?php echo base_url("index.php/mensaje/index")?>"> 
 						  	<img id="tab6" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
 						  	<div id="tab6_t" class="my-tex-nav">Mensajes</div>
 						    </a>

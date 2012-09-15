@@ -19,7 +19,41 @@ class Alumno extends CI_Controller {
           $data = Almacena los valores retornados por un modelo
 
          */
+
         if (!$this->session->userdata('validated')) {
+            redirect('login');
+        } else {
+            if ($this->session->userdata("role") != 'Escuela') {
+                redirect('login');
+            }
+            $crud = new grocery_CRUD();
+            $crud->set_theme('datatables');
+            $crud->set_subject('alumno');
+            $crud->set_table('alumnos');
+
+            $crud->display_as('apellido_pat', 'Apellido paterno');
+            $crud->display_as('fecha_nacimiento', 'Fecha de nacimiento');
+            $crud->display_as('apellido_mat', 'Apellido materno');
+            $crud->display_as('id_grupo', 'Grupo');
+            $crud->display_as('id_padre', 'Tutor');
+
+            $crud->set_relation('id_grupo', 'grupos', 'clave');
+            $crud->set_relation('id_padre', 'padres', 'nombre');
+
+            $crud->columns('matricula', 'nombre', 'apellido_pat', 'apellido_mat', 'id_grupo', 'correo_electronico');
+            $crud->fields('matricula', 'nombre', 'apellido_pat', 'apellido_mat', 'genero', 'id_grupo', 'id_padre', 'fecha_nacimiento', 'curp', 'direccion', 'telefono', 'correo_electronico');
+
+            $crud->add_action('Ver', '', 'alumnos/show', 'ui-icon-plus');
+            $crud->unset_delete();
+
+            $output = $crud->render();
+
+            $this->load->view('includes/header-alumno');
+            $this->load->view('alumno/index', $output);
+            $this->load->view('includes/footer');
+        }
+
+        /*if (!$this->session->userdata('validated')) {
             redirect('login');
         } else {
             if ($this->session->userdata("role") != 'Escuela') {
@@ -51,7 +85,7 @@ class Alumno extends CI_Controller {
             $this->load->view('includes/header-alumno');
             $this->load->view('alumno/index', $output);
             $this->load->view('includes/footer');
-        }
+        } */
     }
 
     public function show() {

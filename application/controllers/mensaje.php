@@ -14,7 +14,7 @@ class Mensaje extends CI_Controller {
             
             $data['mensajes'] = $this->mensajes_model->read_mensajes();
             $this->load->view('includes/header');
-            $this->load->view('mensajes/index', $data);
+            $this->load->view('mensaje/index', $data);
             $this->load->view('includes/footer');
         }
 

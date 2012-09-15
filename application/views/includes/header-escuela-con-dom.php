@@ -36,14 +36,12 @@
 
 							<ul class="nav pull-right">
 
-						  <li><a class="my-a"  href="<?php echo base_url("index.php/escuelas")?>">  
+						  <li><a class="my-a"  href="<?php echo base_url("index.php/escuela")?>">  
 						  	<img id="tab2" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/regresar-bco.png">
 						  	<div id="tab2_t" class="my-tex-nav">Regresar</div>
 						  	</a>
 						  </li>
 
-
-						 
 					</ul>
 
 				</div>

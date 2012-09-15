@@ -15,6 +15,11 @@ class Grupo extends CI_Controller
 
 	public function index()
 	{
+
+      if (!$this->session->userdata('validated')) {
+            redirect('login');
+        } 
+        else {
 		$crud = new grocery_CRUD();
 
             $crud->set_theme('datatables');
@@ -41,6 +46,7 @@ class Grupo extends CI_Controller
             $this->load->view('includes/header-docente');
             $this->load->view('grupo/index', $output);
             $this->load->view('includes/footer');
+            }
 	}
 
 }

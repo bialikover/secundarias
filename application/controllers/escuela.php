@@ -1,7 +1,7 @@
 <?php
 
 
-class Escuelas extends CI_Controller
+class Escuela extends CI_Controller
 {
 	function __construct()
 	{
@@ -11,30 +11,35 @@ class Escuelas extends CI_Controller
 	}
 
 
-
 	public function index(){
-		$crud = new grocery_CRUD();
-		$crud->set_theme('datatables');
-		$crud->set_subject('escuela');
-    	$crud->set_table('escuela');    	
 
-    	$crud->columns('escuela','claveEscuela', 'turno' );
-    	$crud->fields('escuela', 'claveEscuela','turno', 'descEscuela', 'adicional');
-    	$crud->set_relation('administradorId', 'usuario', 'usuarioId');
-    	$crud->display_as('administradorId','Administrador Escuela');
+		if (!$this->session->userdata('validated')) {
+            redirect('login');
+        } 
+        else {
+			$crud = new grocery_CRUD();
+			$crud->set_theme('datatables');
+			$crud->set_subject('escuela');
+	    	$crud->set_table('escuela');    	
 
-    	$crud->add_action('Contacto','', 'contacto_escuela/index/edit', 'ui-icon-plus');
-        $crud->add_action('Domicilio','', 'domicilio_escuela/index/edit', 'ui-icon-plus');
-    	//$crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
-		//$crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));
+	    	$crud->columns('escuela','claveEscuela', 'turno' );
+	    	$crud->fields('escuela', 'claveEscuela','turno', 'descEscuela', 'adicional');
+	    	//$crud->set_relation('administradorId', 'usuario', 'usuarioId');
+	    	//$crud->display_as('administradorId','Administrador Escuela');
 
-		$crud->unset_add();
+	    	$crud->add_action('Contacto','', 'contacto_escuela/index/edit', 'ui-icon-plus');
+	        $crud->add_action('Domicilio','', 'domicilio_escuela/index/edit', 'ui-icon-plus');
+	    	//$crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
+			//$crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));
 
-    	$output = $crud->render();
-    	
-    	$this->load->view('includes/header-escuela');
-    	$this->load->view('escuelas/index',$output);
-    	$this->load->view('includes/footer');
+			$crud->unset_add();
+
+	    	$output = $crud->render();
+	    	
+	    	$this->load->view('includes/header-escuela');
+	    	$this->load->view('escuela/index',$output);
+	    	$this->load->view('includes/footer');
+    	}
 	}
 
 

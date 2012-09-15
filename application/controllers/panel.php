@@ -25,12 +25,12 @@ class Panel extends CI_Controller {
 	
         	if ($tipoUsuarioId === '1') {
         		$this->load->view('includes/header-sa');
-            	$this->load->view('alumnos/index');
+            	$this->load->view('alumno/index');
             	$this->load->view('includes/footer');
         	    
         	} else if ($tipoUsuarioId === '2') {
-        	    $this->load->view('includes/header-escuela-con-dom');
-            	$this->load->view('escuelas/perfil');
+        	    $this->load->view('includes/header-escuela');
+            	$this->load->view('escuela/perfil');
             	$this->load->view('includes/footer');
         	} else if ($tipoUsuarioId === '3'){
 
@@ -44,7 +44,7 @@ class Panel extends CI_Controller {
         	} 
 
         	else if($tipoUsuarioId === '4'){
-        		$this->load->model('alumnos_model');        		
+        		$this->load->model('alumno_model');        		
         		$data['materias'] = $this->alumnos_model->materias_alumno($usuarioId);
         		$data['contenidos'] = $this->alumnos_model->actividades($usuarioId);
         	    $this->load->view('includes/header-alumno');
