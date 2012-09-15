@@ -24,9 +24,7 @@ class Panel extends CI_Controller {
         else{
 	
         	if ($tipoUsuarioId === '1') {
-        		$this->load->view('includes/header-sa');
-            	$this->load->view('alumno/index');
-            	$this->load->view('includes/footer');
+                redirect("alta_usuario");
         	    
         	} else if ($tipoUsuarioId === '2') {
         	    $this->load->view('includes/header-escuela');

@@ -14,47 +14,63 @@ class Alta_usuario extends CI_Controller
 
     public function index()
     {
+        if(($this->session->userdata("tipoUsuarioId")== 1 || $this->session->userdata("tipoUsuarioId")== 2  ) && $this->session->userdata('validated')){
+            $crud = new grocery_CRUD();
+            $crud->set_theme('datatables');
+            $crud->set_subject('usuario');
+            $crud->set_table('usuario');
 
-        $crud = new grocery_CRUD();
-        $crud->set_theme('datatables');
-        $crud->set_subject('usuario');
-        $crud->set_table('usuario');
-        $crud->set_relation('tipoUsuarioId','tipo_usuario','tipoUsuario');
-        $crud->columns('usuarioId', 'usuario','password', 'tipoUsuarioId');
-        $crud->fields('usuario','password', 'verificar_password', 'tipoUsuarioId');
-        $crud->display_as('tipoUsuarioId','Tipo de usuario');
- 
-       $crud->change_field_type('password', 'password');
-        $crud->change_field_type('verificar_password', 'password');
-        $crud->set_rules('verificar_password', 'Verificar Password', 'required|matches[password]');
-        
+            if($this->session->userdata("tipoUsuarioId")== 1){
+                $crud->set_relation('tipoUsuarioId','tipo_usuario','tipoUsuario', array('tipoUsuarioId' => '2'));
+            }
+            else{
+             // $where= $this->db->where_in("tipoUsuarioId", array('3', '4', '5'));
+              /*$crud->set_relation('tipoUsuarioId','tipo_usuario','tipoUsuario', array('tipoUsuarioId' => '3', 
+                                                                                      'tipoUsuarioId'  => '4',
+                                                                                      'tipoUsuarioId' =>'5'));   */
+               //$crud->set_relation('tipoUsuarioId','tipo_usuario','tipoUsuario', $where);
+                $crud->set_relation('tipoUsuarioId','tipo_usuario','tipoUsuario', array('tipoUsuarioId >' => '2'));
+            }
 
-        //callbacks
-        $crud->callback_before_insert(array($this,'encrypt_password_callback'));
-        $crud->callback_before_update(array($this,'encrypt_password_callback'));
-        $crud->callback_edit_field('password',array($this,'decrypt_password_callback'));
-        $crud->callback_before_insert(array($this,'unset_verification'));
-        $crud->callback_before_update(array($this,'unset_verification'));
-        
-        $crud->set_rules('usuario','Usuario','required|max_length[100]');
-        $crud->set_rules('password','Password','required|min_length[4]');
-        $crud->required_fields('tipoUsuarioId');
 
-        $crud->add_action('Contacto','', 'datos_contacto/index/edit', 'ui-icon-plus');
-        $crud->add_action('Domicilio','', 'domicilio/index/edit', 'ui-icon-plus');
-        $crud->add_action('Adicionales','', 'adicional/index/edit', 'ui-icon-plus');
-        $crud->add_action('Personales','', 'datos_personal/index/edit', 'ui-icon-plus');
-        
-/*        $crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
-        $crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));
-        $crud->add_action('Adicionales','', '', 'ui-icon-plus', array($this, '_idAdicional'));
-        $crud->add_action('Personales','', '', 'ui-icon-plus', array($this, '_idPersonal'));*/
-
-        $output = $crud->render();
-        
-        $this->load->view('includes/header');
-        $this->load->view('alta_usuario/index',$output);
-        $this->load->view('includes/footer');
+            $crud->columns('usuarioId', 'usuario','password', 'tipoUsuarioId');
+            $crud->fields('usuario','password', 'verificar_password', 'tipoUsuarioId');
+            $crud->display_as('tipoUsuarioId','Tipo de usuario');
+    
+            $crud->change_field_type('password', 'password');
+            $crud->change_field_type('verificar_password', 'password');
+            $crud->set_rules('verificar_password', 'Verificar Password', 'required|matches[password]');
+            
+            //callbacks
+            $crud->callback_before_insert(array($this,'encrypt_password_callback'));
+            $crud->callback_before_update(array($this,'encrypt_password_callback'));
+            $crud->callback_edit_field('password',array($this,'decrypt_password_callback'));
+            $crud->callback_before_insert(array($this,'unset_verification'));
+            $crud->callback_before_update(array($this,'unset_verification'));
+            
+            $crud->set_rules('usuario','Usuario','required|max_length[100]');
+            $crud->set_rules('password','Password','required|min_length[4]');
+            $crud->required_fields('tipoUsuarioId');
+    
+            $crud->add_action('Contacto','', 'datos_contacto/index/edit', 'ui-icon-plus');
+            $crud->add_action('Domicilio','', 'domicilio/index/edit', 'ui-icon-plus');
+            $crud->add_action('Adicionales','', 'adicional/index/edit', 'ui-icon-plus');
+            $crud->add_action('Personales','', 'datos_personal/index/edit', 'ui-icon-plus');
+            
+            /*$crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
+            $crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));
+            $crud->add_action('Adicionales','', '', 'ui-icon-plus', array($this, '_idAdicional'));
+            $crud->add_action('Personales','', '', 'ui-icon-plus', array($this, '_idPersonal'));*/
+    
+            $output = $crud->render();
+            
+            $this->load->view('includes/header-sa');
+            $this->load->view('alta_usuario/index',$output);
+            $this->load->view('includes/footer');
+        }
+        else{
+            redirect('404');
+        }
     }
 
     function encrypt_password_callback($post_array, $primary_key = null){
