@@ -64,13 +64,13 @@
 		</div>
 
 		<div class="span8">
-			<h4><span class="my-perfil-datos"><?php echo $escuela[0]->nombre;?></span></h4>
+			<h4><span class="my-perfil-datos"><?php echo $escuela->nombre;?></span></h4>
 			<h4><span class="my-perfil-datos"><?php echo $perfil->matricula; ?></span></h4>
-			<h4><span class="my-perfil-datos"><?php echo $grupo[0]->grado ?></span></h4>
-			<h4><span class="my-perfil-datos"><?php echo $grupo[0]->salon; ?></span></h4>
-			<h4><span class="my-perfil-datos"><?php echo $grupo[0]->turno; ?></span></h4>
-			<h4><span class="my-perfil-datos"><?php echo $grupo[0]->ciclo_escolar; ?></span></h4>
-			<h4><span class="my-perfil-datos"><?php echo $tutor[0]->nombre; ?></span></h4>
+			<h4><span class="my-perfil-datos"><?php echo $grupo->grado ?></span></h4>
+			<h4><span class="my-perfil-datos"><?php echo $grupo->salon; ?></span></h4>
+			<h4><span class="my-perfil-datos"><?php echo $grupo->turno; ?></span></h4>
+			<h4><span class="my-perfil-datos"><?php echo $grupo->ciclo_escolar; ?></span></h4>
+			<h4><span class="my-perfil-datos"><?php echo $tutor->nombre; ?></span></h4>
 		</div>
 	</div>
 	
