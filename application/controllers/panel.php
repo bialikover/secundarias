@@ -35,7 +35,7 @@ class Panel extends CI_Controller {
                 $this->load->view('includes/footer');
             } else if ($tipoUsuarioId === '4') {
                 $this->load->model('alumno_model');
-                $data['materias'] = $this->alumnos_model->materias_alumno($usuarioId);
+                $data['materias'] = $this->alumno_model->materias_alumno($usuarioId);
                 //$data['contenidos'] = $this->alumnos_model->actividades($usuarioId);
                 $this->load->view('includes/header-alumno');
                 $this->load->view('pruebas/noticias', $data);
