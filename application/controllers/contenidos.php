@@ -24,7 +24,7 @@ class Contenidos extends CI_Controller
 
   public function nueva(){
     $this->load->view('includes/header');
-    $this->load->view('aula_digital/nuevo');
+    $this->load->view('aula_digital/comentarios');
     $this->load->view('includes/footer');
   }
   

@@ -18,7 +18,7 @@
             <?php foreach ($materias as $materia): ?>
                 <div class="img-circle my-materia">
                     <span>
-                        <?php echo $materia->nombre; ?>
+                        <?php echo $materia->materia; ?>
                     </span>
                 </div>
             <?php endforeach; ?>
