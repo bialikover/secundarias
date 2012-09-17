@@ -1,6 +1,6 @@
 <?php
 
-class Alumnos_model extends CI_Model
+class Alumno_model extends CI_Model
 {
 
 	function __construct()

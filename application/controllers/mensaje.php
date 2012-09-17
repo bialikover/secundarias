@@ -17,6 +17,5 @@ class Mensaje extends CI_Controller {
             $this->load->view('mensaje/index', $data);
             $this->load->view('includes/footer');
         }
-
     }
 ?>
