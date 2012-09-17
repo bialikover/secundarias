@@ -46,4 +46,13 @@
     		}
 
     }
+    function mensajes($id){
+        $this->load->model('mensajes_model');
+        $mensajes = $this->mensajes_model->read_all_mensajes_usuario($id);
+        $this->load->view('includes/header-docente');
+        foreach ($mensajes as $$mensaje) {
+            $this->load->view('mensaje/show', $mensaje);
+        }
+        $this->load->view('includes/footer');
+    }
 }
