@@ -19,7 +19,7 @@ class Aula_digital extends CI_Controller
 		$crud = new grocery_CRUD();
 		$crud->set_theme('datatables');
 		$crud->set_subject('Contenido');
-    	$crud->set_table('contenidos');
+    	$crud->set_table('actividad');
 
     	$crud->set_relation('id_materias','materias','nombre');
     	$crud->fields('id_materias', 'texto','id_docente','fecha_publicacion','id_grupo');
