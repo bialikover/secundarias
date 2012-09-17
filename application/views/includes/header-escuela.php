@@ -4,17 +4,29 @@
 		<meta charset="utf-8">
     	<title>Mi secu</title>
 		
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/secundaria.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/my-perfil.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/aula-digital.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/docente-alumno.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap-responsive.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/docente-alumno.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/jquery-ui-1.8.23.custom.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/secundaria.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/my-perfil.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/aula-digital.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/docente-alumno.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap-responsive.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/timepiker.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/docente-alumno.css">
 		
-		<script type="text/javascript" src="<?php echo base_url();?>/assets/js/jquery.js"></script> 
-		<script type="text/javascript" src="<?php echo base_url();?>/assets/js/bootstrap.js"></script> 
-		<script type="text/javascript" src="<?php echo base_url();?>/assets/js/my-menu-circle.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-1.8.0.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.ui.datepicker.js"></script> 
+		<script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap.js"></script> 
+    	<script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap.calendar.js"></script> 
+    	<script type="text/javascript" src="<?php echo base_url();?>assets/js/timepicker.js"></script> 
+    	<script type="text/javascript" src="<?php echo base_url();?>assets/js/my-menu-circle.js"></script>
+    
+    
+    
+    
+    
+
 		
 	</head>
 	<body>
@@ -36,34 +48,40 @@
 
 							<ul class="nav pull-right">
 
-						  <li><a class="my-a"  href="<?php echo base_url("index.php/docente/index")?>">  
+						  <li><a class="my-a"  href="<?php echo base_url("index.php/administracion/alta_usuarios/index")?>">  
 						  	<img id="tab2" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/docente-bco.png">
-						  	<div id="tab2_t" class="my-tex-nav">Docentes</div>
+						  	<div id="tab2_t" class="my-tex-nav">Usuarios</div>
+						  	</a>
+						  </li>
+
+						  <li><a class="my-a"  href="<?php echo base_url("index.php/administracion/docentes/index")?>">  
+						  	<img id="tab3" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/docente-bco.png">
+						  	<div id="tab3_t" class="my-tex-nav">Docentes</div>
 						  	</a>
 						  </li>
 
 
-						  <li><a  href="<?php echo base_url("index.php/alumno/index")?>"> 
-						  	<img id="tab3" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/alumno-bco.png">
-						  	<div id="tab3_t" class="my-tex-nav">Alumnos</div>
+						  <li><a  href="<?php echo base_url("index.php/administracion/alumnos/index")?>"> 
+						  	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/alumno-bco.png">
+						  	<div id="tab4_t" class="my-tex-nav">Alumnos</div>
 						  </a>
 						</li>
 
-						  <li><a  href="<?php echo base_url("index.php/materia/index")?>"> 
-						  	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/materia-bco.png">
-						  	<div id="tab4_t" class="my-tex-nav">Materias</div>
+						  <li><a  href="<?php echo base_url("index.php/administracion/materias/index")?>"> 
+						  	<img id="tab5" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/materia-bco.png">
+						  	<div id="tab5_t" class="my-tex-nav">Materias</div>
 						  </a>
 						</li>
 
-						  <li><a  href="<?php echo base_url("index.php/grupo/index")?>"> 
-						  	<img id="tab5" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/grupo-bco.png">
-						  	<div id="tab5_t" class="my-tex-nav">Grupos</div>
+						  <li><a  href="<?php echo base_url("index.php/administracion/grupos/index")?>"> 
+						  	<img id="tab6" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/grupo-bco.png">
+						  	<div id="tab6_t" class="my-tex-nav">Grupos</div>
 						  </a>
 						</li>
 
 						<li><a  href="<?php echo base_url("index.php/mensaje/index")?>"> 
-						  	<img id="tab6" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
-						  	<div id="tab6_t" class="my-tex-nav">Mensajes</div>
+						  	<img id="tab7" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
+						  	<div id="tab7_t" class="my-tex-nav">Mensajes</div>
 						    </a>
 						</li>
 					</ul>

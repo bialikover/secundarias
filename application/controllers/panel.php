@@ -24,7 +24,7 @@ class Panel extends CI_Controller {
         else{
 	
         	if ($tipoUsuarioId === '1') {
-                redirect("alta_usuario");
+                redirect("administracion/alta_usuarios");
         	    
         	} else if ($tipoUsuarioId === '2') {
         	    $this->load->view('includes/header-escuela');
@@ -44,7 +44,7 @@ class Panel extends CI_Controller {
         	else if($tipoUsuarioId === '4'){
         		$this->load->model('alumno_model');        		
         		$data['materias'] = $this->alumnos_model->materias_alumno($usuarioId);
-        		$data['contenidos'] = $this->alumnos_model->actividades($usuarioId);
+        		//$data['contenidos'] = $this->alumnos_model->actividades($usuarioId);
         	    $this->load->view('includes/header-alumno');
             	$this->load->view('pruebas/noticias', $data);
             	$this->load->view('includes/footer');

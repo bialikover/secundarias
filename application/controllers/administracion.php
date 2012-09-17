@@ -1,7 +1,5 @@
-<?php
-
-
-class Alta_usuario extends CI_Controller
+<?php 
+class Administracion extends CI_Controller
 {
     function __construct()
     {
@@ -12,7 +10,7 @@ class Alta_usuario extends CI_Controller
         $this->load->library('grocery_CRUD');
     }
 
-    public function index()
+    public function alta_usuarios()
     {
         if(($this->session->userdata("tipoUsuarioId")== 1 || $this->session->userdata("tipoUsuarioId")== 2  ) && $this->session->userdata('validated')){
             $crud = new grocery_CRUD();
@@ -118,6 +116,60 @@ class Alta_usuario extends CI_Controller
         $domicilio = $llave_domicilio->row();       
         return site_url('datos_personal/index/edit/'.$domicilio->datosPersonalesId);
     }
+    
+
+    public function docentes()
+    {
+      
+        $crud = new grocery_CRUD();
+
+        $crud->set_theme('datatables');
+        $crud->set_table('docente');
+        $crud->unset_add();
+
+        $crud->set_relation('docenteId', 'usuario', 'usuario',  array('tipoUsuarioId'=>'3'));
+        $crud->set_relation_n_n('materiaId', 'docente_materia', 'materia', 'docenteId', 'materiaId', 'materia');
+        $crud->unset_columns('docenteId');
+        //$crud->fields('docenteId');
+
+        $output = $crud->render();
+        $this->load->view('includes/header-usuario-edit');
+        $this->load->view('docente/index', $output);
+        $this->load->view('includes/footer');
+
+    }
+
+    public function escuelas(){
+
+        if (!$this->session->userdata('validated')) {
+            redirect('login');
+        } 
+        else {
+            $crud = new grocery_CRUD();
+            $crud->set_theme('datatables');
+            $crud->set_subject('escuela');
+            $crud->set_table('escuela');        
+
+            $crud->columns('escuela','claveEscuela', 'turno' );
+            $crud->fields('escuela', 'claveEscuela','turno', 'descEscuela', 'adicional');
+            //$crud->set_relation('administradorId', 'usuario', 'usuarioId');
+            //$crud->display_as('administradorId','Administrador Escuela');
+
+            $crud->add_action('Contacto','', 'contacto_escuela/index/edit', 'ui-icon-plus');
+            $crud->add_action('Domicilio','', 'domicilio_escuela/index/edit', 'ui-icon-plus');
+            //$crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
+            //$crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));
+
+            $crud->unset_add();
+
+            $output = $crud->render();
+            
+            $this->load->view('includes/header-escuela');
+            $this->load->view('escuela/index',$output);
+            $this->load->view('includes/footer');
+        }
+    }
+
 }
 
 ?>

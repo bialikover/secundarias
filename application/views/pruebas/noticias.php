@@ -1,13 +1,17 @@
-<?php var_dump($materias);?>
+<?php //var_dump($materias);?>
 <?php var_dump($contenidos);?>
 
 <div class="row-fluid"> 
 	<div class="span8">
 		<h1>Materias</h1>
 	</div>
+    <?php if ($this->session->userdata("tipoUsuarioId")== 3):?>
 	<div class="span4 my-right">
-		<span data-toggle="modal" data-target="#myModal" class="btn btn-success "><i class="icon-plus icon-white"></i></i> Nuevo Contenido</span>
+		<a href="<?php echo base_url()?>index.php/contenidos/nueva/index/add"  id = "nuevo-contenido"  class="btn btn-success "><i class="icon-plus icon-white"></i> Nuevo Contenido</a>
 	</div>
+    <!--<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>-->
+    <?php endif;?>
 </div>
 
 <hr>
@@ -18,7 +22,7 @@
             <?php foreach ($materias as $materia): ?>
                 <div class="img-circle my-materia">
                     <span>
-                        <?php echo $materia->nombre; ?>
+                        <?php echo $materia->materia; ?>
                     </span>
                 </div>
             <?php endforeach; ?>
