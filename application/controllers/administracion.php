@@ -10,6 +10,8 @@ class Administracion extends CI_Controller
         $this->load->library('grocery_CRUD');
     }
 
+
+/*========================================== GESTION DE USUARIOS ===========================================*/
     public function alta_usuarios()
     {
         if(($this->session->userdata("tipoUsuarioId")== 1 || $this->session->userdata("tipoUsuarioId")== 2  ) && $this->session->userdata('validated')){
@@ -117,31 +119,74 @@ class Administracion extends CI_Controller
         return site_url('datos_personal/index/edit/'.$domicilio->datosPersonalesId);
     }
     
-
-    public function docentes()
-    {
+/*========================================== GESTION DE DOCENTES ===========================================*/
+    public function docentes(){
+        if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != "2" ) {
+            redirect('login');
+        } 
+        else {        
       
-        $crud = new grocery_CRUD();
-
-        $crud->set_theme('datatables');
-        $crud->set_table('docente');
-        $crud->unset_add();
-
-        $crud->set_relation('docenteId', 'usuario', 'usuario',  array('tipoUsuarioId'=>'3'));
-        $crud->set_relation_n_n('materiaId', 'docente_materia', 'materia', 'docenteId', 'materiaId', 'materia');
-        $crud->unset_columns('docenteId');
-        //$crud->fields('docenteId');
-
-        $output = $crud->render();
-        $this->load->view('includes/header-usuario-edit');
-        $this->load->view('docente/index', $output);
-        $this->load->view('includes/footer');
+            $crud = new grocery_CRUD();
+            $crud->set_theme('datatables');
+            $crud->set_table('docente');
+            $crud->unset_add();
+    
+            $crud->set_relation('docenteId', 'docente', '{docenteId} - {nombre}');
+            $crud->set_relation_n_n('materiaId', 'docente_materia', 'materia', 'docenteId', 'materiaId', 'materia');
+            $crud->columns('nombre','materiaId');
+            $crud->fields('docenteId', 'materiaId');
+            //$crud->fields('docenteId');
+    
+            $output = $crud->render();
+            $this->load->view('includes/header-usuario-edit');
+            $this->load->view('docente/index', $output);
+            $this->load->view('includes/footer');
+        }
 
     }
 
+
+/*========================================== GESTION DE GRUPOS ===========================================*/
+
+
+    public function grupos(){
+        if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != "2" ) {
+            redirect('login');
+        } 
+        else {
+
+            $crud = new grocery_CRUD();
+            $crud->set_theme('datatables');
+            //$crud->set_subject('Grupo');
+            $crud->set_table('grupo');
+      
+            $crud->columns('claveGrupo','cicloEscolar','grado','alumnoId');
+            $crud->fields('claveGrupo','cicloEscolar','grado','escuelaId','alumnoId','docente_materiaId'); 
+            $crud->change_field_type('escuelaId','invisible');
+            //$crud->callback_add_field('escuelaId',array($this,'add_field_callback_1'));
+            $crud->callback_before_insert(array($this,'set_escuela_id')); 
+            $crud->set_relation_n_n('alumnoId', 'alumno_grupo', 'alumno', 'grupoId', 'alumnoId', 'nombre');
+            $crud->set_relation_n_n('docente_materiaId', 'grupo_docente_materia', 'docente_materia', 'grupoId', 'docente_materiaId', 'materiaId');      
+            $output = $crud->render();
+
+            $this->load->view('includes/header-escuela');
+            $this->load->view('grupo/index', $output);
+            $this->load->view('includes/footer');
+        }
+    }
+
+    function set_escuela_id($post_array){        
+        $post_array['escuelaId'] = $this->session->userdata('usuarioId');
+        return $post_array;
+     }
+
+
+
+/*=============================    GESTION DE ESCUELAS SOLO SUPER ADMIN ============================*/
+
     public function escuelas(){
 
-        if (!$this->session->userdata('validated')) {
+        if (!$this->session->userdata('validated') || $this->session->userdata('tipoUsuarioId') != "1" ) {
             redirect('login');
         } 
         else {
@@ -164,11 +209,15 @@ class Administracion extends CI_Controller
 
             $output = $crud->render();
             
-            $this->load->view('includes/header-escuela');
+            $this->load->view('includes/header-sa');
             $this->load->view('escuela/index',$output);
             $this->load->view('includes/footer');
         }
     }
+
+
+
+
 
 }
 

@@ -34,14 +34,14 @@ class Contenidos extends CI_Controller
     $crud->change_field_type('fecha','invisible');
     $crud->set_field_upload('rutaActividad','assets/uploads/files');
     $crud->unset_list();
-    $crud->callback_before_insert(array($this,'set_values'));    
+    $crud->callback_before_insert(array($this,'tipo_actividad_fecha'));    
     $output = $crud->render();
     $this->load->view('includes/header-docente');
     $this->load->view('contenido/add', $output);
     $this->load->view('includes/footer');
   }
 
-  function set_values($post_array){
+  function tipo_actividad_fecha($post_array){
   	$post_array['tipoActividadId'] = 2;
   	$post_array['fecha'] = date("Y-m-d h:m:s");
   	return $post_array;
