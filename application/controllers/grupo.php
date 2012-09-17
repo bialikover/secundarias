@@ -16,23 +16,25 @@ class Grupo extends CI_Controller
 	public function index()
 	{
 
-      if (!$this->session->userdata('validated')) {
+/*      if (!$this->session->userdata('validated')) {
             redirect('login');
         } 
-        else {
+        else {*/
 		$crud = new grocery_CRUD();
 
             $crud->set_theme('datatables');
-            $crud->set_subject('Grupo');
+            //$crud->set_subject('Grupo');
             $crud->set_table('grupo');
 
+            $crud->columns('claveGrupo','cicloEscolar','grado','alumnoId');
+            $crud->fields('claveGrupo','cicloEscolar','grado','escuelaId','alumnoId','docente_materiaId'); 
+            $crud->callback_add_field('escuelaId',array($this,'add_field_callback_1'));
 
-            $crud->columns('claveGrupo','cicloEscolar','grado');
-            $crud->fields('claveGrupo','cicloEscolar','grado'); 
+            //$crud->display_as('claveGrupo','Clave de Grupo');
+            //$usuarioId = $this->session->userdata('usuarioId');
 
-            $crud->display_as('claveGrupo','Clave de Grupo');
-            $crud->display_as('cicloEscolar','Ciclo Escolar');     
-               
+            $crud->set_relation_n_n('alumnoId', 'alumno_grupo', 'alumno', 'grupoId', 'alumnoId', 'nombre');
+            $crud->set_relation_n_n('docente_materiaId', 'grupo_docente_materia', 'docente_materia', 'grupoId', 'docente_materiaId', 'materiaId');
 
             /*$crud->unset_delete();
             $crud->unset_add_fields();
@@ -46,8 +48,12 @@ class Grupo extends CI_Controller
             $this->load->view('includes/header-docente');
             $this->load->view('grupo/index', $output);
             $this->load->view('includes/footer');
-            }
+            //}
 	}
+
+      function add_field_callback_1() {
+            return '<input type="text" maxlength="50" value="2" name="escuelaId" readonly="readonly" style="width:462px">';
+      }
 
 }
 

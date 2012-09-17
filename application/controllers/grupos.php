@@ -22,19 +22,12 @@ class Grupos extends CI_Controller {
             } */
             $crud = new grocery_CRUD();
             $crud->set_theme('datatables');
-            $crud->set_subject('grupo');
-            $crud->set_table('grupos');
+            $crud->set_table('docente_materia');
+            $crud->unset_add();
 
-            $crud->set_relation_n_n('materias', 'grupo_materia', 'materias', 'id_grupo', 'id_materia', 'nombre');
-
-            $crud->columns('anio', 'clave', 'ciclo_escolar', 'salon', 'turno', 'grado');
-            $crud->fields('anio', 'clave', 'ciclo_escolar', 'salon', 'turno', 'grado', 'materias');
-
-            $crud->display_as('ciclo_escolar', 'Ciclo Escolar');
-            $crud->display_as('anio', 'Año');
-
-            $crud->add_action('Ver', '', 'grupos/show', 'ui-icon-plus');
-            $crud->unset_delete();
+            //$crud->set_relation('grupoId', 'grupo', 'grupoId');
+            $crud->set_relation_n_n('grupos', 'grupo_docente_materia', 'grupo', 'grupo_docente_materiaId', 'grupoId', 'claveGrupo');
+            $crud->fields('grupoId', 'materiasId'); 
 
             $output = $crud->render();
             $this->load->view('includes/header-escuela');

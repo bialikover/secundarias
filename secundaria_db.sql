@@ -79,7 +79,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `usuarioId` bigint(20) NOT NULL AUTO_INCREMENT,
-  `usuario` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `usuario` varchar(100) COLLATE utf8_bin UNIQUE DEFAULT NULL,
   `password` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `tipoUsuarioId` int(2) DEFAULT NULL,
   PRIMARY KEY (`usuarioId`),
@@ -363,7 +363,7 @@ CREATE TRIGGER `borrar_usuario` AFTER DELETE ON `usuario`
 DELIMITER ;
 
 /**************************************************************************************************
-//CREAR DESPUES DE INSERTAR EL PRIMER REGISTRO
+//Trigger AFTER INSERT on usuario
 //**************************************************************************************************/
 
 DELIMITER ;
@@ -380,11 +380,33 @@ CREATE TRIGGER `insertar_usuario` AFTER INSERT ON `usuario`
             IF tipoUsuarioId = 2 THEN
                 INSERT INTO escuela VALUES (NEW.usuarioId, '', '', '', '', '');
             ELSEIF tipoUsuarioId = 3 THEN
-                INSERT INTO docente VALUES (NEW.usuarioId);
+                INSERT INTO docente VALUES (NEW.usuarioId, NEW.usuario);
             ELSEIF tipoUsuarioId = 4 THEN
-                INSERT INTO alumno VALUES (NEW.usuarioId);
+                INSERT INTO alumno VALUES (NEW.usuarioId, NEW.usuario);
             ELSEIF tipoUsuarioId = 5 THEN
-                INSERT INTO padre VALUES (NEW.usuarioId, '');
+                INSERT INTO padre VALUES (NEW.usuarioId, '',NEW.usuario);
+            END IF;
+        END
+//
+DELIMITER ;
+
+/**************************************************************************************************
+//Trigger AFTER UPDATE on datos_personal
+//**************************************************************************************************/
+
+DELIMITER ;
+DROP TRIGGER IF EXISTS `actualizar_datos_personal`;
+DELIMITER //
+CREATE TRIGGER `actualizar_datos_personal` AFTER UPDATE ON `datos_personal`
+ FOR EACH ROW BEGIN
+            DECLARE tipoUsuarioId INT(2);
+            SELECT usuario.tipoUsuarioId INTO tipoUsuarioId FROM usuario WHERE usuarioId=OLD.usuarioId;
+            IF tipoUsuarioId = 3 THEN
+                UPDATE docente SET nombre=(SELECT CONCAT(NEW.nombre, ' ', NEW.aPaterno, ' ', NEW.aMaterno)) WHERE docenteId=OLD.usuarioId;
+            ELSEIF tipoUsuarioId = 4 THEN
+                UPDATE alumno SET nombre=(SELECT CONCAT(NEW.nombre, ' ', NEW.aPaterno, ' ', NEW.aMaterno)) WHERE alumnoId=OLD.usuarioId;
+            ELSEIF tipoUsuarioId = 5 THEN
+                UPDATE padre SET nombre=(SELECT CONCAT(NEW.nombre, ' ', NEW.aPaterno, ' ', NEW.aMaterno)) WHERE padreId=OLD.usuarioId;
             END IF;
         END
 //
@@ -397,15 +419,29 @@ DELIMITER ;
 DROP TABLE IF EXISTS `docente`;
 CREATE TABLE IF NOT EXISTS `docente` (
   `docenteId` bigint(20) NOT NULL,
+  `nombre` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`docenteId`),
   KEY `docenteId` (`docenteId`),
   CONSTRAINT `docente_ibfk_1` FOREIGN KEY (`docenteId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;  
 
+/**************************************************************************************************
+//Trigger AFTER INSERT on docente_materia
+//**************************************************************************************************/
 /*
-ALTER TABLE `docente`
-  ADD CONSTRAINT `docente_ibfk_1` FOREIGN KEY (`docenteId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `actualizar_docente`;
+DELIMITER //
+CREATE TRIGGER `actualizar_docente` AFTER UPDATE ON `docente`
+ FOR EACH ROW BEGIN
+            DECLARE nombreDocente varchar(100);
+            SELECT docente.nombre INTO nombreDocente FROM docente WHERE docenteId=NEW.docenteId;
+            UPDATE docente_materia SET nombre=nombreDocente WHERE docenteId=NEW.docenteId;
+        END
+//
+DELIMITER ;
 */
+
 --
 -- Table structure for table `alumno`
 --
@@ -413,15 +449,11 @@ ALTER TABLE `docente`
 DROP TABLE IF EXISTS `alumno`;
 CREATE TABLE IF NOT EXISTS `alumno` (
   `alumnoId` bigint(20) NOT NULL,
+  `nombre` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`alumnoId`),
   KEY `alumnoId` (`alumnoId`),
   CONSTRAINT `alumno_ibfk_1` FOREIGN KEY (`alumnoId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
-
-/*
-ALTER TABLE `alumno`
- ADD CONSTRAINT `alumno_ibfk_1` FOREIGN KEY (`alumnoId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE;
-*/
 
 --
 -- Table structure for table `padre`
@@ -431,39 +463,49 @@ DROP TABLE IF EXISTS `padre`;
 CREATE TABLE IF NOT EXISTS `padre` (
   `padreId` bigint(20) NOT NULL,
   `alumnoId` bigint(20),
+  `nombre` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`padreId`),
   KEY `padreId` (`padreId`),
-  KEY `alumnoId` (`alumnoId`),
-  CONSTRAINT `padre_ibfk_1` FOREIGN KEY (`padreId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `padre_ibfk_2` FOREIGN KEY (`alumnoId`) REFERENCES `alumno` (`alumnoId`) ON DELETE CASCADE ON UPDATE CASCADE 
+  CONSTRAINT `padre_ibfk_1` FOREIGN KEY (`padreId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
 
-/*
-ALTER TABLE `padre`
-  ADD CONSTRAINT `padre_ibfk_1` FOREIGN KEY (`padreId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `padre_ibfk_2` FOREIGN KEY (`alumnoId`) REFERENCES `alumno` (`alumnoId`) ON DELETE CASCADE ON UPDATE CASCADE;
-*/
 --
 -- Table structure for table `docente_materia`
 --
 
 DROP TABLE IF EXISTS `docente_materia`;
 CREATE TABLE IF NOT EXISTS `docente_materia` (
+  `docente_materiaId` bigint(20) NOT NULL AUTO_INCREMENT,
   `docenteId` bigint(20) NOT NULL,	
   `materiaId` bigint(20) NOT NULL,
+  `nombre` varchar(200) COLLATE utf8_bin DEFAULT NULL,
   KEY `docenteId` (`docenteId`),
   KEY `materiaId` (`materiaId`),
+  PRIMARY KEY (`docente_materiaId`),
   CONSTRAINT `docente_materia_ibfk_1` FOREIGN KEY (`docenteId`) REFERENCES `docente` (`docenteId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `docente_materia_ibfk_2` FOREIGN KEY (`materiaId`) REFERENCES `materia` (`materiaId`) ON DELETE CASCADE ON UPDATE CASCADE 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
 
-/*
-ALTER TABLE `docente_materia`ag
-  ADD CONSTRAINT `docente_materia_ibfk_1` FOREIGN KEY (`docenteId`) REFERENCES `docente` (`docenteId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `docente_materia_ibfk_2` FOREIGN KEY (`materiaId`) REFERENCES `materia` (`materiaId`) ON DELETE CASCADE ON UPDATE CASCADE;
-*/
 
+/**************************************************************************************************
+//Trigger AFTER INSERT on docente_materia
+//**************************************************************************************************/
+/*
+DELIMITER ;
+DROP TRIGGER IF EXISTS `insertar_docente_materia`;
+DELIMITER //
+CREATE TRIGGER `insertar_docente_materia` AFTER INSERT ON `docente_materia`
+ FOR EACH ROW BEGIN
+            DECLARE nombreMateria varchar(100);
+            DECLARE nombreDocente varchar(100);
+            SELECT materia.materia INTO nombreMateria FROM materia WHERE materiaId=NEW.materiaId;
+            SELECT docente.nombre INTO nombreDocente FROM docente WHERE docenteId=NEW.docenteId;
+            UPDATE docente_materia SET nombre=(SELECT CONCAT(nombreMateria, '-', nombreDocente)) WHERE docenteId=NEW.docenteId AND materiaId=NEW.materiaId;
+        END
+//
+DELIMITER ;
+*/
 --
 -- Table structure for table `alumno_grupo`
 --
@@ -472,7 +514,6 @@ DROP TABLE IF EXISTS `alumno_grupo`;
 CREATE TABLE IF NOT EXISTS `alumno_grupo` (
   `alumnoId` bigint(20) NOT NULL,	
   `grupoId` bigint(20) NOT NULL ,	
-  PRIMARY KEY (`alumnoId`,`grupoId`),
   CONSTRAINT `alumno_grupo_ibfk_1` FOREIGN KEY (`alumnoId`) REFERENCES `alumno` (`alumnoId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `alumno_grupo_ibfk_2` FOREIGN KEY (`grupoId`) REFERENCES `grupo` (`grupoId`) ON DELETE CASCADE ON UPDATE CASCADE
 
@@ -481,12 +522,12 @@ CREATE TABLE IF NOT EXISTS `alumno_grupo` (
 --
 -- Table structure for table `grupo_docente_materia`
 --
-/*
+
 DROP TABLE IF EXISTS `grupo_docente_materia`;
 CREATE TABLE IF NOT EXISTS `grupo_docente_materia` (
-  `grupo_docente_materiaId` bigint(20) NOT NULL,
-  `grupoId` bigint(20),	
-  `docente_materiaId` bigint(20),	
+  `grupo_docente_materiaId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `grupoId` bigint(20) NOT NULL,	
+  `docente_materiaId` bigint(20) NOT NULL,
   PRIMARY KEY (`grupo_docente_materiaId`),
   KEY `grupoId` (`grupoId`),
   KEY `docente_materiaId` (`docente_materiaId`),
@@ -500,9 +541,9 @@ CREATE TABLE IF NOT EXISTS `grupo_docente_materia` (
 
 DROP TABLE IF EXISTS `grupo_docente_materia_actividad`;
 CREATE TABLE IF NOT EXISTS `grupo_docente_materia_actividad` (
-  `grupo_docente_materia_actividadId` bigint(20) NOT NULL,
-  `grupo_docente_materiaId` bigint(20),	
-  `actividadId` bigint(20),	
+  `grupo_docente_materia_actividadId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `grupo_docente_materiaId` bigint(20) NOT NULL,	
+  `actividadId` bigint(20) NOT NULL,	
   `comentario` text COLLATE utf8_bin,
   `usuarioIdComenta` bigint(20), 
   PRIMARY KEY (`grupo_docente_materia_actividadId`),
@@ -511,4 +552,8 @@ CREATE TABLE IF NOT EXISTS `grupo_docente_materia_actividad` (
   CONSTRAINT `grupo_docente_materia_actividad_ibfk_1` FOREIGN KEY (`grupo_docente_materiaId`) REFERENCES `grupo_docente_materia` (`grupo_docente_materiaId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `grupo_docente_materia_actividad_ibfk_2` FOREIGN KEY (`actividadId`) REFERENCES `actividad` (`actividadId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
-*/
+
+ 
+LOCK TABLES `usuario` WRITE;
+   INSERT INTO `usuario` VALUES (1,'admin','admin',1);
+UNLOCK TABLES;
