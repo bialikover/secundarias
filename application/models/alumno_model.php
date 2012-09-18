@@ -44,7 +44,7 @@ class Alumno_model extends CI_Model
         		SELECT `docente_materiaId` FROM `grupo_docente_materia` WHERE `grupoId` = ( 
         			SELECT `grupoId` from `alumno_grupo` WHERE `alumnoId` =".$usuarioId.")))";
         $query = $this->db->query($sql);
-        return $query->result ();
+        return $query->result();
     }
 
 

@@ -118,10 +118,37 @@ class Administracion extends CI_Controller
         $domicilio = $llave_domicilio->row();       
         return site_url('datos_personal/index/edit/'.$domicilio->datosPersonalesId);
     }
-    
+
+
+/*========================================== GESTION DE ALUMNOS ===========================================*/
+
+    public function alumnos(){
+
+        if (!$this->session->userdata('validated') || $this->session->userdata('tipoUsuarioId') != 2) {
+            redirect('login');
+        } else {
+            $crud = new grocery_CRUD();
+            $crud->set_theme('datatables');
+            $crud->set_subject('padre');
+            $crud->set_table('padre');
+            $crud->set_relation('alumnoId', 'alumno', '{alumnoId} - {nombre}');
+            $crud->set_relation('padreId', 'padre', '{padreId} - {nombre}');
+            $crud->columns('nombre','alumnoId');
+            $crud->fields('alumnoId', 'padreId');
+            $crud->unset_add();
+            
+            $output = $crud->render();
+            
+            $this->load->view('includes/header-escuela');
+            $this->load->view('alumno/index', $output);
+            $this->load->view('includes/footer');
+
+        }
+    }
+
 /*========================================== GESTION DE DOCENTES ===========================================*/
     public function docentes(){
-        if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != "2" ) {
+        if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 2 ) {
             redirect('login');
         } 
         else {        
@@ -138,7 +165,7 @@ class Administracion extends CI_Controller
             //$crud->fields('docenteId');
     
             $output = $crud->render();
-            $this->load->view('includes/header-usuario-edit');
+            $this->load->view('includes/header-escuela');
             $this->load->view('docente/index', $output);
             $this->load->view('includes/footer');
         }
@@ -150,7 +177,7 @@ class Administracion extends CI_Controller
 
 
     public function grupos(){
-        if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != "2" ) {
+        if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 2 ) {
             redirect('login');
         } 
         else {
@@ -186,7 +213,7 @@ class Administracion extends CI_Controller
 
     public function escuelas(){
 
-        if (!$this->session->userdata('validated') || $this->session->userdata('tipoUsuarioId') != "1" ) {
+        if (!$this->session->userdata('validated') || $this->session->userdata('tipoUsuarioId') != 1 ) {
             redirect('login');
         } 
         else {
