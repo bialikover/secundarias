@@ -15,8 +15,8 @@ switch (ENVIRONMENT) {
 $active_record = TRUE;
 
 $db['production']['hostname'] = 'tunnel.pagodabox.com';
-$db['production']['username'] = 'blair';
-$db['production']['password'] = 'yGTheIwC';
+$db['production']['username'] = 'jutta';
+$db['production']['password'] = 'A8FRdmI2';
 $db['production']['database'] = 'secundaria';
 $db['production']['dbdriver'] = 'mysql';
 $db['production']['port']     = '3306';
