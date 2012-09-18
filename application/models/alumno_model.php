@@ -41,7 +41,7 @@ class Alumno_model extends CI_Model
 
         $sql = "SELECT `materia` FROM `materia` WHERE `materiaId` IN ( 
         		SELECT `materiaId` FROM `docente_materia` WHERE `docente_materiaId` IN (
-        		SELECT `docente_materiaId` FROM `grupo_docente_materia` WHERE `grupoId` = ( 
+        		SELECT `docente_materiaId` FROM `grupo_docente_materia` WHERE `grupoId` IN ( 
         			SELECT `grupoId` from `alumno_grupo` WHERE `alumnoId` =".$usuarioId.")))";
         $query = $this->db->query($sql);
         return $query->result();
@@ -51,7 +51,7 @@ class Alumno_model extends CI_Model
     function actividades($usuarioId){
     	$sql = "SELECT * FROM `actividad` WHERE `actividadId` IN (  
     			SELECT `actividadId` FROM `grupo_docente_materia_actividad` WHERE `grupo_docente_materiaId` IN (  
-    				(SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia` WHERE `grupoId` = ( 
+    				(SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia` WHERE `grupoId` IN ( 
     					SELECT `grupoId` from `alumno_grupo` WHERE `alumnoId` =".$usuarioId."))))";
 	    $query = $this->db->query($sql);
         return $query->result ();

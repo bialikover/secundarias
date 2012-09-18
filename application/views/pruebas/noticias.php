@@ -7,7 +7,7 @@
 	</div>
     <?php if ($this->session->userdata("tipoUsuarioId")== 3):?>
 	<div class="span4 my-right">
-		<a href="<?php echo base_url()?>index.php/contenidos/nueva/index/add"  id = "nuevo-contenido"  class="btn btn-success "><i class="icon-plus icon-white"></i> Nuevo Contenido</a>
+		<a href="<?php echo base_url()?>index.php/contenido/nuevo/index/add"  id = "nuevo-contenido"  class="btn btn-success "><i class="icon-plus icon-white"></i> Nuevo Contenido</a>
 	</div>
     <!--<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     </div>-->
@@ -33,7 +33,7 @@
 <h1>Lo Nuevo</h1>
 <div class="row-floud">
         <div class="span6">
-            <?php foreach ($contenidos as $contenido): ?>
+            <?php foreach (array_reverse($contenidos) as $contenido): ?>
             <div class="row-fluid"> 
 
                 <div class="span12">
@@ -64,7 +64,7 @@
             <div class="row-fluid"> 
                 <div class="span12">
                     <div class="my-comentary-container">
-                        <div class="my-comentary-header">Comentarios</div>
+                        <!--<div class="my-comentary-header">Comentarios</div>
                         <?php //foreach ($contenido['comentarios'] as $comentario) { ?>
                             <div class="my-comentary">
 
@@ -83,7 +83,7 @@
                                 </div></div>
                         <?php //} ?>
 
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
