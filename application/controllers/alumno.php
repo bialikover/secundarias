@@ -23,13 +23,13 @@ class Alumno extends CI_Controller {
         if (!$this->session->userdata('validated')) {
             redirect('login');
         } else {
-            if ($this->session->userdata("role") != 'Escuela') {
+           /* if ($this->session->userdata("role") != 'Escuela') {
                 redirect('login');
-            }
+            }*/
             $crud = new grocery_CRUD();
             $crud->set_theme('datatables');
             $crud->set_subject('alumno');
-            $crud->set_table('alumnos');
+            $crud->set_table('alumno');
 
             $crud->display_as('apellido_pat', 'Apellido paterno');
             $crud->display_as('fecha_nacimiento', 'Fecha de nacimiento');
@@ -37,8 +37,8 @@ class Alumno extends CI_Controller {
             $crud->display_as('id_grupo', 'Grupo');
             $crud->display_as('id_padre', 'Tutor');
 
-            $crud->set_relation('id_grupo', 'grupos', 'clave');
-            $crud->set_relation('id_padre', 'padres', 'nombre');
+            $crud->set_relation('id_grupo', 'grupo', 'clave');
+            $crud->set_relation('id_padre', 'padre', 'nombre');
 
             $crud->columns('matricula', 'nombre', 'apellido_pat', 'apellido_mat', 'id_grupo', 'correo_electronico');
             $crud->fields('matricula', 'nombre', 'apellido_pat', 'apellido_mat', 'genero', 'id_grupo', 'id_padre', 'fecha_nacimiento', 'curp', 'direccion', 'telefono', 'correo_electronico');
