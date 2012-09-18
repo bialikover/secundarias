@@ -19,7 +19,7 @@
 			<div class="navbar my-nav">
 	  			<div class="navbar-inner">
 					
-						<div class="container-fluid">
+					<div class="container-fluid">
 						<div class="row-fluid"> 
 							
 								<div id="my-menu" class="span12">
@@ -31,12 +31,9 @@
 										</li>
 									</ul>
 
-					</ul>
-
-				</div>
-				<a  href="<?php echo base_url("index.php/welcome/do_logout")?>"> Salir</a>	
-			</div>
-		</div>
+								</div>
+						</div>
+					</div>
 
 
 				</div>

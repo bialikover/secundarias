@@ -19,10 +19,8 @@
 	<header>
 			<div class="navbar my-nav">
 	  			<div class="navbar-inner">
-					
 						<div class="container-fluid">
-						<div class="row-fluid"> 
-							
+							<div class="row-fluid"> 
 								<div id="my-menu" class="span12">
 									<ul class="nav">
 										<li><a class="" href="<?php echo base_url("index.php/welcome")?>">
@@ -32,28 +30,26 @@
 										</li>
 									</ul>
 									<ul class="nav pull-right">						
-									<li><a  href="<?php echo base_url("index.php/alumno/index")?>"> 
-									  	<img id="tab3" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/alumno-bco.png">
-									  	<div id="tab3_t" class="my-tex-nav">Alumno</div>
-									  </a>
-									</li>
-									
-									<li><a  href="<?php echo base_url("index.php/mensaje/index")?>"> 
-									  	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
-									  	<div id="tab4_t" class="my-tex-nav">Mensajes</div>
-									  </a>
-									</li>
-
-						  
-								   </ul>
-					
-
-				</div>
-				<a  href="<?php echo base_url("index.php/welcome/do_logout")?>"> Salir</a>	
-			</div>
-		</div>
-
-
+										<li><a  href="<?php echo base_url("index.php/alumno/index")?>"> 
+										  	<img id="tab3" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/alumno-bco.png">
+										  	<div id="tab3_t" class="my-tex-nav">Alumno</div>
+										  </a>
+										</li>
+										
+										<li><a  href="<?php echo base_url("index.php/mensaje/index")?>"> 
+										  	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
+										  	<div id="tab4_t" class="my-tex-nav">Mensajes</div>
+										  </a>
+										</li>
+										<li><a class="my-a"  href="<?php echo base_url("index.php/welcome/do_logout")?>">  
+									  		<img id="tab3" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/salir-bco.png">
+									  		<div id="tab3_t" class="my-tex-nav">Salir</div>
+									  		</a>
+									  	</li>
+								   	</ul>
+								</div>
+							</div>
+						</div>
 				</div>
 			</div>
 	</header>

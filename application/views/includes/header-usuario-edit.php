@@ -24,6 +24,7 @@
 					<div class="container-fluid">
 						<div class="row-fluid"> 
 							<div id="my-menu" class="span12">
+
 									<ul class="nav">
 										<li><a class="" href="<?php echo base_url("index.php/welcome")?>">
 										  	<img id="tab1" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/home-bco.png">
