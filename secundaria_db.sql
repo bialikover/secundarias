@@ -543,9 +543,7 @@ DROP TABLE IF EXISTS `grupo_docente_materia_actividad`;
 CREATE TABLE IF NOT EXISTS `grupo_docente_materia_actividad` (
   `grupo_docente_materia_actividadId` bigint(20) NOT NULL AUTO_INCREMENT,
   `grupo_docente_materiaId` bigint(20) NOT NULL,	
-  `actividadId` bigint(20) NOT NULL,	
-  `comentario` text COLLATE utf8_bin,
-  `usuarioIdComenta` bigint(20), 
+  `actividadId` bigint(20) NOT NULL,
   PRIMARY KEY (`grupo_docente_materia_actividadId`),
   KEY `grupo_docente_materiaId` (`grupo_docente_materiaId`),
   KEY `actividadId` (`actividadId`),

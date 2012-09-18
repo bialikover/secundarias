@@ -20,7 +20,7 @@ class Docente extends CI_Controller
         $crud->unset_add();
 
         $crud->set_relation('docenteId', 'docente', '{docenteId} - {nombre}');
-        $crud->set_relation_n_n('materiaId', 'docente_materia', 'materia', 'docenteId', 'materiaId', 'materia');
+        $crud->set_relation_n_n('materiaId', 'docente_materia', 'materia', 'docenteId', 'materiaId', 'materia','nombre');
         $crud->columns('nombre','materiaId');
         $crud->fields('docenteId', 'materiaId');
         //$crud->fields('docenteId');
