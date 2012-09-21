@@ -10,6 +10,7 @@
 
         function(data){
           console.log(data);
+          //alert(data);
            $("#contedor").html(data);
          });
 
@@ -66,65 +67,15 @@
       </div>
 
       <div class='my-inline' >
-             <span data-toggle="modal" data-target="#myModal" class="btn btn-success "><i class="icon-plus icon-white"></i></i> Nueva Actividad</span>
+            <a class='btn btn-success' href="<?php echo base_url('index.php/agenda/guardaractividad/add');?>">
+              <i class="icon-plus icon-white"></i>
+              Nueva Actividad
+            </a>
       </div>
 
+ </div> 
 
-
-
-
-
-<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Nueva Actividad</h3>
-  </div>
-  <div class="modal-body">
-     <form id='form1' action="<?php echo base_url('index.php/agenda/guardar_actividad');?>" method=POST>
-            <label for="titulo">Titulo de la actividad</label>
-            <input type="text" name='titulo' id='titulo' size="25" /><br />
-         
-            <label for="fecha">Fecha</label>
-            <input type="text" name='fecha' id='fecha' size="25"  /><br />
-
-             <label for="hora">Hora</label>
-            <input class="dropdown-timepicker" type="text" name="hora" id="hora"/>
-              
-             <script>
-                  $(document).ready(function() {
-                        $("#fecha").datepicker();
-
-                        $('.dropdown-timepicker').timepicker({
-                        defaultTime: 'current',
-                        minuteStep: 30,
-                        disableFocus: true,
-                        template: 'dropdown'
-                        });
-                      });
-
-             </script>
-
-
-
-
-
-
-            <label for="descripcion">Descripcion</label>
-            <textarea name='descripcion' id='descripcion'></textarea>
-         <br />
-
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <input type=submit value='Guardar Actividad' class="f btn-primary" >
-  </div>
-        </form>
-</div>
-
-
-
-
-    </div>  
+ 
     <div class='tab-content'>
       <div class='tab-pane active' id='dia'>
            <div class='my-encabezado-calendar' id='actual'>
@@ -136,7 +87,7 @@
                     07:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -146,7 +97,7 @@
                     08:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -156,7 +107,7 @@
                     09:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -166,7 +117,7 @@
                     10:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -175,7 +126,7 @@
                     11:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -185,7 +136,7 @@
                     12:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -195,7 +146,7 @@
                     13:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -205,7 +156,7 @@
                     14:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -215,7 +166,7 @@
                     15:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -225,7 +176,7 @@
                     16:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -235,7 +186,7 @@
                     17:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -245,7 +196,7 @@
                     18:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -255,7 +206,7 @@
                     19:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
@@ -265,7 +216,7 @@
                     20:00
                   </div>  
                   <div id='hora' class='my-inline hora-completa'>
-                     <div class='media1'}>00</div>
+                     <div class='media1'>00</div>
                      <div class='media2'>30</div>
                   </div>
               </div>
