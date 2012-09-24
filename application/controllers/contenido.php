@@ -23,17 +23,15 @@ class Contenido extends CI_Controller
 
 
   public function nuevo(){
-    if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 3 ) {
+   if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 3 ) {
         redirect('login');
     } else {  
       $crud = new grocery_CRUD();
       $crud->set_table('actividad');
       $crud->set_theme('datatables');
       $crud->columns('nombreActividad','descActividad');
-      $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad',
-        'grupo_docente_materia');
-      $crud->set_relation_n_n('grupo_docente_materia', 'grupo_docente_materia_actividad', 
-      'grupo_docente_materia','actividadId','grupo_docente_materiaId', 'docente_materiaId');
+      $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad', 'grupo_docente_materia');
+      $crud->set_relation_n_n('grupo_docente_materia', 'grupo_docente_materia_actividad', 'grupo_docente_materia','actividadId','grupo_docente_materiaId', 'docente_materiaId');
       $crud->change_field_type('tipoActividadId','invisible');
       $crud->change_field_type('fecha','invisible');
       $crud->set_field_upload('rutaActividad','assets/uploads/files');

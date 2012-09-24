@@ -17,7 +17,7 @@
        // $this->db->from('docente_materia');
        // $this->db->where('usuario.usuarioId', $usuarioId);  
 
-        $sql = "SELECT `materia` FROM `materia` WHERE `materiaId` IN (
+        $sql = "SELECT * FROM `materia` WHERE `materiaId` IN (
                     SELECT `materiaId` FROM `docente_materia` WHERE `docenteId` =".$usuarioId.")";
         $query = $this->db->query($sql);
         return $query->result();

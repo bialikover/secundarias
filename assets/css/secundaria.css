@@ -168,3 +168,10 @@ padding-top: 20px;
 	box-shadow: 0px -2px 5px #999, inset 0px -1px 3px #aaa;
 	z-index: 9999;
 }
+
+.my-textarea
+{
+	min-width:690px;
+	min-height: 30px;
+	resize: none; 
+}

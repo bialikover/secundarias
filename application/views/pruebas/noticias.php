@@ -1,4 +1,4 @@
-<?php //var_dump($materias);?>
+<?php var_dump($materias);?>
 <?php //var_dump($contenidos);?>
 
 <div class="row-fluid"> 
@@ -20,11 +20,13 @@
         <div class="my-container-materias">
 
             <?php foreach ($materias as $materia): ?>
+            <a href="<?php echo base_url().'index.php/pruebas/noticias_materia/'.$materia->materiaId?>">
                 <div class="img-circle my-materia">
                     <span>
                         <?php echo $materia->materia; ?>
                     </span>
                 </div>
+            </a>
             <?php endforeach; ?>
         </div>			
     </div>
@@ -45,7 +47,7 @@
                                     <img class="my-foto-mini" src="<?php echo base_url(); ?>/assets/img/user1.png">
                                 </div>
                                 <div class="span10">
-                                    <h4><?php echo strtoupper($contenido->nombreActividad); ?></h4>
+                                    <h4><?php echo anchor("actividad/detalle/".$contenido->actividadId , strtoupper($contenido->nombreActividad)); ?></h4>
                                     <p><?php echo $contenido->descActividad; ?></p>
 
                                     <div class="date-footer">

@@ -1,15 +1,25 @@
-/*$(document).ready(function(){
+$(document).ready(function(){
 
-	$("#nuevo-contenido").click(function(){	
-		$("#myModal").load('contenidos/nueva', function(response, status, xhr){
+//hace grande el text area del comentario de una forma muy precaria.
+	$(".my-textarea").focus(function(){
+		$(this).css("height", '100px');
+	});
+//enviar comentarios
+	$("#enviar-comentario").click(function(){
+		var comentario = $(".my-textarea").val();
+		var actividadId = $("input:hidden").val();
 
-			console.log(status);
-		});
+		console.log(actividadId);
+		$.post("/secundarias/index.php/comentario/nuevo",
+        		{comentario:comentario, 
+        		 actividadId:actividadId},
+        		function(data){
+          			console.log(data);
+        			$(".my-comentary-header").after(data);
+          				
+          		}
+				
+		);
 	});
 
 });
-
-tinyMCE.init({
-        theme : "advanced",
-        mode : "textareas"
-});*/
