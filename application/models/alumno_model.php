@@ -39,7 +39,7 @@ class Alumno_model extends CI_Model
         $this->db->from('docente_materia');
         $this->db->where('usuario.usuarioId', $usuarioId);  
 
-        $sql = "SELECT `materia` FROM `materia` WHERE `materiaId` IN ( 
+        $sql = "SELECT * FROM `materia` WHERE `materiaId` IN ( 
         		SELECT `materiaId` FROM `docente_materia` WHERE `docente_materiaId` IN (
         		SELECT `docente_materiaId` FROM `grupo_docente_materia` WHERE `grupoId` IN ( 
         			SELECT `grupoId` from `alumno_grupo` WHERE `alumnoId` =".$usuarioId.")))";

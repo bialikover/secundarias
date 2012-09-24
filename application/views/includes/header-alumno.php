@@ -10,10 +10,15 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/docente-alumno.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/bootstrap-responsive.css">
-		
+		<script type="text/javascript" src="<?php echo base_url();?>/assets/grocery_crud/texteditor/tiny_mce/tiny_mce.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>/assets/js/jquery.js"></script> 
-		<script type="text/javascript" src="<?php echo base_url();?>/assets/js/bootstrap.js"></script> 
+		<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-1.8.0.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.ui.datepicker.js"></script> 
+		<script type="text/javascript" src="<?php echo base_url();?>/assets/js/bootstrap.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap.calendar.js"></script> 
+    	<script type="text/javascript" src="<?php echo base_url();?>assets/js/timepicker.js"></script>  
 		<script type="text/javascript" src="<?php echo base_url();?>/assets/js/my-menu-circle.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>/assets/js/app.js"></script>
 		
 	</head>
 	<body>

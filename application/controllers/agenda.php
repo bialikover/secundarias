@@ -16,45 +16,51 @@
         public function index()
         {
 
-            $this->load->view('includes/header-escuela');
+            $this->load->view('includes/header-docente');
             $this->load->view('agenda/index');
             $this->load->view('includes/footer');
         }
 
         public function guardar()
          {
-            $this->load->view('includes/header-escuela');
+            $this->load->view('includes/header-docente');
             $this->load->view('agenda/guardar');
             $this->load->view('includes/footer');            
          }
 
        public function guardaractividad()
-        {
-           // $this->load->model("actividad_model");
-           // $this->actividad_model->guardar();
-           // redirect("/agenda");
-
-      $crud = new grocery_CRUD();
-      $crud->set_table('actividad');
-      $crud->set_theme('datatables');
-      $crud->columns('nombreActividad','descActividad','fecha');
-      $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad', 'grupo_docente_materia');
-      $crud->set_relation_n_n('grupo_docente_materia', 'grupo_docente_materia_actividad', 'grupo_docente_materia','actividadId','grupo_docente_materiaId', 'docente_materiaId');
-      $crud->change_field_type('tipoActividadId','invisible');
-      $crud->change_field_type('rutaActividad','invisible');
-      $crud->change_field_type('grupo_docente_materia','invisible');
-  
-  
-      $crud->unset_list();
-      $crud->callback_before_insert(array($this,'tipo_actividad_fecha'));    
-  
-      $output = $crud->render();
-      $this->load->view('includes/header-docente');
-
-      $this->load->view('contenido/add', $output);
-      $this->load->view('includes/footer');
+       {
+          if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 3 ) {
+            redirect('login');
+          } else { 
+            $crud = new grocery_CRUD();
+            $crud->set_table('actividad');
+            $crud->set_theme('datatables');
+            $crud->columns('nombreActividad','descActividad','fecha');
+            $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad', 'grupo_docente_materia');
+            $crud->set_relation_n_n('grupo_docente_materia', 'grupo_docente_materia_actividad', 'grupo_docente_materia','actividadId','grupo_docente_materiaId', 'docente_materiaId');
+            $crud->change_field_type('tipoActividadId','invisible');
+            $crud->change_field_type('rutaActividad','invisible');
+            $crud->change_field_type('grupo_docente_materia','invisible');
+        
+        
+            $crud->unset_list();
+            $crud->callback_before_insert(array($this,'tipo_actividad_fecha'));    
+        
+            $output = $crud->render();
+            $this->load->view('includes/header-docente');
+      
+            $this->load->view('contenido/add', $output);
+            $this->load->view('includes/footer');
+          }
            
-        }
+       }
+
+      function tipo_actividad_fecha($post_array){
+        $post_array['tipoActividadId'] = 1;
+        //$post_array['fecha'] = date("Y-m-d h:m:s");
+        return $post_array;
+      }
 
        public function cambiar_fecha()
         {
@@ -88,7 +94,4 @@
 
         
     }
-
- 
-
 ?> 
