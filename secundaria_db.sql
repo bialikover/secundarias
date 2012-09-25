@@ -413,7 +413,7 @@ CREATE TRIGGER `actualizar_datos_personal` AFTER UPDATE ON `datos_personal`
 //
 DELIMITER ;
 
---
+-- 
 -- Table structure for table `docente`
 --
 
