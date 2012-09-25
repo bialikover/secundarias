@@ -403,6 +403,7 @@ CREATE TRIGGER `actualizar_datos_personal` AFTER UPDATE ON `datos_personal`
             SELECT usuario.tipoUsuarioId INTO tipoUsuarioId FROM usuario WHERE usuarioId=OLD.usuarioId;
             IF tipoUsuarioId = 3 THEN
                 UPDATE docente SET nombre=(SELECT CONCAT(NEW.nombre, ' ', NEW.aPaterno, ' ', NEW.aMaterno)) WHERE docenteId=OLD.usuarioId;
+                UPDATE docente_materia SET nombre=(SELECT CONCAT(NEW.nombre, ' ', NEW.aPaterno, ' ', NEW.aMaterno)) WHERE docenteId=OLD.usuarioId;
             ELSEIF tipoUsuarioId = 4 THEN
                 UPDATE alumno SET nombre=(SELECT CONCAT(NEW.nombre, ' ', NEW.aPaterno, ' ', NEW.aMaterno)) WHERE alumnoId=OLD.usuarioId;
             ELSEIF tipoUsuarioId = 5 THEN
