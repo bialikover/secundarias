@@ -479,7 +479,8 @@ CREATE TABLE IF NOT EXISTS `docente_materia` (
   `docente_materiaId` bigint(20) NOT NULL AUTO_INCREMENT,
   `docenteId` bigint(20) NOT NULL,	
   `materiaId` bigint(20) NOT NULL,
-  `nombre` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  `nombre` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `nombreMateria` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   KEY `docenteId` (`docenteId`),
   KEY `materiaId` (`materiaId`),
   PRIMARY KEY (`docente_materiaId`),
@@ -535,6 +536,7 @@ CREATE TABLE IF NOT EXISTS `grupo_docente_materia` (
   CONSTRAINT `grupo_docente_materia_ibfk_2` FOREIGN KEY (`docente_materiaId`) REFERENCES `docente_materia` (`docente_materiaId`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
+
 --
 -- Table structure for table `grupo_docente_materia_actividad`
 --
@@ -550,6 +552,22 @@ CREATE TABLE IF NOT EXISTS `grupo_docente_materia_actividad` (
   CONSTRAINT `grupo_docente_materia_actividad_ibfk_1` FOREIGN KEY (`grupo_docente_materiaId`) REFERENCES `grupo_docente_materia` (`grupo_docente_materiaId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `grupo_docente_materia_actividad_ibfk_2` FOREIGN KEY (`actividadId`) REFERENCES `actividad` (`actividadId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
+
+--
+-- Table structure for table `comentario`
+--
+
+DROP TABLE IF EXISTS `comentario`;
+CREATE TABLE IF NOT EXISTS `comentario` (
+  `comentarioId` bigint(20) NOT NULL,
+  `comentario` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `usuarioId` bigint(20) NOT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `grupo_docente_materia_actividadId` bigint(20) NOT NULL,
+  PRIMARY KEY (`comentarioId`),
+  KEY `grupo_docente_materia_actividadId` (`grupo_docente_materia_actividadId`),
+  CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`grupo_docente_materia_actividadId`) REFERENCES `grupo_docente_materia_actividad` (`grupo_docente_materia_actividadId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;  
 
  
 LOCK TABLES `usuario` WRITE;

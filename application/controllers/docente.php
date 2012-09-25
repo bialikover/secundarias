@@ -24,6 +24,7 @@ class Docente extends CI_Controller
         $crud->columns('nombre','materiaId');
         $crud->fields('docenteId', 'materiaId');
         //$crud->fields('docenteId');
+        $crud->callback_after_update(array($this, 'callback_docente_materia'));
 
         $output = $crud->render();
         $this->load->view('includes/header-usuario-edit');
@@ -31,6 +32,18 @@ class Docente extends CI_Controller
         $this->load->view('includes/footer');
 
 	}
+
+        function callback_docente_materia($post_array,$primary_key) {
+                
+                $lol = $this->db->query("call procedure_docente_materia(?,?)", array(9, 25));
+        /*$user_logs_update = array(
+                "user_id" => $primary_key, 
+                "last_update" => date('Y-m-d H:i:s')
+            );
+            $this->db->update('user_logs',$user_logs_update,array('user_id' => $primary_key));
+            */
+            return true;
+        }
 
 }
 

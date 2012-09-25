@@ -37,6 +37,7 @@ class Contenido extends CI_Controller
       $crud->set_field_upload('rutaActividad','assets/uploads/files');
   
       $crud->unset_list();
+      $crud->unset_back_to_list();
       $crud->callback_before_insert(array($this,'tipo_actividad_fecha'));    
   
       $output = $crud->render();

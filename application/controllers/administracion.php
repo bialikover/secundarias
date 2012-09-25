@@ -16,7 +16,7 @@ class Administracion extends CI_Controller
     {
         if(($this->session->userdata("tipoUsuarioId")== 1 || $this->session->userdata("tipoUsuarioId")== 2  ) && $this->session->userdata('validated')){
             $crud = new grocery_CRUD();
-            $crud->set_theme('datatables');
+            $crud->set_theme('flexigrid');
             $crud->set_subject('usuario');
             $crud->set_table('usuario');
 
@@ -162,6 +162,9 @@ class Administracion extends CI_Controller
             $crud->set_relation_n_n('materiaId', 'docente_materia', 'materia', 'docenteId', 'materiaId', 'materia');
             $crud->columns('nombre','materiaId');
             $crud->fields('docenteId', 'materiaId');
+
+            $crud->callback_after_update(array($this, 'callback_docente_materia'));
+
             //$crud->fields('docenteId');
     
             $output = $crud->render();
@@ -173,6 +176,18 @@ class Administracion extends CI_Controller
     }
 
 
+        function callback_docente_materia($post_array,$primary_key) {
+                
+                $lol = $this->db->query("call procedure_docente_materia()");
+                echo $primary_key;
+        /*$user_logs_update = array(
+                "user_id" => $primary_key, 
+                "last_update" => date('Y-m-d H:i:s')
+            );
+            $this->db->update('user_logs',$user_logs_update,array('user_id' => $primary_key));
+            */
+            return true;
+        }
 /*========================================== GESTION DE GRUPOS ===========================================*/
 
 
@@ -193,7 +208,7 @@ class Administracion extends CI_Controller
             //$crud->callback_add_field('escuelaId',array($this,'add_field_callback_1'));
             $crud->callback_before_insert(array($this,'set_escuela_id')); 
             $crud->set_relation_n_n('alumnoId', 'alumno_grupo', 'alumno', 'grupoId', 'alumnoId', 'nombre');
-            $crud->set_relation_n_n('docente_materiaId', 'grupo_docente_materia', 'docente_materia', 'grupoId', 'docente_materiaId', 'materiaId');      
+            $crud->set_relation_n_n('docente_materiaId', 'grupo_docente_materia', 'docente_materia', 'grupoId', 'docente_materiaId', '{nombreMateria} - {nombre}');      
             $output = $crud->render();
 
             $this->load->view('includes/header-escuela');
