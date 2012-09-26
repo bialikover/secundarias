@@ -16,7 +16,9 @@ class Panel extends CI_Controller {
         $tipoUsuarioId = $this->session->userdata("tipoUsuarioId");
         $perfil_id = $this->session->userdata("usuario");
         
-        $this->load->model('actividad');
+        $this->load->model('actividad_model');
+        $this->load->model('materia_model');
+        
 
         if (!$this->session->userdata('validated')) {
             redirect('login');
@@ -29,14 +31,14 @@ class Panel extends CI_Controller {
                 $this->load->view('escuela/perfil');
                 $this->load->view('includes/footer');
             } else if ($tipoUsuarioId === '3') {
-                $data['materias'] = $this->actividad_model->materias_docente($usuarioId);
-                $data['contenidos'] = $this->actividad_model->actividades($usuarioId);
+                $data['materias'] = $this->materia_model->materias_docente($usuarioId);
+                $data['contenidos'] = $this->actividad_model->actividades_docente($usuarioId);
                 $this->load->view('includes/header-docente');
                 $this->load->view('pruebas/noticias', $data);
                 $this->load->view('includes/footer');
             } else if ($tipoUsuarioId === '4') {
-                $data['materias'] = $this->actividad_model->materias_alumno($usuarioId);
-                $data['contenidos'] = $this->actividad_model->actividades($usuarioId);
+                $data['materias'] = $this->materia_model->materias_alumno($usuarioId);
+                $data['contenidos'] = $this->actividad_model->actividades_alumno($usuarioId);
                 $this->load->view('includes/header-alumno');
                 $this->load->view('pruebas/noticias', $data);
                 $this->load->view('includes/footer');

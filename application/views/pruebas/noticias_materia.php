@@ -1,5 +1,5 @@
 <?php //var_dump($materia);?>
-<?php //var_dump($actividades);?>
+<?php var_dump($actividades);?>
 <h1><?php echo $materia->materia;?></h1>
 <hr>
 <div class="row-fluid"> 

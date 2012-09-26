@@ -11,17 +11,7 @@
     	$query = $this->db->get("docente");
     	return $query->result();
     }
-    function materias_docente($usuarioId){
 
-       // $this->db->select('materia_id');
-       // $this->db->from('docente_materia');
-       // $this->db->where('usuario.usuarioId', $usuarioId);  
-
-        $sql = "SELECT * FROM `materia` WHERE `materiaId` IN (
-                    SELECT `materiaId` FROM `docente_materia` WHERE `docenteId` =".$usuarioId.")";
-        $query = $this->db->query($sql);
-        return $query->result();
-    }
 
     function relaciona_materia($array_materias, $usuarioId){
     	   //var_dump($array_materias);
