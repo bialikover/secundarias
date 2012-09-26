@@ -42,7 +42,6 @@ class Actividad_model extends CI_Model{
 
 
    public function mostrar_por_materia($materiaId, $usuarioId){
-        
         if($this->session->userdata('tipoUsuarioId') == 3 ){
           $sql0 = "SELECT grupoId
                    FROM grupo_docente_materia
@@ -58,6 +57,7 @@ class Actividad_model extends CI_Model{
           $grupo = $this->db->query($sql0)->row();
           $grupoId = $grupo->grupoId;
         }
+        
         $sql = "select actividad.actividadId, actividad.tipoActividadId, actividad.nombreActividad, actividad.descActividad, actividad.rutaActividad, actividad.fecha, comentario.comentarioId, comentario.comentario, comentario.usuarioId, comentario.fecha
                 FROM actividad, grupo_docente_materia_actividad, grupo_docente_materia, docente_materia, comentario
                 WHERE grupo_docente_materia_actividad.actividadId = actividad.actividadId
@@ -108,6 +108,25 @@ class Actividad_model extends CI_Model{
    }
 
 
+    function actividades_alumno($usuarioId){
+    	$sql = "SELECT * FROM `actividad` WHERE `actividadId` IN (  
+    			SELECT `actividadId` FROM `grupo_docente_materia_actividad` WHERE `grupo_docente_materiaId` IN (  
+    				(SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia` WHERE `grupoId` IN ( 
+    					SELECT `grupoId` from `alumno_grupo` WHERE `alumnoId` =".$usuarioId."))))";
+	    $query = $this->db->query($sql);
+        return $query->result ();
+    }
 
+
+
+    function actividades_docente($usuarioId){
+
+    	$sql = "SELECT * FROM `actividad` WHERE `actividadId` IN (  
+    			SELECT `actividadId` FROM `grupo_docente_materia_actividad` WHERE `grupo_docente_materiaId` IN (      					
+    			SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia` WHERE `docente_materiaId` IN ( 
+    			SELECT `docente_materiaId` FROM `docente_materia` WHERE `docenteId` = ".$usuarioId.")))";
+    	$query = $this->db->query($sql);
+        return $query->result ();
+    }
 }
 ?>

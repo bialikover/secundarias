@@ -2,19 +2,13 @@
 <script>
   function Retrieve(fecha)
     {
-       //alert(fecha);
-       //console.log(fecha);
-
        $.post("<?php echo base_url('index.php/agenda/cambiar_fecha');?>",
         {myfecha:fecha},
 
         function(data){
           console.log(data);
-          //alert(data);
            $("#contedor").html(data);
          });
-
-
     }
 </script>
     
@@ -45,9 +39,9 @@
          $('#calendar').Calendar({ 'events': evnts, 'weekStart': 1 })
          .on('changeDay', function(event){var fecha=""; fecha=event.day.valueOf() +'-'+ event.month.valueOf() +'-'+ event.year.valueOf();Retrieve(fecha);  })
          .on('onEvent', function(event){ alert(event.day.valueOf() +'-'+ event.month.valueOf() +'-'+ event.year.valueOf() ); })
-         .on('onNext', function(event){ alert("Next"); })
-         .on('onPrev', function(event){ alert("Prev"); })
-         .on('onCurrent', function(event){ alert("Current"); });
+         .on('onNext', function(event){ console.log("Next"); })
+         .on('onPrev', function(event){ console.log("Prev"); })
+         .on('onCurrent', function(event){ console.log("Current"); });
       });
 
     </script>

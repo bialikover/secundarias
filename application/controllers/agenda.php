@@ -53,7 +53,6 @@
             $this->load->view('contenido/add', $output);
             $this->load->view('includes/footer');
           }
-           
        }
 
       function tipo_actividad_fecha($post_array){
@@ -64,12 +63,13 @@
 
        public function cambiar_fecha()
         {
+         // :TODO: Mover a Modelo
             $fecha=$this->input->post('myfecha');     
 
             $fecha1 = date("Y-m-d 00:00:00", strtotime($fecha));   
             $fecha2 = date("Y-m-d 23:59:59", strtotime($fecha)); 
 
-            $data['actividades'] = $this->db->query("select * FROM actividad WHERE fecha between '$fecha1' AND '$fecha2'")->result();
+            $data['actividades'] = $this->db->query("select * FROM actividad WHERE fecha between '$fecha1' AND '$fecha2' AND tipoActividadId = 1 ")->result();
             $this->load->view("agenda/actividades", $data);
 
         }
