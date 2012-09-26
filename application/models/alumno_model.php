@@ -47,16 +47,6 @@ class Alumno_model extends CI_Model
         return $query->result();
     }
 
-
-    function actividades($usuarioId){
-    	$sql = "SELECT * FROM `actividad` WHERE `actividadId` IN (  
-    			SELECT `actividadId` FROM `grupo_docente_materia_actividad` WHERE `grupo_docente_materiaId` IN (  
-    				(SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia` WHERE `grupoId` IN ( 
-    					SELECT `grupoId` from `alumno_grupo` WHERE `alumnoId` =".$usuarioId."))))";
-	    $query = $this->db->query($sql);
-        return $query->result ();
-    }
-
 }
 
 ?>

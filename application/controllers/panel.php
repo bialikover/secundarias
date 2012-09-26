@@ -15,6 +15,8 @@ class Panel extends CI_Controller {
         $usuarioId = $this->session->userdata('usuarioId');
         $tipoUsuarioId = $this->session->userdata("tipoUsuarioId");
         $perfil_id = $this->session->userdata("usuario");
+        
+        $this->load->model('actividad');
 
         if (!$this->session->userdata('validated')) {
             redirect('login');
@@ -27,16 +29,14 @@ class Panel extends CI_Controller {
                 $this->load->view('escuela/perfil');
                 $this->load->view('includes/footer');
             } else if ($tipoUsuarioId === '3') {
-                $this->load->model('docente_model');
-                $data['materias'] = $this->docente_model->materias_docente($usuarioId);
-                $data['contenidos'] = $this->docente_model->actividades($usuarioId);
+                $data['materias'] = $this->actividad_model->materias_docente($usuarioId);
+                $data['contenidos'] = $this->actividad_model->actividades($usuarioId);
                 $this->load->view('includes/header-docente');
                 $this->load->view('pruebas/noticias', $data);
                 $this->load->view('includes/footer');
             } else if ($tipoUsuarioId === '4') {
-                $this->load->model('alumno_model');
-                $data['materias'] = $this->alumno_model->materias_alumno($usuarioId);
-                $data['contenidos'] = $this->alumno_model->actividades($usuarioId);
+                $data['materias'] = $this->actividad_model->materias_alumno($usuarioId);
+                $data['contenidos'] = $this->actividad_model->actividades($usuarioId);
                 $this->load->view('includes/header-alumno');
                 $this->load->view('pruebas/noticias', $data);
                 $this->load->view('includes/footer');

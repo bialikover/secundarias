@@ -23,17 +23,6 @@
         return $query->result();
     }
 
-
-    function actividades($usuarioId){
-
-    	$sql = "SELECT * FROM `actividad` WHERE `actividadId` IN (  
-    			SELECT `actividadId` FROM `grupo_docente_materia_actividad` WHERE `grupo_docente_materiaId` IN (      					
-    			SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia` WHERE `docente_materiaId` IN ( 
-    			SELECT `docente_materiaId` FROM `docente_materia` WHERE `docenteId` = ".$usuarioId.")))";
-    	$query = $this->db->query($sql);
-        return $query->result ();
-    }
-
     function relaciona_materia($array_materias, $usuarioId){
     	   //var_dump($array_materias);
            //die;
