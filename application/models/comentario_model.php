@@ -24,7 +24,7 @@ class Comentario_model extends CI_Model{
       $data2['fecha'] = $data['fecha'];
       $usuario = $this->db->get_where('datos_personal', array('usuarioId'=>$data['usuarioId']))->row();
       $data2['usuario'] = $usuario->nombre. " " .$usuario->aPaterno. " ".$usuario->aMaterno;
-      $html = $this->load->view("contenido/comentario", $data2);
+      $html = $this->load->view("contenido/comentario", $data2, true);
       return $html;
 
    }

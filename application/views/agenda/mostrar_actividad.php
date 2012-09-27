@@ -62,13 +62,7 @@
 					<img class="my-foto-mini" src="<?php echo base_url();?>/assets/img/user1.png">
 				</div>
 				<div class="span10">
-					<?php 
-
-					$usuario = $this->db->get_where('datos_personal', array('usuarioId'=>$comentario->usuarioId))->row();
-        			$u = $usuario->nombre. " " .$usuario->aPaterno. " ".$usuario->aMaterno;
-
-					?>
-					<h4><?php echo $u;?></h4>
+					<h4><?php echo mostrar_nombre($comentario->usuarioId);?></h4>
 					<p><?php echo $comentario->comentario;?> </p>
 
 						<div class="date-footer">

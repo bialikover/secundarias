@@ -1,5 +1,5 @@
 <?php //var_dump($materia);?>
-<?php var_dump($actividades);?>
+<?php //var_dump($actividades);?>
 <h1><?php echo $materia->materia;?></h1>
 <hr>
 <div class="row-fluid"> 
@@ -14,7 +14,7 @@
                 <div class="span12">
                     <div class="my-comentary-container">
                         <div class="my-comentary-header"><?php echo $actividad->nombreActividad;?></div>
-
+                        <a href="<?php echo base_url()."index.php/actividad/detalle/".$actividad->actividadId;?>">
                         <div class="my-comentary">
                             <div class="row-fluid">
                                 <div class="span2 my-center">
@@ -30,6 +30,7 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -40,7 +41,7 @@
                     <div class="my-comentary-container">
                         <div class="my-comentary-header">Comentarios</div>
                          <?php // foreach ($actividad['comentarios'] as $comentario) { ?>
-                         
+                         <a href="<?php echo base_url()."index.php/actividad/detalle/".$actividad->actividadId;?>">
                             <div class="my-comentary">
 
                                 <div class="row-fluid">
@@ -48,14 +49,16 @@
                                         <img class="my-foto-mini" src="<?php echo base_url(); ?>/assets/img/user1.png">
                                     </div>
                                     <div class="span10">
-                                        <h4>Nombre del comenter</h4>
-                                        <p>Contenido del comentario</p>
+                                        <h4><?php echo mostrar_nombre($actividad->usuarioId);?></h4>
+                                        <p><?php echo $actividad->comentario;?></p>
 
                                         <div class="date-footer">
-                                            <span>fecha del comentario</span>
+                                            <span><?php echo $actividad->fecha;?></span>
                                         </div>
                                     </div>
-                                </div></div>
+                                </div>
+                            </div>
+                        </a>
                         <?php // } ?>
 
                     </div>

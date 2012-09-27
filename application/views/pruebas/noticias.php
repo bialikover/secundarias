@@ -1,4 +1,4 @@
-<?php var_dump($materias);?>
+<?php //var_dump($materias);?>
 <?php //var_dump($contenidos);?>
 
 <div class="row-fluid"> 
