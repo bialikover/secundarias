@@ -42,12 +42,6 @@ class Escuela extends CI_Controller
     	}
 	}
 
-
-	public function show(){
-		echo "la view para mostrar una secundaria.";
-
-	}
-
 	public function _idContacto($primary_key, $row){
 		$llave_contacto = $this->db->query('SELECT contactoEscuelaId FROM contacto_escuela WHERE escuelaId=' . $primary_key . '');
 		$contacto = $llave_contacto->row();	
@@ -57,6 +51,17 @@ class Escuela extends CI_Controller
 		$llave_domicilio = $this->db->query('SELECT domicilioEscuelaId FROM domicilio_escuela WHERE escuelaId=' . $primary_key . '');
 		$domicilio = $llave_domicilio->row();		
 		return site_url('domicilio_escuela/index/edit/'.$domicilio->domicilioEscuelaId);
+	}
+
+
+
+	public function mostrar(){
+		$this->load->model("escuela_model");
+		$escuelaId = $this->uri->segment(3);
+		var_dump($this->escuela_model->mostrar($escuelaId));
+		//$this->load->view('includes/header');
+		//$this->load->view('escuela/mostrar');
+		//$this->load->view('includes/footer');
 	}
 }
 
