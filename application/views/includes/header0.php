@@ -18,7 +18,7 @@
 		  <div class="row-fluid">
 		    <div class="span6">
 		      <img src="<?php echo base_url();?>/assets/img/icon/HOMEICON.png">
-		      <span>Plataforma Educativa</span>
+		      <span>Mi secu</span>
 		    </div>
 		    <div class="span6">
 		    	<form class="form-inline" action="<?php echo base_url();?>index.php/login/process" method="post" name="process">
