@@ -530,6 +530,8 @@ CREATE TABLE IF NOT EXISTS `grupo_docente_materia` (
   `grupo_docente_materiaId` bigint(20) NOT NULL AUTO_INCREMENT,
   `grupoId` bigint(20) NOT NULL,	
   `docente_materiaId` bigint(20) NOT NULL,
+  `claveGrupo` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `nombreMateria` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`grupo_docente_materiaId`),
   KEY `grupoId` (`grupoId`),
   KEY `docente_materiaId` (`docente_materiaId`),
@@ -574,3 +576,68 @@ CREATE TABLE IF NOT EXISTS `comentario` (
 LOCK TABLES `usuario` WRITE;
    INSERT INTO `usuario` VALUES (1,'admin','admin',1);
 UNLOCK TABLES;
+
+/**************************************************************************************************
+// PROCEDURES FOR NAMES
+//**************************************************************************************************/
+
+DELIMITER ;
+DROP PROCEDURE IF EXISTS `procedure_docente_materia`;
+DELIMITER //
+CREATE PROCEDURE `procedure_docente_materia`()
+    BEGIN
+        DECLARE docenteCur VARCHAR(100);
+        DECLARE materiaCur VARCHAR(100);
+        DECLARE nombreDoce VARCHAR(100);
+        DECLARE nombreMate VARCHAR(100);
+        DECLARE done BOOLEAN DEFAULT 0;
+        DECLARE nombres CURSOR FOR
+            SELECT docenteId, materiaId FROM docente_materia WHERE nombre IS NULL;
+        DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET done = 1;
+            OPEN nombres;
+            REPEAT
+                FETCH nombres INTO docenteCur, materiaCur;
+                SELECT docente.nombre INTO nombreDoce FROM docente WHERE docenteId=docenteCur;
+                SELECT materia.materia INTO nombreMate FROM materia WHERE materiaId=materiaCur;
+
+                UPDATE docente_materia SET nombre=nombreDoce WHERE docenteId=docenteCur;
+                UPDATE docente_materia SET nombreMateria=nombreMate WHERE materiaId=materiaCur;
+
+            UNTIL done end REPEAT;
+        CLOSE nombres;
+
+    END
+//
+DELIMITER ;
+
+
+DELIMITER ;
+DROP PROCEDURE IF EXISTS `procedure_grupo_docente_materia`;
+DELIMITER //
+CREATE PROCEDURE `procedure_grupo_docente_materia`()
+    BEGIN
+        DECLARE grupoCur VARCHAR(100);
+        DECLARE docente_materiaCur VARCHAR(100);
+        DECLARE claveGrupo VARCHAR(100);
+        DECLARE nombreMate VARCHAR(100);
+        DECLARE done BOOLEAN DEFAULT 0;
+        DECLARE nombres CURSOR FOR
+            SELECT grupoId, docente_materiaId FROM grupo_docente_materia WHERE claveGrupo IS NULL;
+        DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET done = 1;
+            OPEN nombres;
+            REPEAT
+                FETCH nombres INTO grupoCur, docente_materiaCur;
+                SELECT docente_materia.nombreMateria INTO nombreMate FROM docente_materia WHERE docente_materiaId=docente_materiaCur;
+                SELECT grupo.claveGrupo INTO claveGrupo FROM grupo WHERE grupoId=grupoCur;
+
+                UPDATE grupo_docente_materia SET claveGrupo=claveGrupo WHERE grupoId=grupoCur;
+                UPDATE grupo_docente_materia SET nombreMateria=nombreMate WHERE docente_materiaId=docente_materiaCur;
+
+                #UPDATE docente_materia SET nombre='el factor miedo' 
+                #WHERE docenteId=docenteCur AND materiaId=materiaCur;
+            UNTIL done end REPEAT;
+        CLOSE nombres;
+
+    END
+//
+DELIMITER ;

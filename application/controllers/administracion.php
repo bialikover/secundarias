@@ -175,19 +175,10 @@ class Administracion extends CI_Controller
 
     }
 
-
-        function callback_docente_materia($post_array,$primary_key) {
-                
-                $lol = $this->db->query("call procedure_docente_materia()");
-                echo $primary_key;
-        /*$user_logs_update = array(
-                "user_id" => $primary_key, 
-                "last_update" => date('Y-m-d H:i:s')
-            );
-            $this->db->update('user_logs',$user_logs_update,array('user_id' => $primary_key));
-            */
-            return true;
-        }
+    function callback_docente_materia($post_array,$primary_key) {
+        $lol = $this->db->query("call procedure_docente_materia()");
+        return true;
+    }
 /*========================================== GESTION DE GRUPOS ===========================================*/
 
 
@@ -206,7 +197,10 @@ class Administracion extends CI_Controller
             $crud->fields('claveGrupo','cicloEscolar','grado','escuelaId','alumnoId','docente_materiaId'); 
             $crud->change_field_type('escuelaId','invisible');
             //$crud->callback_add_field('escuelaId',array($this,'add_field_callback_1'));
-            $crud->callback_before_insert(array($this,'set_escuela_id')); 
+            $crud->callback_before_insert(array($this,'set_escuela_id'));
+            $crud->callback_after_insert(array($this, 'callback_grupo_docente_materia'));
+            $crud->callback_after_update(array($this, 'callback_grupo_docente_materia'));
+
             $crud->set_relation_n_n('alumnoId', 'alumno_grupo', 'alumno', 'grupoId', 'alumnoId', 'nombre');
             $crud->set_relation_n_n('docente_materiaId', 'grupo_docente_materia', 'docente_materia', 'grupoId', 'docente_materiaId', '{nombreMateria} - {nombre}');      
             $output = $crud->render();
@@ -217,11 +211,16 @@ class Administracion extends CI_Controller
         }
     }
 
-    function set_escuela_id($post_array){        
+    function set_escuela_id($post_array){  
         $post_array['escuelaId'] = $this->session->userdata('usuarioId');
         return $post_array;
      }
 
+
+    function callback_grupo_docente_materia($post_array,$primary_key) {
+        $lol = $this->db->query("call procedure_grupo_docente_materia()");
+        return true;
+    }
 
 
 /*=============================    GESTION DE ESCUELAS SOLO SUPER ADMIN ============================*/

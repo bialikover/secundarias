@@ -31,7 +31,7 @@ class Contenido extends CI_Controller
       $crud->set_theme('datatables');
       $crud->columns('nombreActividad','descActividad');
       $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad', 'grupo_docente_materia');
-      $crud->set_relation_n_n('grupo_docente_materia', 'grupo_docente_materia_actividad', 'grupo_docente_materia','actividadId','grupo_docente_materiaId', 'docente_materiaId');
+      $crud->set_relation_n_n('grupo_docente_materia', 'grupo_docente_materia_actividad', 'grupo_docente_materia','actividadId','grupo_docente_materiaId', '{claveGrupo} - {nombreMateria}');
       $crud->change_field_type('tipoActividadId','invisible');
       $crud->change_field_type('fecha','invisible');
       $crud->set_field_upload('rutaActividad','assets/uploads/files');
