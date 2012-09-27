@@ -14,4 +14,21 @@
 	</head>
 	<body>
 	<header>
-	</header>
+		<div class="container-fluid">
+		  <div class="row-fluid">
+		    <div class="span6">
+		      <img src="<?php echo base_url();?>/assets/img/icon/HOMEICON.png">
+		      <span>Plataforma Educativa</span>
+		    </div>
+		    <div class="span6">
+		    	<form class="form-inline">
+			      <input type="text" placeholder="Usuario">
+			      <input type="text" placeholder="Contraseña">
+			      <input type="submit" class="btn btn-success">
+		   </form>
+		    </div>
+		  </div>
+		  </header>
+		  
+		  
+	

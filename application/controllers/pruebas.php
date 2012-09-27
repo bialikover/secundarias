@@ -6,7 +6,12 @@ class Pruebas extends CI_Controller
 		parent::__construct();
 		$this->load->helper('url');
 	}
-
+	public function home()
+	{
+    	$this->load->view('includes/header0');
+    	$this->load->view('pruebas/home');
+    	$this->load->view('includes/footer');
+	}
 
 	public function noticias($data=NULL)
 	{
