@@ -6,21 +6,44 @@ class mensajes_model extends CI_Model {
         $this->load->database();
     }
 
-    public function create_mensaje() {
+    public function create_mensaje($data) {
         $this->load->helper('url');
-        $data = array(
-            'fecha' => $this->input->post('fecha'),
-            'hora' => $this->input->post('hora'),
-            'id_origen' => $this->input->post('id_origen'),
-            'id_destino' => $this->input->post('id_destino'),
-            'mensaje' => $this->input->post('mensaje')
-        );
         return $this->db->insert('mensaje', $data);
     }
 
     public function read_mensajes() {
+        $usuarioId = $this->session->userdata('usuarioId');
+        $this->db->where(array('receptorId' => $usuarioId));
         $eventos = $this->db->get('mensaje');
         return $eventos->result_array();
+    }
+
+    public function get_posible_targets() {
+        $usuarioId = $this->session->userdata('usuarioId');
+        $tipoUsuarioId = $this->session->userdata('tipoUsuarioId');
+        switch ($tipoUsuarioId) {
+            case 2: // Escuela
+                $this->db->or_where('tipoUsuarioId', 3);
+                $this->db->or_where('tipoUsuarioId', 4);
+                $posible_targets = $this->db->get('usuario');
+                break;
+            case 3: // Docente
+                $this->db->select('*');
+                $this->db->from('usuario');
+                $this->db->join('datos_personal', 'datos_personal.usuarioId = usuario.usuarioId');
+                $this->db->or_where('tipoUsuarioId', 3);
+                //$this->db->or_where('tipoUsuarioId', 4);
+                $this->db->where('usuario.usuarioId !=', $usuarioId);
+                $posible_targets = $this->db->get();
+                break;
+            case 4: // Alumno
+                break;
+            case 5: // Padre
+                break;
+            default:
+                break;
+        }
+        return $posible_targets->result_array();
     }
 
     public function update_mensaje() {
@@ -58,9 +81,9 @@ class mensajes_model extends CI_Model {
         $this->db->where('usuario.usuarioId', $idRemitente);
         return $query = $this->db->get()->row();
     }
-    
-    public function read_all_mensajes_usuario($idDestinatario){
-        $idRemitentes = $this->db->get_where('mensajes', array('receptorID'=>$idDestinatario))->result();
+
+    public function read_all_mensajes_usuario($idDestinatario) {
+        $idRemitentes = $this->db->get_where('mensajes', array('receptorID' => $idDestinatario))->result();
         $mensajes = array();
         foreach ($idRemitentes as $remitente) {
             $mensaje = $this->read_mensaje_remitente($remitente->emisorId);
