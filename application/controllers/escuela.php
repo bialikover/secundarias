@@ -58,7 +58,14 @@ class Escuela extends CI_Controller
 	public function mostrar(){
 		$this->load->model("escuela_model");
 		$escuelaId = $this->uri->segment(3);
-		var_dump($this->escuela_model->mostrar($escuelaId));
+		$data['escuela'] = $this->escuela_model->mostrar($escuelaId);
+		if(! empty($data['escuela'])){
+			echo var_dump($data);
+		} else {
+
+			 redirect(404);
+		}
+
 		//$this->load->view('includes/header');
 		//$this->load->view('escuela/mostrar');
 		//$this->load->view('includes/footer');
