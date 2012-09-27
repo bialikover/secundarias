@@ -22,6 +22,10 @@ footer
 	padding:50px;
 	text-shadow:0px 3px 3px #777;
 }
+#calendar
+{
+	width:150px;
+}
 
 .my-nav
 {
@@ -65,4 +69,109 @@ footer
 .my-center
 {
 	text-align: center;
+}
+
+.contenedor
+{
+
+	border: 1px solid #bbb;
+	width: 485px;
+}
+
+.my-inline
+{
+  display:inline-block;
+  vertical-align:middle;
+}
+
+.divalignright
+{
+	width:150px;
+	margin-left:auto;
+	margin-right:0px;
+}
+
+.my-encabezado-calendar
+{
+text-align: center;
+height: 50px;
+background-color: #bbb;
+width: 487px;
+padding-top: 20px;
+}
+
+.hora
+{
+	text-align: right;
+	height:50px;
+	width: 50px;
+	padding-left: 10px;
+}
+
+.hora-completa
+{
+
+	height:50px;
+	width:400px;
+	border-left: 1px solid #ddd;
+
+}
+
+.renglon
+{
+	width:530px;
+
+}
+
+.menu1
+{
+	width:335px;
+	
+
+}
+
+.menu2
+{
+	width:200px;
+	border:1px red solid;
+
+
+}
+.media1
+{
+	background-color: #eee;
+	height: 25px;
+	padding-left: 20px;
+	width: 400px;
+	z-index: -10;
+	
+	
+}
+
+.media2
+{
+	background-color: #fbfbfb;
+	height: 25px;
+	padding-left: 20px;
+	width: 400px;
+	z-index: -10;
+}
+
+.media1:hover
+{
+	box-shadow: 0px -2px 5px #999, inset 0px -1px 3px #aaa;
+	z-index: 9999;
+}
+
+.media2:hover
+{
+	box-shadow: 0px -2px 5px #999, inset 0px -1px 3px #aaa;
+	z-index: 9999;
+}
+
+.my-textarea
+{
+	min-width:690px;
+	min-height: 30px;
+	resize: none; 
 }

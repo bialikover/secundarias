@@ -7,30 +7,35 @@ class Pruebas extends CI_Controller
 		$this->load->helper('url');
 	}
 
-<<<<<<< HEAD
-	public function noticias()
-	{
-    	$this->load->view('includes/header-escuela');
-    	$this->load->view('pruebas/noticias');
-    	$this->load->view('includes/footer');
-	}
-	public function noticias_materia()
-	{
-    	$this->load->view('includes/header-escuela');
-    	$this->load->view('pruebas/noticias_materia');
-=======
+
 	public function noticias($data=NULL)
 	{
     	$this->load->view('includes/header-escuela');
     	$this->load->view('pruebas/noticias',$data);
     	$this->load->view('includes/footer');
 	}
-	public function noticias_materia($data=NULL)
+	public function noticias_materia()
 	{
-    	$this->load->view('includes/header-escuela');
-    	$this->load->view('pruebas/noticias_materia',$data);
->>>>>>> adanowsky
-    	$this->load->view('includes/footer');
+		$tipoUsuarioId = $this->session->userdata("tipoUsuarioId");
+	    if($tipoUsuarioId == 3 || $tipoUsuarioId == 4){
+			$materiaId = $this->uri->segment(3);		
+			$usuarioId = $this->session->userdata('usuarioId');			
+			$this->load->model('materia_model');
+			$this->load->model('actividad_model');
+			$data['materia'] = $this->materia_model->mostrar($materiaId);
+			//$data['materia']['docente'] = $this->materia_model->mostrar_docente($materiaId);        	
+        	$data['actividades'] = $this->actividad_model->mostrar_por_materia($materiaId, $usuarioId);
+        	$this->load->view('includes/header-docente');
+    		$this->load->view('pruebas/noticias_materia',$data); 
+    		$this->load->view('includes/footer');
+        }
+
+
+        else{
+        	redirect('login');
+        }
+    	
 	}
+
 }
 ?>

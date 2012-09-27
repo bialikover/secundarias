@@ -5,7 +5,7 @@
 	</div>
 </div>
 	<footer>
-		Copyright | 2012 Martín. All rights reserved
+		Copyright | . All rights reserved
 	</footer>
 
 	</body>

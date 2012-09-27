@@ -39,12 +39,13 @@ class Materias extends CI_Controller {
 
     //muestra una materia
     public function show() {
-        $id = $this->uri->segment(3);
-        $materia = $this->db->get_where('materias', array('id_materia' => $id))->result();
-        $data['materia'] = $materia[0];
+        //$id = $this->uri->segment(3);
+        //$materia = $this->db->get_where('materias', array('id_materia' => $id))->result();
+
+        //$data['materia'] = $materia[0];
 
         $this->load->view('includes/header-materia');
-        $this->load->view('materias/show', $data);
+        $this->load->view('pruebas/noticias_materia', $data);
         $this->load->view('includes/footer');
     }
 

@@ -12,7 +12,7 @@
 
     function all()
     {
-    	$query = $this->db->get("materias");
+    	$query = $this->db->get("materia");
     	return $query->result();
     }
 
