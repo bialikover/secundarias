@@ -21,14 +21,13 @@
 		      <span>Plataforma Educativa</span>
 		    </div>
 		    <div class="span6">
-		    	<form class="form-inline">
-			      <input type="text" placeholder="Usuario">
-			      <input type="text" placeholder="Contraseña">
-			      <input type="submit" class="btn btn-success">
+		    	<form class="form-inline" action="<?php echo base_url();?>index.php/login/process" method="post" name="process">
+		    	
+			      <input type="text" name='usuario' id='usuario' placeholder="Usuario">
+			      <input type="password" name="password" id='password' placeholder="Contraseña">
+			      <input type="submit" value ="entrar"class="btn btn-success">
 		   </form>
 		    </div>
 		  </div>
 		  </header>
-		  
-		  
-	
+		
