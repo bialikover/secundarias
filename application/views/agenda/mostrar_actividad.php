@@ -1,3 +1,4 @@
+
 <br>
 <div class="row-fluid"> 
 	<div class="span8">
@@ -26,7 +27,7 @@
 
 						</h1>
 						<?php echo form_hidden('actividadId', $row->actividadId);?>
-						<h3 class="my-nombre">José Pérez León</h3>
+						<h3 class="my-nombre"><?php echo muestra_nombre_docente($row->actividadId);?></h3>
 						<p><?=$row->descActividad;?> </p>
 			          <?php endforeach;?>
 					</div>
