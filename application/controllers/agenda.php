@@ -45,6 +45,7 @@
         
         
             $crud->unset_list();
+            $crud->unset_back_to_list();
             $crud->callback_before_insert(array($this,'tipo_actividad_fecha'));    
         
             $output = $crud->render();

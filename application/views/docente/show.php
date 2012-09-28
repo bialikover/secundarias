@@ -1,3 +1,4 @@
+
 <div class="my-perfil-container">
 
 
@@ -15,7 +16,7 @@
                 </div>
             </div>
             <div class="span9">
-                <h1><?php echo $docente->nombre . ' ' . $docente->apellido_pat . ' ' . $docente->apellido_mat; ?></h1>
+                <h1><?php echo mostrar_nombre($docente->usuarioId);?></h1>
             </div>
         </div>
         <div class="row-fluid">
@@ -31,36 +32,38 @@
 
             </div>
             <div class="span8">
-                <h4><span class="my-perfil-datos"><?php echo $docente->direccion; ?></span></h4>
+                <h4><span class="my-perfil-datos"><?php //echo $docente->direccion; ?></span></h4>
                 <h4><span class="my-perfil-datos"><?php echo $docente->telefono; ?></span></h4>
-                <h4><span class="my-perfil-datos"><?php echo $docente->correo; ?></span></h4>
+                <h4><span class="my-perfil-datos"><?php echo $docente->email; ?></span></h4>
             </div>
         </div>
-        <div class="row-floud">
+        <div class="row-fluid">
             <div class="span12 my-sub-header-perfil">
                 <h3>Datos Académicos</h3>
             </div>
         </div>
 
-        <div class="row-floud">
+        <div class="row-fluid">
             <div class="span4 my-perfil-campos">
-                <h4>Institución</h4>
+                
                 <h4>Matricula</h4>
                 <h4>Materias</h4>
+                 <h4>
+                        <span class="my-perfil-datos">
+                        <?php foreach ($materias as $materia):?>                    
+                            <?php echo $materia->materia;?>                    
+                        <?php endforeach;?>                
+                        </span>
+                    </h4>                
+
+                
                 <h4>Especialidad</h4>
             </div>
 
             <div class="span8">
-                <h4><span class="my-perfil-datos"><?php echo $escuela->nombre; ?></span></h4>
+                 
                 <h4><span class="my-perfil-datos"><?php echo $docente->matricula; ?></span></h4>
-                <h4><span class="my-perfil-datos">
-                        <?php
-                        for ($i = 0; $i < count($materias) - 1; $i++) {
-                            echo $materias[$i]->nombre . " - ";
-                        }
-                        echo $materias[count($materias)-1]->nombre;
-                        ?>
-                    </span></h4>
+
                 <h4><span class="my-perfil-datos"><?php echo $docente->especialidad; ?></span></h4>
             </div>
         </div>

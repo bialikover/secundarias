@@ -34,7 +34,8 @@ class Contenido extends CI_Controller
       $crud->set_relation_n_n('grupo_docente_materia', 'grupo_docente_materia_actividad', 'grupo_docente_materia','actividadId','grupo_docente_materiaId', '{claveGrupo} - {nombreMateria}');
       $crud->change_field_type('tipoActividadId','invisible');
       $crud->change_field_type('fecha','invisible');
-      $crud->set_field_upload('rutaActividad','assets/uploads/files');
+      $crud->set_field_upload('rutaActividad','index.php/assets/uploads/files');
+      $crud->change_field_type('rutaActividad','invisible');
   
       $crud->unset_list();
       $crud->unset_back_to_list();

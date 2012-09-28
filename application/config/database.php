@@ -33,10 +33,10 @@ $db['production']['swap_pre'] = '';
 $db['production']['autoinit'] = TRUE;
 $db['production']['stricton'] = FALSE;
 
-$db['development']['hostname'] = '127.0.0.1';
+$db['development']['hostname'] = '192.168.40.240';
 $db['development']['port']     = '3306';
 $db['development']['username'] = 'root';
-$db['development']['password'] = 'j';
+$db['development']['password'] = 'moises';
 $db['development']['database'] = 'secundaria';
 $db['development']['dbdriver'] = 'mysql';
 $db['development']['dbprefix'] = '';
