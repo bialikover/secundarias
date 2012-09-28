@@ -31,7 +31,6 @@ class Alta_usuario extends CI_Controller
                 
             }
 
-
             $crud->columns('usuarioId', 'usuario','password', 'tipoUsuarioId');
             $crud->fields('usuario','password', 'verificar_password', 'tipoUsuarioId');
             $crud->display_as('tipoUsuarioId','Tipo de usuario');

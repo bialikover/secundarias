@@ -16,7 +16,7 @@ class Administracion extends CI_Controller
     {
         if(($this->session->userdata("tipoUsuarioId")== 1 || $this->session->userdata("tipoUsuarioId")== 2  ) && $this->session->userdata('validated')){
             $crud = new grocery_CRUD();
-            $crud->set_theme('flexigrid');
+            $crud->set_theme('datatables');
             $crud->set_subject('usuario');
             $crud->set_table('usuario');
 
