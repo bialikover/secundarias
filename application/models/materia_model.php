@@ -31,14 +31,34 @@
         $query = $this->db->query($sql);
         return $query->result();
     }
+
     function materias_docente($usuarioId){
 
-        $sql = "SELECT * FROM `materia` WHERE `materiaId` IN (
-                    SELECT `materiaId` FROM `docente_materia` WHERE `docenteId` =".$usuarioId.")";
+        /*$sql = "SELECT * FROM `materia` WHERE `materiaId` IN (
+                    SELECT `materiaId` FROM `docente_materia` WHERE `docenteId` =".$usuarioId.")";*/
+
+        $sql = "SELECT DISTINCT(materia), materiaId FROM (SELECT grupo_docente_materia.claveGrupo, grupo_docente_materia.nombreMateria1 AS materia, docente_materia.docenteId, docente_materia.materiaId
+            FROM grupo_docente_materia JOIN
+                docente_materia 
+            ON grupo_docente_materia.docente_materiaId=docente_materia.docente_materiaId) AS  grupos_todos
+            WHERE grupos_todos.docenteId=" . $usuarioId;
+
         $query = $this->db->query($sql);
         return $query->result();
     }
 
+    function clave_materias_docente($usuarioId){
 
-    
+        /*$sql = "SELECT * FROM `materia` WHERE `materiaId` IN (
+                    SELECT `materiaId` FROM `docente_materia` WHERE `docenteId` =".$usuarioId.")";*/
+
+        $sql = "SELECT * FROM (SELECT grupo_docente_materia.claveGrupo, grupo_docente_materia.nombreMateria1, docente_materia.docenteId, docente_materia.materiaId
+                FROM grupo_docente_materia JOIN
+                    docente_materia 
+                ON grupo_docente_materia.docente_materiaId=docente_materia.docente_materiaId) AS  grupos_todos
+                WHERE grupos_todos.docenteId=" . $usuarioId;
+
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 }

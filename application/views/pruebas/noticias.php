@@ -18,7 +18,6 @@
 <div class="row-fluid"> 
     <div class="12">
         <div class="my-container-materias">
-
             <?php foreach ($materias as $materia): ?>
             <a href="<?php echo base_url().'index.php/pruebas/noticias_materia/'.$materia->materiaId?>">
                 <div class="img-circle my-materia">
