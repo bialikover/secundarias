@@ -58,7 +58,7 @@ class Actividad_model extends CI_Model{
           $grupoId = $grupo->grupoId;
         }
         
-        $sql = "select actividad.actividadId, actividad.tipoActividadId, actividad.nombreActividad, actividad.descActividad, actividad.rutaActividad, actividad.fecha, comentario.comentarioId, comentario.comentario, comentario.usuarioId, comentario.fecha
+        /*$sql = "select actividad.actividadId, actividad.tipoActividadId, actividad.nombreActividad, actividad.descActividad, actividad.rutaActividad, actividad.fecha, comentario.comentarioId, comentario.comentario, comentario.usuarioId, comentario.fecha
                 FROM actividad, grupo_docente_materia_actividad, grupo_docente_materia, docente_materia, comentario
                 WHERE grupo_docente_materia_actividad.actividadId = actividad.actividadId
                 AND grupo_docente_materia_actividad.grupo_docente_materiaId = grupo_docente_materia.grupo_docente_materiaId
@@ -66,7 +66,23 @@ class Actividad_model extends CI_Model{
                 AND docente_materia.materiaId =".$materiaId."
                 AND comentario.grupo_docente_materia_actividadId = grupo_docente_materia_actividad.grupo_docente_materia_actividadId
                 AND grupo_docente_materia.grupoId =".$grupoId."
-                ORDER BY actividad.actividadId, comentario.fecha DESC;";
+                  ORDER BY actividad.actividadId, comentario.fecha DESC;";*/
+
+          $sql = "SELECT * FROM comentario JOIN 
+                   (SELECT * FROM (SELECT actividad.actividadId as actividadId1, actividad.tipoActividadId, actividad.nombreActividad, actividad.descActividad, actividad.rutaActividad, actividad.fecha, materias_todas.alumnoId FROM actividad JOIN (
+                         SELECT grupo_docente_materiaId as grupo_docente_materiaId1, grupos_todos.alumnoId FROM grupo_docente_materia JOIN (
+                              SELECT alumno_grupo.alumnoId, grupo.grupoId
+                                FROM alumno_grupo JOIN 
+                                  grupo
+                                ON alumno_grupo.grupoId = grupo.grupoId
+                            ) AS grupos_todos 
+                          ON grupo_docente_materia.grupoId=grupos_todos.grupoId
+                        ) AS materias_todas
+                        ON grupo_docente_materiaId=materias_todas.grupo_docente_materiaId1
+                    ) AS actividades WHERE actividades.alumnoId=" . $usuarioId . 
+                ") AS comentarios_todos
+              ON actividadId=comentarios_todos.actividadId1";
+
         return $actividades = $this->db->query($sql)->result();
    }
 
