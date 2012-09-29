@@ -16,7 +16,7 @@ class Administracion extends CI_Controller
     {
         if(($this->session->userdata("tipoUsuarioId")== 1 || $this->session->userdata("tipoUsuarioId")== 2  ) && $this->session->userdata('validated')){
             $crud = new grocery_CRUD();
-            $crud->set_theme('flexigrid');
+            $crud->set_theme('datatables');
             $crud->set_subject('usuario');
             $crud->set_table('usuario');
 
@@ -39,6 +39,8 @@ class Administracion extends CI_Controller
             $crud->change_field_type('password', 'password');
             $crud->change_field_type('verificar_password', 'password');
             $crud->set_rules('verificar_password', 'Verificar Password', 'required|matches[password]');
+             $crud->edit_fields('usuario','password', 'verificar_password');
+            $crud->unset_edit_fields('tipoUsuarioId', 'Tipo de usuario');
             
             //callbacks
             $crud->callback_before_insert(array($this,'encrypt_password_callback'));
@@ -120,7 +122,7 @@ class Administracion extends CI_Controller
     }
 
 
-/*========================================== GESTION DE ALUMNOS ===========================================*/
+/*====================================== GESTION DE ALUMNOS Y PADRES =====================================*/
 
     public function alumnos(){
 
@@ -131,11 +133,14 @@ class Administracion extends CI_Controller
             $crud->set_theme('datatables');
             $crud->set_subject('padre');
             $crud->set_table('padre');
-            $crud->set_relation('alumnoId', 'alumno', '{alumnoId} - {nombre}');
-            $crud->set_relation('padreId', 'padre', '{padreId} - {nombre}');
-            $crud->columns('nombre','alumnoId');
-            $crud->fields('alumnoId', 'padreId');
+            $crud->columns('nombrePadre','alumnos');
+            $crud->set_relation('padreId', 'padre', '{padreId} - {nombrePadre}');
+            $crud->set_relation_n_n('alumnos', 'padre_alumno', 'alumno', 'padreId', 'alumnoId', '{nombre}', 'lista');
+                        
+                        
+            $crud->fields('padreId', 'alumnos');            
             $crud->unset_add();
+            $crud->unset_delete();
             
             $output = $crud->render();
             
@@ -157,7 +162,7 @@ class Administracion extends CI_Controller
             $crud->set_theme('datatables');
             $crud->set_table('docente');
             $crud->unset_add();
-    
+            $crud->unset_delete();
             $crud->set_relation('docenteId', 'docente', '{docenteId} - {nombre}');
             $crud->set_relation_n_n('materiaId', 'docente_materia', 'materia', 'docenteId', 'materiaId', 'materia');
             $crud->columns('nombre','materiaId');
@@ -201,8 +206,8 @@ class Administracion extends CI_Controller
             $crud->callback_after_insert(array($this, 'callback_grupo_docente_materia'));
             $crud->callback_after_update(array($this, 'callback_grupo_docente_materia'));
 
-            $crud->set_relation_n_n('alumnoId', 'alumno_grupo', 'alumno', 'grupoId', 'alumnoId', 'nombre');
-            $crud->set_relation_n_n('docente_materiaId', 'grupo_docente_materia', 'docente_materia', 'grupoId', 'docente_materiaId', '{nombreMateria} - {nombre}');      
+            $crud->set_relation_n_n('alumnoId', 'alumno_grupo', 'alumno', 'grupoId', 'alumnoId', 'nombre', 'lista');
+            $crud->set_relation_n_n('docente_materiaId', 'grupo_docente_materia', 'docente_materia', 'grupoId', 'docente_materiaId', '{nombreMateria} - {nombre}', 'claveGrupo');      
             $output = $crud->render();
 
             $this->load->view('includes/header-escuela');
