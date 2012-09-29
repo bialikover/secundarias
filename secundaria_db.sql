@@ -442,7 +442,10 @@ DROP TABLE IF EXISTS `alumno_grupo`;
 CREATE TABLE IF NOT EXISTS `alumno_grupo` (
   `alumnoId` bigint(20) NOT NULL, 
   `grupoId` bigint(20) NOT NULL , 
+<<<<<<< HEAD
   `lista` INT DEFAULT  NULL ,
+=======
+>>>>>>> adan
   CONSTRAINT `alumno_grupo_ibfk_1` FOREIGN KEY (`alumnoId`) REFERENCES `alumno` (`alumnoId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `alumno_grupo_ibfk_2` FOREIGN KEY (`grupoId`) REFERENCES `grupo` (`grupoId`) ON DELETE CASCADE ON UPDATE CASCADE
 
@@ -484,6 +487,7 @@ CREATE TABLE IF NOT EXISTS `grupo_docente_materia` (
 --
 -- Table structure for table `tipo_actividad`
 --
+<<<<<<< HEAD
 
 DROP TABLE IF EXISTS `tipo_actividad`;
 CREATE TABLE IF NOT EXISTS `tipo_actividad` (
@@ -491,6 +495,21 @@ CREATE TABLE IF NOT EXISTS `tipo_actividad` (
   `tipoActividad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`tipoActividadId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
+=======
+  `nombreActividad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `descActividad` text COLLATE utf8_bin,
+  `rutaActividad` text COLLATE utf8_bin,
+  `fecha` datetime DEFAULT NULL,
+  `grupo_docente_materiaId` bigint(20) NULL,
+  PRIMARY KEY (`actividadId`),
+  KEY `tipoActividadId` (`tipoActividadId`),
+  KEY `grupo_docente_materiaId` (`grupo_docente_materiaId`),
+  CONSTRAINT `actividad_ibfk_1` FOREIGN KEY (`tipoActividadId`) REFERENCES `tipo_actividad` (`tipoActividadId`)ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `actividad_ibfk_2` FOREIGN KEY (`grupo_docente_materiaId`) REFERENCES `grupo_docente_materia` (`grupo_docente_materiaId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
+
+-- --------------------------------------------------------
+>>>>>>> adan
 
 LOCK TABLES `tipo_actividad` WRITE;
    INSERT INTO `tipo_actividad` VALUES (1,'evento'),(2,'publicacion'),(3,'noticia');
@@ -574,6 +593,13 @@ CREATE PROCEDURE `procedure_docente_materia`()
 //
 DELIMITER ;
 
+<<<<<<< HEAD
+=======
+/**************************************************************************************************
+// PROCEDURES FOR NAMES
+//**************************************************************************************************/
+
+>>>>>>> adan
 DELIMITER ;
 DROP PROCEDURE IF EXISTS `procedure_grupo_docente_materia`;
 DELIMITER //

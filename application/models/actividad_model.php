@@ -35,8 +35,8 @@ class Actividad_model extends CI_Model{
           SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia` WHERE `docente_materiaId` = (   
             SELECT `docente_materiaId` FROM `docente_materia` WHERE `docenteId` =".$docenteId." AND `materiaId` = ".$materiaId."
           )
-        )
-      )";
+        )      )";
+    
     return $query = $this->db->query($sql)->result();
    }
 
@@ -145,7 +145,16 @@ class Actividad_model extends CI_Model{
                 ON grupo_docente_materiaId = actividad.grupo_docente_materiaId
                 ) AS actividad_todas WHERE docenteId=" . $usuarioId;
     	$query = $this->db->query($sql);
-        return $query->result ();
+      */
+      $sql = "SELECT * FROM (SELECT * FROM actividad JOIN (
+      SELECT docente_materia.docente_materiaId, docente_materia.docenteId, docente_materia.nombre
+        FROM docente_materia JOIN 
+        grupo_docente_materia
+        ON docente_materia.docente_materiaId = grupo_docente_materia.docente_materiaId
+        ) as docente_todos 
+      ON grupo_docente_materiaId = actividad.grupo_docente_materiaId) as actividad_todas WHERE docenteId=" . $usuarioId;
+  
+      $query = $this->db->query($sql);
     }
 }
 ?>

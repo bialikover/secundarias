@@ -31,7 +31,7 @@ class Domicilio_Escuela extends CI_Controller
 
     	$output = $crud->render();
     	
-    	$this->load->view('includes/header-escuela-con-dom');
+    	$this->load->view('includes/header-usuario-edit');
     	$this->load->view('domicilio_escuela/index',$output);
     	$this->load->view('includes/footer');
 	}
