@@ -23,9 +23,9 @@ class Contenido extends CI_Controller
 
 
   public function nuevo(){
-   if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 3 ) {
+/*   if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 3 ) {
         redirect('login');
-    } else {  
+    } else {  */
       $crud = new grocery_CRUD();
       $crud->set_table('actividad');
       $crud->set_theme('datatables');
@@ -45,7 +45,7 @@ class Contenido extends CI_Controller
       $this->load->view('includes/header-docente');
       $this->load->view('contenido/add', $output);
       $this->load->view('includes/footer');
-    }
+    //}
   }
 
   function tipo_actividad_fecha($post_array){

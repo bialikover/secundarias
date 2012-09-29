@@ -163,7 +163,6 @@ CREATE TABLE IF NOT EXISTS `escuela` (
   `escuelaId` bigint(20) NOT NULL,
   `escuela` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `claveEscuela` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `turno` enum('Matutino','Vespertino') COLLATE utf8_bin DEFAULT NULL,
   `descEscuela` text COLLATE utf8_bin,
   `adicional` text COLLATE utf8_bin,
   PRIMARY KEY (`escuelaId`),
@@ -249,6 +248,7 @@ CREATE TABLE IF NOT EXISTS `grupo` (
   `claveGrupo` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `cicloEscolar` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `grado` enum('1','2','3') COLLATE utf8_bin DEFAULT NULL,
+  `turno` enum('Matutino','Vespertino') COLLATE utf8_bin DEFAULT NULL,
   `escuelaId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`grupoId`),
   KEY `escuelaId` (`escuelaId`),
@@ -457,7 +457,7 @@ CREATE TABLE IF NOT EXISTS `grupo_docente_materia` (
   `grupoId` bigint(20) NOT NULL,  
   `docente_materiaId` bigint(20) NOT NULL,
   `claveGrupo` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `nombreMateria` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `nombreMateria1` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`grupo_docente_materiaId`),
   KEY `grupoId` (`grupoId`),
   KEY `docente_materiaId` (`docente_materiaId`),
@@ -469,28 +469,6 @@ CREATE TABLE IF NOT EXISTS `grupo_docente_materia` (
 --
 -- Table structure for table `tipo_actividad`
 --
-
-DROP TABLE IF EXISTS `tipo_actividad`;
-CREATE TABLE IF NOT EXISTS `tipo_actividad` (
-  `tipoActividadId` int(2) NOT NULL AUTO_INCREMENT,
-  `tipoActividad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`tipoActividadId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
-
-LOCK TABLES `tipo_actividad` WRITE;
-   INSERT INTO `tipo_actividad` VALUES (1,'evento'),(2,'publicacion'),(3,'noticia');
-UNLOCK TABLES;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `actividad`
---
-
-DROP TABLE IF EXISTS `actividad`;
-CREATE TABLE IF NOT EXISTS `actividad` (
-  `actividadId` bigint(20) NOT NULL AUTO_INCREMENT,
-  `tipoActividadId` int(2) DEFAULT NULL,
   `nombreActividad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `descActividad` text COLLATE utf8_bin,
   `rutaActividad` text COLLATE utf8_bin,
@@ -559,6 +537,10 @@ CREATE PROCEDURE `procedure_docente_materia`()
 //
 DELIMITER ;
 
+/**************************************************************************************************
+// PROCEDURES FOR NAMES
+//**************************************************************************************************/
+
 DELIMITER ;
 DROP PROCEDURE IF EXISTS `procedure_grupo_docente_materia`;
 DELIMITER //
@@ -579,7 +561,7 @@ CREATE PROCEDURE `procedure_grupo_docente_materia`()
                 SELECT grupo.claveGrupo INTO claveGrupo FROM grupo WHERE grupoId=grupoCur;
 
                 UPDATE grupo_docente_materia SET claveGrupo=claveGrupo WHERE grupoId=grupoCur;
-                UPDATE grupo_docente_materia SET nombreMateria=nombreMate WHERE docente_materiaId=docente_materiaCur;
+                UPDATE grupo_docente_materia SET nombreMateria1=nombreMate WHERE docente_materiaId=docente_materiaCur;
 
                 #UPDATE docente_materia SET nombre='el factor miedo' 
                 #WHERE docenteId=docenteCur AND materiaId=materiaCur;
