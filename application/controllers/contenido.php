@@ -23,15 +23,16 @@ class Contenido extends CI_Controller
 
 
   public function nuevo(){
-/*   if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 3 ) {
+   if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 3 ) {
         redirect('login');
-    } else {  */
+    } else {  
       $crud = new grocery_CRUD();
       $crud->set_table('actividad');
       $crud->set_theme('datatables');
       $crud->columns('nombreActividad','descActividad');
-      $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad', 'grupo_docente_materia');
-      $crud->set_relation_n_n('grupo_docente_materia', 'grupo_docente_materia_actividad', 'grupo_docente_materia','actividadId','grupo_docente_materiaId', '{claveGrupo} - {nombreMateria}');
+      $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad', 'grupo_docente_materiaId');
+      $crud->set_relation('grupo_docente_materiaId', 'grupo_docente_materia', '{claveGrupo} - {nombreMateria1}');
+      $crud->display_as('grupo_docente_materiaId','Grupo Materia');
       $crud->change_field_type('tipoActividadId','invisible');
       $crud->change_field_type('fecha','invisible');
       $crud->set_field_upload('rutaActividad','index.php/assets/uploads/files');
@@ -45,7 +46,7 @@ class Contenido extends CI_Controller
       $this->load->view('includes/header-docente');
       $this->load->view('contenido/add', $output);
       $this->load->view('includes/footer');
-    //}
+    }
   }
 
   function tipo_actividad_fecha($post_array){
@@ -54,6 +55,31 @@ class Contenido extends CI_Controller
   	return $post_array;
   }
   
+    public function materias(){
+    $usuarioId = $this->session->userdata("usuarioId"); 
+            $id_docentes = $this->db->query("select id_docentes from docentes where id_docentes =". $perfil_id);
+            $id_docentes = $id_docentes->row()->id_docentes;
+
+            $materias = $this->db->query(
+            "select nombre,id_materia from `materias` where `id_materia` IN (
+                 select `id_materia` from `docente_materias` where `id_docente` =". $id_docentes. "
+             );"
+            );
+          
+          $materia = $materias->result();
+          
+          $html1 ="<select id='field-id_materias'  name='id_materias' class='chosen-select' data-placeholder='Select Materia' style='width:300px'>";
+          foreach ( $materia as $mat ) {
+            $html1 .= "<option value='".$mat->id_materia."'>".$mat->nombre."</option>";
+          }
+
+          $html1 .= '</select>';
+
+          /////////
+
+          return $html1;
+
+  }
 
 }
 
