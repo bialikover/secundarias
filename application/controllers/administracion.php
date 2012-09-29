@@ -202,7 +202,7 @@ class Administracion extends CI_Controller
             $crud->callback_after_update(array($this, 'callback_grupo_docente_materia'));
 
             $crud->set_relation_n_n('alumnoId', 'alumno_grupo', 'alumno', 'grupoId', 'alumnoId', 'nombre');
-            $crud->set_relation_n_n('docente_materiaId', 'grupo_docente_materia', 'docente_materia', 'grupoId', 'docente_materiaId', '{nombreMateria} - {nombre}');      
+            $crud->set_relation_n_n('docente_materiaId', 'grupo_docente_materia', 'docente_materia', 'grupoId', 'docente_materiaId', '{nombreMateria1} - {nombre}');      
             $output = $crud->render();
 
             $this->load->view('includes/header-escuela');
