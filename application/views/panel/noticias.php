@@ -7,7 +7,7 @@
 	</div>
     <?php if ($this->session->userdata("tipoUsuarioId")== 3):?>
 	<div class="span4 my-right">
-		<a href="<?php echo base_url()?>index.php/contenido/nuevo/index/add"  id = "nuevo-contenido"  class="btn btn-success "><i class="icon-plus icon-white"></i> Nuevo Contenido</a>
+		<a href="<?php echo base_url()?>index.php/actividad/crear/index/add"  id = "nuevo-contenido"  class="btn btn-success "><i class="icon-plus icon-white"></i> Nuevo Contenido</a>
 	</div>
     <!--<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     </div>-->

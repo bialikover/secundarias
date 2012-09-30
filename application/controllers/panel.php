@@ -35,13 +35,13 @@ class Panel extends CI_Controller {
                 $data['actividades'] = $this->actividad_model->actividades_docente($usuarioId);
                 
                 $this->load->view('includes/header-docente');
-                $this->load->view('pruebas/noticias', $data);
+                $this->load->view('panel/noticias', $data);
                 $this->load->view('includes/footer');
             } else if ($tipoUsuarioId === '4') {
                 $data['materias'] = $this->materia_model->materias_alumno($usuarioId);
                 $data['contenidos'] = $this->actividad_model->actividades_alumno($usuarioId);
                 $this->load->view('includes/header-alumno');
-                $this->load->view('pruebas/noticias', $data);
+                $this->load->view('panel/noticias', $data);
                 $this->load->view('includes/footer');
             } else {
                 $this->load->view('includes/header-padre');

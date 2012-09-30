@@ -31,20 +31,26 @@ class Contenido extends CI_Controller
       $crud->set_theme('datatables');
 
       $crud->columns('nombreActividad','descActividad');
-      $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad', 'grupo_docente_materiaId');
-      $crud->set_relation('grupo_docente_materiaId', 'grupo_docente_materia', '{claveGrupo} - {nombreMateria}');
-      $crud->display_as('grupo_docente_materiaId','Grupo Materia');
       
-      $crud->callback_add_field('grupo_docente_materiaId',array($this,'materias'));
-      
-      $crud->change_field_type('tipoActividadId','invisible');
-      $crud->change_field_type('fecha','invisible');
+
+      if($this->session->userdata('tipoUsuarioId') == 3){
+        $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad', 'grupo_docente_materiaId');
+        $crud->set_relation('tipoActividadId', 'tipo_actividad', 'tipoActividad',  array('tipoActividadId < ' => '3' ));
+        $crud->set_relation('grupo_docente_materiaId', 'grupo_docente_materia', '{claveGrupo} - {nombreMateria}');
+        $crud->display_as('grupo_docente_materiaId','Grupo Materia');      
+        $crud->callback_add_field('grupo_docente_materiaId',array($this,'materias'));        
+      } else{
+        $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad');
+        $crud->set_relation('tipoActividadId', 'tipo_actividad', 'tipoActividad',  array('tipoActividadId' => '3' ));        
+      }
+
+
       $crud->set_field_upload('rutaActividad','index.php/assets/uploads/files');
-      $crud->change_field_type('rutaActividad','invisible');
+      //$crud->change_field_type('rutaActividad','invisible');
   
       $crud->unset_list();
       $crud->unset_back_to_list();
-      $crud->callback_before_insert(array($this,'tipo_actividad_fecha'));    
+      
   
       $output = $crud->render();
       $this->load->view('includes/header-docente');
@@ -52,20 +58,12 @@ class Contenido extends CI_Controller
       $this->load->view('includes/footer');
     }
   }
-
-  function tipo_actividad_fecha($post_array){
-  	$post_array['tipoActividadId'] = 2;
-  	$post_array['fecha'] = date("Y-m-d H:i:s");
-  	return $post_array;
-  }
   
     public function materias(){
       $usuarioId = $this->session->userdata("usuarioId"); 
       $this->load->model("materia_model");
       $materias = $this->materia_model->clave_materias_docente($usuarioId);
-      //var_dump($materias);
-      //die();
-      $html1 ="<select id='field-id_materias'  name='id_materias' class='chosen-select' data-placeholder='Select Materia' style='width:300px'>";
+      $html1 ="<select id='field-grupo_docente_materiaId'  name='grupo_docente_materiaId' class='chosen-select' data-placeholder='Select Materia' style='width:300px'>";
       foreach ( $materias as $materia ) {
         $html1 .= "<option value='".$materia->grupo_docente_materiaId."'>".$materia->claveGrupo." - ".$materia->nombreMateria1."</option>";
       }
