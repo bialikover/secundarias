@@ -29,13 +29,9 @@ class Comentario_model extends CI_Model{
 
    }
 
-   public function mostrar($id){
-      $this->db->select('grupo_docente_materia_actividadId');
-      $this->db->from('grupo_docente_materia_actividad');
-      $this->db->where('actividadId', $id);
-      $gdma = $this->db->get()->row();
-      $registro = $this->db->query("SELECT * FROM comentario WHERE grupo_docente_materia_actividadId = ".$gdma->grupo_docente_materia_actividadId);
-      return $registro;
+   public function mostrar($actividadId){
+      $comentarios = $this->db->query("SELECT * FROM comentario WHERE actividadId = ".$actividadId);
+      return $comentarios->result();
    }
 
    public function eliminar($id){    

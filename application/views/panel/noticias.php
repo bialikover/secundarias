@@ -1,5 +1,6 @@
+<?php //var_dump($this->session->userdata('usuarioId'));?>
 <?php //var_dump($materias);?>
-<?php //var_dump($contenidos);?>
+<?php //var_dump($actividades);?>
 
 <div class="row-fluid"> 
 	<div class="span8">
@@ -34,7 +35,8 @@
 <h1>Lo Nuevo</h1>
 <div class="row-floud">
         <div class="span6">
-            <?php foreach (array_reverse($contenidos) as $contenido): ?>
+            <?php if(! empty($actividades)):?>
+            <?php foreach (array_reverse($actividades) as $contenido): ?>
             <div class="row-fluid"> 
 
                 <div class="span12">
@@ -59,6 +61,7 @@
                 </div>
             </div>
             <?php endforeach;?>
+        <?php endif;?>
         </div>
 
         <div class="span6">

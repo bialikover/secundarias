@@ -1,4 +1,5 @@
-
+<?php //var_dump($actividad);?>
+<?php //var_dump($comentarios);?>
 <br>
 <div class="row-fluid"> 
 	<div class="span8">
@@ -22,20 +23,20 @@
 
 					<div id="my-menu" class="span8">
 						<h1>
-							<?php foreach ($actividad as $row):?>
-	                              <?=$row->nombreActividad;?>
+							
+	                    <?php echo $actividad->nombreActividad;?>
 
 						</h1>
-						<?php echo form_hidden('actividadId', $row->actividadId);?>
-						<h3 class="my-nombre"><?php echo muestra_nombre_docente($row->actividadId);?></h3>
-						<p><?=$row->descActividad;?> </p>
-			          <?php endforeach;?>
+						<?php echo form_hidden('actividadId', $actividad->actividadId);?>
+						<h3 class="my-nombre"><?php echo muestra_nombre_docente($actividad->actividadId);?></h3>
+						<p><?=$actividad->descActividad;?> </p>
+			          
 					</div>
 				</div>
 				<div class="row-fluid"> 
 					<div class="span4">
 						<div class="date-footer">
-						<span><?=$row->fecha;?></span>
+						<span><?=$actividad->fecha;?></span>
 						</div>
 					</div>		
 				</div>
