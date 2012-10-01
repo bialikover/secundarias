@@ -33,7 +33,7 @@ $db['production']['swap_pre'] = '';
 $db['production']['autoinit'] = TRUE;
 $db['production']['stricton'] = FALSE;
 
-$db['development']['hostname'] = '192.168.40.240';
+$db['development']['hostname'] = '127.0.0.1';
 $db['development']['port']     = '3306';
 $db['development']['username'] = 'root';
 $db['development']['password'] = 'moises';
