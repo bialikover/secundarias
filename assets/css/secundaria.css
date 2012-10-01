@@ -169,9 +169,13 @@ padding-top: 20px;
 	z-index: 9999;
 }
 
+.my-textarea_stream
+{
+	min-width:410px;	
+	resize: none; 
+}
 .my-textarea
 {
-	min-width:690px;
-	min-height: 30px;
+	min-width:690px;	
 	resize: none; 
 }

@@ -13,20 +13,31 @@ class Actividad extends CI_Controller {
     }
 
     function detalle(){
-    	$this->load->helper('form');
-    	$id = $this->uri->segment(3);
-    	$this->load->model("actividad_model");
-        $this->load->model("comentario_model");
-    	$data['actividad'] = $this->actividad_model->mostrar($id);                
-        if($data['actividad'] != null){
-            $data['comentarios'] = $this->comentario_model->mostrar($data['actividad']->actividadId);
-            $this->load->view('includes/header-alumno');
-    	    //var_dump($data['actividad']);
-            $this->load->view("agenda/mostrar_actividad", $data);  
-            $this->load->view('includes/footer');
-        } else{
-            redirect(404);
-        }
+      if (!$this->session->userdata('validated')){
+        redirect('login');
+      } else{
+    	   $this->load->helper('form');
+    	   $id = $this->uri->segment(3);
+    
+    	   $this->load->model("actividad_model");
+         $this->load->model("comentario_model");
+    	   $data['actividad'] = $this->actividad_model->mostrar($id);                
+            if($data['actividad'] != null){
+              if($this->actividad_model->es_mi_actividad($this->session->userdata('userId'),$data['actividad']->actividadId)){
+                $data['comentarios'] = $this->comentario_model->mostrar($data['actividad']->actividadId);
+                $this->load->view('includes/header-alumno');
+    	       //var_dump($data['actividad']);
+                $this->load->view("agenda/mostrar_actividad", $data);  
+                $this->load->view('includes/footer');
+              } else{
+
+                redirect(404);
+              }
+
+            } else{
+                redirect(404);
+            }
+      }
     }
 
 

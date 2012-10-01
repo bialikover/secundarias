@@ -10,7 +10,7 @@ class Panel extends CI_Controller {
     }
 
     public function index() {
-
+        
         $this->load->database("secundaria");
         $usuarioId = $this->session->userdata('usuarioId');
         $tipoUsuarioId = $this->session->userdata("tipoUsuarioId");
@@ -18,6 +18,7 @@ class Panel extends CI_Controller {
         
         $this->load->model('actividad_model');
         $this->load->model('materia_model');
+        $this->load->model('comentario_model');
         
 
         if (!$this->session->userdata('validated')) {
@@ -32,7 +33,8 @@ class Panel extends CI_Controller {
                 $this->load->view('includes/footer');
             } else if ($tipoUsuarioId === '3') {
                 $data['materias'] = $this->materia_model->materias_docente($usuarioId);
-                $data['actividades'] = $this->actividad_model->actividades_docente($usuarioId);
+                $actividades = $this->actividad_model->actividades_docente($usuarioId);
+                $data['actividades'] = $this->comentario_model->ultimos($actividades);
                 
                 $this->load->view('includes/header-docente');
                 $this->load->view('panel/noticias', $data);

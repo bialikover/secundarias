@@ -35,6 +35,9 @@
 										  	<div id="tab1_t"  class="my-tex-nav">Inicio</div>
 										  	</a>
 										</li>
+										
+										
+
 									</ul>
 									<ul class="nav pull-right">
 										<li><a  href="<?php echo base_url("index.php/docente/materia")?>"> 
@@ -52,6 +55,9 @@
 						  					<div id="tab4_t" class="my-tex-nav">Salir</div>
 						  					</a>
 						  				</li>
+						  				<li>						  					
+						  					<div id="tab5_t"><span><?php echo mostrar_nombre($this->session->userdata('usuarioId'));?></span></div>						  					
+						  				</li>
 									</ul>	
 								</div>
 							</div>
@@ -64,6 +70,6 @@
 			<div class="span1">
 				<!--margen izquierdo-->
 			</div>
-
+				
 			<div class="span10">
 

@@ -1,5 +1,6 @@
 <?php //var_dump($actividad);?>
 <?php //var_dump($comentarios);?>
+
 <br>
 <div class="row-fluid"> 
 	<div class="span8">
@@ -27,7 +28,7 @@
 	                    <?php echo $actividad->nombreActividad;?>
 
 						</h1>
-						<?php echo form_hidden('actividadId', $actividad->actividadId);?>
+						
 						<h3 class="my-nombre"><?php echo muestra_nombre_docente($actividad->actividadId);?></h3>
 						<p><?=$actividad->descActividad;?> </p>
 			          
@@ -70,7 +71,7 @@
 						<div class="date-footer">
 						<span><?php echo $comentario->fecha;?></span>
 
-						<?php if(es_mi_actividad($this->session->userdata('usuarioId'), $actividad[0]->actividadId) 
+						<?php if(es_mi_actividad($this->session->userdata('usuarioId'), $actividad->actividadId) 
 									|| es_mi_comentario($this->session->userdata('usuarioId'), $comentario->comentarioId)):?>
 							<button class="close"><i class="icon-trash"></i></button>
 						<?php endif;?>
@@ -87,6 +88,8 @@
 							<img class="my-foto-mini" src="<?php echo base_url();?>/assets/img/user1.png">
 						</div>
 						<div class="span10">
+							
+							<?php echo form_hidden('actividadId', $actividad->actividadId);?>
 							<?php $data = array('name' =>'comentario', 
 												'class' => 'my-textarea', 
 												'placeholder' =>'escribe un comentario', 
