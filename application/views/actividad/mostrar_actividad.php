@@ -57,7 +57,7 @@
 
 			<div class="my-comentary-container">
 			<div class="my-comentary-header">Comentarios </div>
-			<?php foreach (array_reverse($comentarios) as $comentario):?>
+			<?php foreach ($comentarios as $comentario):?>
 
 			<div class="my-comentary">
 			<div class="row-fluid">

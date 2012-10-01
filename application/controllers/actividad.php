@@ -23,11 +23,11 @@ class Actividad extends CI_Controller {
          $this->load->model("comentario_model");
     	   $data['actividad'] = $this->actividad_model->mostrar($id);                
             if($data['actividad'] != null){
-              if($this->actividad_model->es_mi_actividad($this->session->userdata('userId'),$data['actividad']->actividadId)){
+              if($this->actividad_model->es_mi_actividad($this->session->userdata('usuarioId'),$data['actividad']->actividadId)){
                 $data['comentarios'] = $this->comentario_model->mostrar($data['actividad']->actividadId);
                 $this->load->view('includes/header-alumno');
     	       //var_dump($data['actividad']);
-                $this->load->view("agenda/mostrar_actividad", $data);  
+                $this->load->view("actividad/mostrar_actividad", $data);  
                 $this->load->view('includes/footer');
               } else{
 
