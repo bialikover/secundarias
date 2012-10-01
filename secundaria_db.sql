@@ -526,7 +526,7 @@ CREATE TABLE IF NOT EXISTS `actividad` (
 
 DROP TABLE IF EXISTS `comentario`;
 CREATE TABLE IF NOT EXISTS `comentario` (
-  `comentarioId` bigint(20) NOT NULL,
+  `comentarioId` bigint(20) NOT NULL AUTO_INCREMENTh,
   `comentario` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `usuarioId` bigint(20) NOT NULL,
   `fecha` datetime DEFAULT NULL,
