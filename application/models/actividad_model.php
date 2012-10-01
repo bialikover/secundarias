@@ -5,27 +5,10 @@ class Actividad_model extends CI_Model{
         parent::__construct();
     }
      
-    public function guardar()
-    {
- 
-        $f=$this->input->post('fecha');
-        $h=$this->input->post('hora');
-        $f=$f.' '.$h;
-        $fecha2 = date("Y-m-d h:m:s", strtotime($f));      
-        $data=array(
-        'nombreActividad' => $this->input->post('titulo'),
-        'descActividad' => $this->input->post('descripcion'),
-        'fecha' => $fecha2,
-        'tipoActividadId' =>'1'
-        );
- 
-        $this->db->insert('actividad', $data);
-   }
-
    public function mostrar($id)
    {
-       $registro= $this->db->query("select * FROM actividad WHERE actividadId = '$id'");
-      return $registro;
+       $registro= $this->db->query("select * FROM actividad WHERE actividadId = ".$id);
+      return $registro->row();
    }
 
    public function mostrar_docente($materiaId, $docenteId){
@@ -88,15 +71,12 @@ class Actividad_model extends CI_Model{
 
 
    public function es_mi_actividad($usuarioId, $actividadId){
-      $docenteId = $this->db->query('
-
-        SELECT `docenteId` FROM `docente_materia` WHERE `docente_materiaId` = (
-          SELECT `docente_materiaId` FROM `grupo_docente_materia` WHERE `grupo_docente_materiaId` = (
-            SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia_actividad` WHERE  `grupo_docente_materia_actividadId` = ( 
-              SELECT `grupo_docente_materia_actividadId` FROM `grupo_docente_materia_actividad` WHERE `actividadId` = '.$actividadId.'
-            )
-          )
-        )')->row();
+      
+      $sql = "SELECT nombre, docenteId FROM docente_materia
+        JOIN grupo_docente_materia ON docente_materia.docente_materiaId = grupo_docente_materia.docente_materiaId
+        JOIN actividad ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
+        WHERE actividadId =".$actividadId;
+      $docenteId = $this->db->query($sql)->row();
 
       if($docenteId->docenteId == $usuarioId){
         return true;
@@ -107,18 +87,14 @@ class Actividad_model extends CI_Model{
    }
 
    public function muestra_nombre_docente($actividadId){
-
-    $docente = $this->db->query('
-        SELECT `docenteId` FROM `docente_materia` WHERE `docente_materiaId` = (
-          SELECT `docente_materiaId` FROM `grupo_docente_materia` WHERE `grupo_docente_materiaId` = (
-            SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia_actividad` WHERE  `grupo_docente_materia_actividadId` = ( 
-              SELECT `grupo_docente_materia_actividadId` FROM `grupo_docente_materia_actividad` WHERE `actividadId` = '.$actividadId.'
-            )
-          )
-        )')->row();
-
-    $usuario = $this->db->get_where('datos_personal', array('usuarioId'=>$docente->docenteId))->row();
-    return $u = $usuario->nombre. " " .$usuario->aPaterno. " ".$usuario->aMaterno;          
+    $sql = "SELECT nombre FROM docente_materia
+            JOIN grupo_docente_materia 
+              ON docente_materia.docente_materiaId = grupo_docente_materia.docente_materiaId 
+            JOIN actividad 
+              ON actividad.grupo_docente_materiaId = grupo_docente_materia.grupo_docente_materiaId
+            WHERE actividad.actividadId = ".$actividadId;
+    $docente = $this->db->query($sql)->row();
+    return $docente->nombre;
 
    }
 
@@ -152,16 +128,27 @@ class Actividad_model extends CI_Model{
     			SELECT `actividadId` FROM `grupo_docente_materia_actividad` WHERE `grupo_docente_materiaId` IN (      					
     			SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia` WHERE `docente_materiaId` IN ( 
     			SELECT `docente_materiaId` FROM `docente_materia` WHERE `docenteId` = ".$usuarioId.")))"; */
-      $sql = "SELECT * FROM
-                (SELECT * FROM actividad JOIN
-                    (SELECT docente_materia.docente_materiaId, docente_materia.docenteId, docente_materia.nombre FROM `docente_materia` JOIN 
-                        grupo_docente_materia 
-                            ON docente_materia.docente_materiaId = grupo_docente_materia.docente_materiaId
-                    ) AS docente_todos 
-                ON grupo_docente_materiaId = actividad.grupo_docente_materiaId
-                ) AS actividad_todas WHERE docenteId=" . $usuarioId;
+      $sql = "SELECT docente_materia.nombreMateria, grupo_docente_materia.claveGrupo, actividad.actividadId, 
+                     actividad.nombreActividad, actividad.descActividad, actividad.fecha,
+                     actividad.rutaActividad, tipo_actividad.tipoActividad
+              FROM docente_materia
+              JOIN grupo_docente_materia 
+                ON grupo_docente_materia.docente_materiaId = docente_materia.docente_materiaId
+              JOIN actividad 
+                ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
+              JOIN tipo_actividad 
+                ON  actividad.tipoActividadId = tipo_actividad.tipoActividadId 
+              WHERE docente_materia.docenteId =" . $usuarioId;
     	$query = $this->db->query($sql);
+      return $query->result();
 
+    }
+
+
+    function actividades_noticias_escuela(){
+      $sql = "SELECT * FROM actividad WHERE tipoActividadId = 3";
+      $query = $this->db->query($sql);
+      return $query->result();
     }
 }
 ?>

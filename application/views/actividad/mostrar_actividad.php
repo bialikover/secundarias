@@ -1,3 +1,5 @@
+<?php //var_dump($actividad);?>
+<?php //var_dump($comentarios);?>
 
 <br>
 <div class="row-fluid"> 
@@ -22,20 +24,20 @@
 
 					<div id="my-menu" class="span8">
 						<h1>
-							<?php foreach ($actividad as $row):?>
-	                              <?=$row->nombreActividad;?>
+							
+	                    <?php echo $actividad->nombreActividad;?>
 
 						</h1>
-						<?php echo form_hidden('actividadId', $row->actividadId);?>
-						<h3 class="my-nombre"><?php echo muestra_nombre_docente($row->actividadId);?></h3>
-						<p><?=$row->descActividad;?> </p>
-			          <?php endforeach;?>
+						
+						<h3 class="my-nombre"><?php echo muestra_nombre_docente($actividad->actividadId);?></h3>
+						<p><?=$actividad->descActividad;?> </p>
+			          
 					</div>
 				</div>
 				<div class="row-fluid"> 
 					<div class="span4">
 						<div class="date-footer">
-						<span><?=$row->fecha;?></span>
+						<span><?=$actividad->fecha;?></span>
 						</div>
 					</div>		
 				</div>
@@ -55,7 +57,7 @@
 
 			<div class="my-comentary-container">
 			<div class="my-comentary-header">Comentarios </div>
-			<?php foreach (array_reverse($comentarios) as $comentario):?>
+			<?php foreach ($comentarios as $comentario):?>
 
 			<div class="my-comentary">
 			<div class="row-fluid">
@@ -69,7 +71,7 @@
 						<div class="date-footer">
 						<span><?php echo $comentario->fecha;?></span>
 
-						<?php if(es_mi_actividad($this->session->userdata('usuarioId'), $actividad[0]->actividadId) 
+						<?php if(es_mi_actividad($this->session->userdata('usuarioId'), $actividad->actividadId) 
 									|| es_mi_comentario($this->session->userdata('usuarioId'), $comentario->comentarioId)):?>
 							<button class="close"><i class="icon-trash"></i></button>
 						<?php endif;?>
@@ -86,6 +88,8 @@
 							<img class="my-foto-mini" src="<?php echo base_url();?>/assets/img/user1.png">
 						</div>
 						<div class="span10">
+							
+							<?php echo form_hidden('actividadId', $actividad->actividadId);?>
 							<?php $data = array('name' =>'comentario', 
 												'class' => 'my-textarea', 
 												'placeholder' =>'escribe un comentario', 

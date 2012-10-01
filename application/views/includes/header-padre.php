@@ -46,6 +46,9 @@
 									  		<div id="tab3_t" class="my-tex-nav">Salir</div>
 									  		</a>
 									  	</li>
+									  	<li>						  					
+						  					<div id="tab4_t"><span><?php echo mostrar_nombre($this->session->userdata('usuarioId'));?></span></div>						  					
+						  				</li>
 								   	</ul>
 								</div>
 							</div>

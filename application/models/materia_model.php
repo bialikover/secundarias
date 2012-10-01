@@ -52,7 +52,7 @@
         /*$sql = "SELECT * FROM `materia` WHERE `materiaId` IN (
                     SELECT `materiaId` FROM `docente_materia` WHERE `docenteId` =".$usuarioId.")";*/
 
-        $sql = "SELECT * FROM (SELECT grupo_docente_materia.claveGrupo, grupo_docente_materia.nombreMateria1, docente_materia.docenteId, docente_materia.materiaId
+        $sql = "SELECT * FROM (SELECT grupo_docente_materia.claveGrupo, grupo_docente_materia.nombreMateria1, docente_materia.docenteId, docente_materia.materiaId, grupo_docente_materia.grupo_docente_materiaId
                 FROM grupo_docente_materia JOIN
                     docente_materia 
                 ON grupo_docente_materia.docente_materiaId=docente_materia.docente_materiaId) AS  grupos_todos
