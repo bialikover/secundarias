@@ -145,9 +145,9 @@ class Actividad_model extends CI_Model{
     }
 
 
-    function actividades_noticias_escuela(){
-      $sql = "SELECT * FROM actividad WHERE tipoActividadId = 3";
-      $query = $this->db->query($sql);
+    function actividades_noticias_escuela($limit = 4){
+      $sql = "SELECT * FROM actividad WHERE tipoActividadId = 3 LIMIT ?";
+      $query = $this->db->query($sql, array($limit));
       return $query->result();
     }
 }
