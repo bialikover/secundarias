@@ -1,1 +1,0 @@
-aqui se maqueta la vista de la escuela.

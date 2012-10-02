@@ -82,11 +82,15 @@ class Actividad_model extends CI_Model{
             WHERE grupo_docente_materiaId = ?";
     $query = $this->db->query($sql, array($grupo_docente_materia));
     $docenteId = $query->row();
-    if($docenteId->docenteId == $usuarioId){
-        return true;
+    if($docenteId != null){
+      if($docenteId->docenteId == $usuarioId){
+          return true;
+      }else{
+          return false;
+      }
     }else{
-        return false;
-    }    
+
+    }    return false;
 
    }
 
