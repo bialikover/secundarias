@@ -1,1 +1,2 @@
-aqui se maqueta la vista de la escuela.
+<?php var_dump($escuela);?>
+<?php var_dump($noticias);?>
