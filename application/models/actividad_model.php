@@ -75,7 +75,20 @@ class Actividad_model extends CI_Model{
         $query = $this->db->query($sql, array($usuarioId));
         return $actividades = $query->result();
    }
+   public function es_mi_grupo($usuarioId, $grupo_docente_materia){
+    $sql = "SELECT docenteId FROM grupo_docente_materia 
+            JOIN docente_materia 
+              ON grupo_docente_materia.docente_materiaId = docente_materia.docente_materiaId
+            WHERE grupo_docente_materiaId = ?";
+    $query = $this->db->query($sql, array($grupo_docente_materia));
+    $docenteId = $query->row();
+    if($docenteId->docenteId == $usuarioId){
+        return true;
+    }else{
+        return false;
+    }    
 
+   }
 
    public function es_mi_actividad($usuarioId, $actividadId){
       
