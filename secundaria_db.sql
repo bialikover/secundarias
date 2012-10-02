@@ -340,7 +340,7 @@ CREATE TRIGGER `insertar_usuario` AFTER INSERT ON `usuario`
             INSERT INTO datos_contacto VALUES (NEW.usuarioId, '', '', '');
             INSERT INTO domicilio VALUES (NEW.usuarioId,'', '', '', '', '');
             IF tipoUsuarioId = 2 THEN
-                INSERT INTO escuela VALUES (NEW.usuarioId, '', '', '', '', '');
+                INSERT INTO escuela VALUES (NEW.usuarioId, '', '', '', '');
             ELSEIF tipoUsuarioId = 3 THEN
                 INSERT INTO docente VALUES (NEW.usuarioId, NEW.usuario);
             ELSEIF tipoUsuarioId = 4 THEN
@@ -442,10 +442,7 @@ DROP TABLE IF EXISTS `alumno_grupo`;
 CREATE TABLE IF NOT EXISTS `alumno_grupo` (
   `alumnoId` bigint(20) NOT NULL, 
   `grupoId` bigint(20) NOT NULL , 
-<<<<<<< HEAD
   `lista` INT DEFAULT  NULL ,
-=======
->>>>>>> adan
   CONSTRAINT `alumno_grupo_ibfk_1` FOREIGN KEY (`alumnoId`) REFERENCES `alumno` (`alumnoId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `alumno_grupo_ibfk_2` FOREIGN KEY (`grupoId`) REFERENCES `grupo` (`grupoId`) ON DELETE CASCADE ON UPDATE CASCADE
 
@@ -487,7 +484,6 @@ CREATE TABLE IF NOT EXISTS `grupo_docente_materia` (
 --
 -- Table structure for table `tipo_actividad`
 --
-<<<<<<< HEAD
 
 DROP TABLE IF EXISTS `tipo_actividad`;
 CREATE TABLE IF NOT EXISTS `tipo_actividad` (
@@ -495,21 +491,6 @@ CREATE TABLE IF NOT EXISTS `tipo_actividad` (
   `tipoActividad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`tipoActividadId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
-=======
-  `nombreActividad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `descActividad` text COLLATE utf8_bin,
-  `rutaActividad` text COLLATE utf8_bin,
-  `fecha` datetime DEFAULT NULL,
-  `grupo_docente_materiaId` bigint(20) NULL,
-  PRIMARY KEY (`actividadId`),
-  KEY `tipoActividadId` (`tipoActividadId`),
-  KEY `grupo_docente_materiaId` (`grupo_docente_materiaId`),
-  CONSTRAINT `actividad_ibfk_1` FOREIGN KEY (`tipoActividadId`) REFERENCES `tipo_actividad` (`tipoActividadId`)ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `actividad_ibfk_2` FOREIGN KEY (`grupo_docente_materiaId`) REFERENCES `grupo_docente_materia` (`grupo_docente_materiaId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
-
--- --------------------------------------------------------
->>>>>>> adan
 
 LOCK TABLES `tipo_actividad` WRITE;
    INSERT INTO `tipo_actividad` VALUES (1,'evento'),(2,'publicacion'),(3,'noticia');
@@ -545,7 +526,7 @@ CREATE TABLE IF NOT EXISTS `actividad` (
 
 DROP TABLE IF EXISTS `comentario`;
 CREATE TABLE IF NOT EXISTS `comentario` (
-  `comentarioId` bigint(20) NOT NULL,
+  `comentarioId` bigint(20) NOT NULL AUTO_INCREMENTh,
   `comentario` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `usuarioId` bigint(20) NOT NULL,
   `fecha` datetime DEFAULT NULL,
@@ -593,13 +574,7 @@ CREATE PROCEDURE `procedure_docente_materia`()
 //
 DELIMITER ;
 
-<<<<<<< HEAD
-=======
-/**************************************************************************************************
-// PROCEDURES FOR NAMES
-//**************************************************************************************************/
 
->>>>>>> adan
 DELIMITER ;
 DROP PROCEDURE IF EXISTS `procedure_grupo_docente_materia`;
 DELIMITER //
