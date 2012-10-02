@@ -1,5 +1,5 @@
 <?php //var_dump($this->session->userdata('usuarioId'));?>
-<?php //var_dump($materias);?>
+<?php var_dump($materias);?>
 <?php //var_dump($actividades);?>
 
 <div class="row-fluid"> 
@@ -20,10 +20,11 @@
     <div class="12">
         <div class="my-container-materias">
             <?php foreach ($materias as $materia): ?>
-            <a href="<?php echo base_url().'index.php/pruebas/noticias_materia/'.$materia->materiaId?>">
+            <a href="<?php echo base_url().'index.php/panel/noticias_materia/'.$materia->grupo_docente_materiaId;?>">
                 <div class="img-circle my-materia">
                     <span>
-                        <?php echo $materia->materia; ?>
+                        <?php echo $materia->materia; ?></br></br>
+                        <?php echo $materia->claveGrupo; ?>
                     </span>
                 </div>
             </a>

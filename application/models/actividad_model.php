@@ -20,8 +20,15 @@ class Actividad_model extends CI_Model{
             SELECT `docente_materiaId` FROM `docente_materia` WHERE `docenteId` = ? AND `materiaId` = ?
           )
         )      )";
-    $query =$this->db->query($sql, array($docenteId, $materiaId));
+    $query = $this->db->query($sql, array($docenteId, $materiaId));
     return $query->result();
+   }
+   public function mostrar_actividades_por_grupo_docente_materia($grupo_docente_materiaId){
+
+    $sql = "SELECT * from actividad WHERE grupo_docente_materiaId = ?";
+    $query = $this->db->query($sql, array($grupo_docente_materiaId) );
+    return $query->result();
+
    }
 
 

@@ -52,5 +52,28 @@ class Panel extends CI_Controller {
             }
         }
     }
+    public function noticias_materia()
+    {
+        $tipoUsuarioId = $this->session->userdata("tipoUsuarioId");
+        if($tipoUsuarioId == 3 || $tipoUsuarioId == 4){
+            $grupo_docente_materiaId = $this->uri->segment(3);        
+            $usuarioId = $this->session->userdata('usuarioId');         
+            $this->load->model('materia_model');
+            $this->load->model('actividad_model');
+            $this->load->model('comentario_model');
+            $data['materia'] = $this->materia_model->mostrar_materia_y_grupo($grupo_docente_materiaId);            
+            $actividades = $this->actividad_model->mostrar_actividades_por_grupo_docente_materia($grupo_docente_materiaId, $usuarioId);            
+            $data['actividades'] = $this->comentario_model->ultimos($actividades);
+            $this->load->view('includes/header-docente');
+            $this->load->view('panel/noticias_materia',$data); 
+            $this->load->view('includes/footer');
+        }
+
+
+        else{
+            redirect('login');
+        }
+        
+    }
 
 }
