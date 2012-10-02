@@ -23,14 +23,13 @@
 
     function materias_alumno($usuarioId){
 
-        $this->db->select('materia_id');
-        $this->db->from('docente_materia');
-        $this->db->where('usuario.usuarioId', $usuarioId);  
-
-        $sql = "SELECT * FROM `materia` WHERE `materiaId` IN ( 
-                SELECT `materiaId` FROM `docente_materia` WHERE `docente_materiaId` IN (
-                SELECT `docente_materiaId` FROM `grupo_docente_materia` WHERE `grupoId` IN ( 
-                    SELECT `grupoId` from `alumno_grupo` WHERE `alumnoId` = ?)))";
+        $sql = "SELECT grupo.claveGrupo, nombreMateria1 as materia, grupo_docente_materiaId  
+                FROM grupo_docente_materia 
+                JOIN grupo
+                    ON grupo_docente_materia.grupoId = grupo.grupoId
+                JOIN alumno_grupo
+                    ON alumno_grupo.grupoId = grupo.grupoId
+                WHERE alumno_grupo.alumnoId = ?";
         $query = $this->db->query($sql, array($usuarioId));
         return $query->result();
     }

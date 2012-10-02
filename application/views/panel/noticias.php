@@ -1,5 +1,5 @@
 <?php //var_dump($this->session->userdata('usuarioId'));?>
-<?php var_dump($materias);?>
+<?php //var_dump($materias);?>
 <?php //var_dump($actividades);?>
 
 <div class="row-fluid"> 

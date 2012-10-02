@@ -41,7 +41,8 @@ class Panel extends CI_Controller {
                 $this->load->view('includes/footer');
             } else if ($tipoUsuarioId === '4') {
                 $data['materias'] = $this->materia_model->materias_alumno($usuarioId);
-                $data['contenidos'] = $this->actividad_model->actividades_alumno($usuarioId);
+                $actividades = $this->actividad_model->actividades_alumno($usuarioId);
+                $data['actividades'] = $this->comentario_model->ultimos($actividades);
                 $this->load->view('includes/header-alumno');
                 $this->load->view('panel/noticias', $data);
                 $this->load->view('includes/footer');
@@ -55,14 +56,14 @@ class Panel extends CI_Controller {
     public function noticias_materia()
     {
         $tipoUsuarioId = $this->session->userdata("tipoUsuarioId");
-        if($tipoUsuarioId == 3 || $tipoUsuarioId == 4 && $this->session->userdata("validated")){
+        if(($tipoUsuarioId == 3 || $tipoUsuarioId == 4 )&& $this->session->userdata("validated")){
             $grupo_docente_materiaId = $this->uri->segment(3);        
             $usuarioId = $this->session->userdata('usuarioId');         
             $this->load->model('materia_model');
             $this->load->model('actividad_model');
             $this->load->model('comentario_model');            
             
-            $es_mi_grupo = $this->actividad_model->es_mi_grupo($usuarioId, $grupo_docente_materiaId);
+            $es_mi_grupo = $this->actividad_model->es_mi_grupo($usuarioId, $tipoUsuarioId, $grupo_docente_materiaId);
             $data['materia'] = $this->materia_model->mostrar_materia_y_grupo($grupo_docente_materiaId);
             if($es_mi_grupo && $data['materia'] != null ){
                 $actividades = $this->actividad_model->mostrar_actividades_por_grupo_docente_materia($grupo_docente_materiaId, $usuarioId);            

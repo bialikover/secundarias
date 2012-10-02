@@ -75,27 +75,45 @@ class Actividad_model extends CI_Model{
         $query = $this->db->query($sql, array($usuarioId));
         return $actividades = $query->result();
    }
-   public function es_mi_grupo($usuarioId, $grupo_docente_materia){
-    $sql = "SELECT docenteId FROM grupo_docente_materia 
+   public function es_mi_grupo($usuarioId, $tipoUsuarioId, $grupo_docente_materia){
+    if($tipoUsuarioId == 3){
+      $sql = "SELECT docenteId FROM grupo_docente_materia 
             JOIN docente_materia 
               ON grupo_docente_materia.docente_materiaId = docente_materia.docente_materiaId
             WHERE grupo_docente_materiaId = ?";
-    $query = $this->db->query($sql, array($grupo_docente_materia));
-    $docenteId = $query->row();
-    if($docenteId != null){
-      if($docenteId->docenteId == $usuarioId){
-          return true;
+      $query = $this->db->query($sql, array($grupo_docente_materia));
+      $docenteId = $query->row();
+      if($docenteId != null){
+        if($docenteId->docenteId == $usuarioId){
+            return true;
+        }else{
+           return false;
+        }
       }else{
-          return false;
-      }
-    }else{
+        return false;
+      } 
+    } else{ //tipo de usuario 4 alumno
+      $sql = "SELECT alumnoId FROM alumno_grupo 
+            JOIN grupo 
+              ON alumno_grupo.grupoId = grupo.grupoId
+            JOIN grupo_docente_materia
+              ON grupo_docente_materia.grupoId = grupo.grupoId
+            WHERE grupo_docente_materiaId = ? AND alumnoId = ?";
+      $query = $this->db->query($sql, array($grupo_docente_materia, $usuarioId));
 
-    }    return false;
+      if($query->row()!= null){
+        return true;
+      }
+      else{
+        return false;
+      }
+
+    }   
 
    }
 
-   public function es_mi_actividad($usuarioId, $actividadId){
-      
+   public function es_mi_actividad($usuarioId, $tipoUsuarioId, $actividadId){
+    if($tipoUsuarioId == 3){
       $sql = "SELECT nombre, docenteId FROM docente_materia
         JOIN grupo_docente_materia ON docente_materia.docente_materiaId = grupo_docente_materia.docente_materiaId
         JOIN actividad ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
@@ -103,11 +121,34 @@ class Actividad_model extends CI_Model{
       
       $docenteId = $this->db->query($sql, array($actividadId))->row();
 
-      if($docenteId->docenteId == $usuarioId){
-        return true;
-      }else{
+      if($docenteId != null){
+
+        if($docenteId->docenteId == $usuarioId){
+          return true;
+        }else{
+          return false;
+        }
+      } else{
         return false;
       }
+    } else{
+      $sql = "SELECT alumnoId FROM alumno_grupo 
+            JOIN grupo 
+              ON alumno_grupo.grupoId = grupo.grupoId
+            JOIN grupo_docente_materia
+              ON grupo_docente_materia.grupoId = grupo.grupoId
+            JOIN actividad 
+              ON actividad.grupo_docente_materiaId = grupo_docente_materia.grupo_docente_materiaId
+            WHERE actividadId = ? AND alumnoId = ?";
+      $query = $this->db->query($sql, array($actividadId, $usuarioId));
+
+      if($query->row()!= null){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
 
    }
 
@@ -130,17 +171,16 @@ class Actividad_model extends CI_Model{
     				(SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia` WHERE `grupoId` IN ( 
     					SELECT `grupoId` from `alumno_grupo` WHERE `alumnoId` =".$usuarioId."))))";*/
 
-      $sql = "SELECT * FROM (SELECT actividad.*, materias_todas.alumnoId FROM actividad JOIN (
-                 SELECT grupo_docente_materiaId as grupo_docente_materiaId1, grupos_todos.alumnoId FROM grupo_docente_materia JOIN (
-                      SELECT alumno_grupo.alumnoId, grupo.grupoId
-                        FROM alumno_grupo JOIN 
-                          grupo
-                        ON alumno_grupo.grupoId = grupo.grupoId
-                    ) AS grupos_todos 
-                  ON grupo_docente_materia.grupoId=grupos_todos.grupoId
-                ) AS materias_todas
-                ON grupo_docente_materiaId=materias_todas.grupo_docente_materiaId1
-            ) AS actividades WHERE actividades.alumnoId= ?";
+      $sql = "SELECT * FROM alumno_grupo 
+            JOIN grupo 
+              ON alumno_grupo.grupoId = grupo.grupoId
+            JOIN grupo_docente_materia
+              ON grupo_docente_materia.grupoId = grupo.grupoId
+            JOIN actividad 
+              ON actividad.grupo_docente_materiaId = grupo_docente_materia.grupo_docente_materiaId
+            JOIN tipo_actividad 
+              ON tipo_actividad.tipoActividadId = actividad.tipoActividadId
+            WHERE alumnoId = ?";
 
 	    $query = $this->db->query($sql, array($usuarioId));
         return $query->result ();
