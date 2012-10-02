@@ -7,8 +7,9 @@ class Actividad_model extends CI_Model{
      
    public function mostrar($id)
    {
-       $registro= $this->db->query("select * FROM actividad WHERE actividadId = ".$id);
-      return $registro->row();
+       $sql = "select * FROM actividad WHERE actividadId = ?";
+       $query = $this->db->query($sql , array($id));
+       return $query->row();
    }
 
    public function mostrar_docente($materiaId, $docenteId){
@@ -16,11 +17,11 @@ class Actividad_model extends CI_Model{
       SELECT * FROM `actividad` WHERE `actividadId` IN ( 
         SELECT `actividadId` FROM `grupo_docente_materia_actividad` WHERE `grupo_docente_materiaId` = (
           SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia` WHERE `docente_materiaId` = (   
-            SELECT `docente_materiaId` FROM `docente_materia` WHERE `docenteId` =".$docenteId." AND `materiaId` = ".$materiaId."
+            SELECT `docente_materiaId` FROM `docente_materia` WHERE `docenteId` = ? AND `materiaId` = ?
           )
         )      )";
-    
-    return $query = $this->db->query($sql)->result();
+    $query =$this->db->query($sql, array($docenteId, $materiaId));
+    return $query->result();
    }
 
 
@@ -29,15 +30,15 @@ class Actividad_model extends CI_Model{
           $sql0 = "SELECT grupoId
                    FROM grupo_docente_materia
                    INNER JOIN docente_materia ON grupo_docente_materia.docente_materiaId = docente_materia.docente_materiaId
-                   WHERE docente_materia.docenteId =".$usuarioId.";";
-
-          $grupo = $this->db->query($sql0)->row();
-          
+                   WHERE docente_materia.docenteId = ? ";
+          $query = $this->db->query($sql0, array($usuarioId) );
+          $grupo = $query->row();          
           $grupoId = $grupo->grupoId;
 
         } else{
-          $sql0 = "SELECT grupoId FROM alumno_grupo WHERE alumnoId =".$usuarioId.";";
-          $grupo = $this->db->query($sql0)->row();
+          $sql0 = "SELECT grupoId FROM alumno_grupo WHERE alumnoId = ?";
+          $query = $this->db->query($sql0, array($usuarioId));
+          $grupo = $query->row();
           $grupoId = $grupo->grupoId;
         }
         
@@ -62,11 +63,10 @@ class Actividad_model extends CI_Model{
                           ON grupo_docente_materia.grupoId=grupos_todos.grupoId
                         ) AS materias_todas
                         ON grupo_docente_materiaId=materias_todas.grupo_docente_materiaId1
-                    ) AS actividades WHERE actividades.alumnoId=" . $usuarioId . 
-                ") AS comentarios_todos
+                    ) AS actividades WHERE actividades.alumnoId= ? ) AS comentarios_todos
               ON actividadId=comentarios_todos.actividadId1";
-
-        return $actividades = $this->db->query($sql)->result();
+        $query = $this->db->query($sql, array($usuarioId));
+        return $actividades = $query->result();
    }
 
 
@@ -75,8 +75,9 @@ class Actividad_model extends CI_Model{
       $sql = "SELECT nombre, docenteId FROM docente_materia
         JOIN grupo_docente_materia ON docente_materia.docente_materiaId = grupo_docente_materia.docente_materiaId
         JOIN actividad ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
-        WHERE actividadId =".$actividadId;
-      $docenteId = $this->db->query($sql)->row();
+        WHERE actividadId = ? ";
+      
+      $docenteId = $this->db->query($sql, array($actividadId))->row();
 
       if($docenteId->docenteId == $usuarioId){
         return true;
@@ -92,8 +93,8 @@ class Actividad_model extends CI_Model{
               ON docente_materia.docente_materiaId = grupo_docente_materia.docente_materiaId 
             JOIN actividad 
               ON actividad.grupo_docente_materiaId = grupo_docente_materia.grupo_docente_materiaId
-            WHERE actividad.actividadId = ".$actividadId;
-    $docente = $this->db->query($sql)->row();
+            WHERE actividad.actividadId = ? ";
+    $docente = $this->db->query($sql, array($actividadId))->row();
     return $docente->nombre;
 
    }
@@ -115,9 +116,9 @@ class Actividad_model extends CI_Model{
                   ON grupo_docente_materia.grupoId=grupos_todos.grupoId
                 ) AS materias_todas
                 ON grupo_docente_materiaId=materias_todas.grupo_docente_materiaId1
-            ) AS actividades WHERE actividades.alumnoId=" . $usuarioId;
+            ) AS actividades WHERE actividades.alumnoId= ?";
 
-	    $query = $this->db->query($sql);
+	    $query = $this->db->query($sql, array($usuarioId));
         return $query->result ();
     }
 
@@ -138,8 +139,8 @@ class Actividad_model extends CI_Model{
                 ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
               JOIN tipo_actividad 
                 ON  actividad.tipoActividadId = tipo_actividad.tipoActividadId 
-              WHERE docente_materia.docenteId =" . $usuarioId;
-    	$query = $this->db->query($sql);
+              WHERE docente_materia.docenteId = ?";
+    	$query = $this->db->query($sql, array($usuarioId));
       return $query->result();
 
     }

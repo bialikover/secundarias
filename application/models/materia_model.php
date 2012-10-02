@@ -27,8 +27,8 @@
         $sql = "SELECT * FROM `materia` WHERE `materiaId` IN ( 
                 SELECT `materiaId` FROM `docente_materia` WHERE `docente_materiaId` IN (
                 SELECT `docente_materiaId` FROM `grupo_docente_materia` WHERE `grupoId` IN ( 
-                    SELECT `grupoId` from `alumno_grupo` WHERE `alumnoId` =".$usuarioId.")))";
-        $query = $this->db->query($sql);
+                    SELECT `grupoId` from `alumno_grupo` WHERE `alumnoId` = ?)))";
+        $query = $this->db->query($sql, array($usuarioId));
         return $query->result();
     }
 
@@ -41,9 +41,9 @@
             FROM grupo_docente_materia JOIN
                 docente_materia 
             ON grupo_docente_materia.docente_materiaId=docente_materia.docente_materiaId) AS  grupos_todos
-            WHERE grupos_todos.docenteId=" . $usuarioId;
+            WHERE grupos_todos.docenteId= ?";
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, array($usuarioId));
         return $query->result();
     }
 
@@ -56,9 +56,9 @@
                 FROM grupo_docente_materia JOIN
                     docente_materia 
                 ON grupo_docente_materia.docente_materiaId=docente_materia.docente_materiaId) AS  grupos_todos
-                WHERE grupos_todos.docenteId=" . $usuarioId;
+                WHERE grupos_todos.docenteId= ?";
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, array($usuarioId));
         return $query->result();
     }
 }

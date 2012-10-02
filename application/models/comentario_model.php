@@ -19,11 +19,14 @@ class Comentario_model extends CI_Model{
    }
 
    public function mostrar($actividadId){
-      $comentarios = $this->db->query("SELECT * FROM comentario WHERE actividadId = ".$actividadId);
+
+      $sql = "SELECT * FROM comentario WHERE actividadId = ?";
+      $comentarios = $this->db->query($sql, array($actividadId));
       return $comentarios->result();
    }
-  public function mostrar_ultimos($actividadId){
-      $comentarios = $this->db->query("SELECT * FROM comentario WHERE actividadId = ".$actividadId." ORDER BY fecha DESC LIMIT 2 ");
+  public function mostrar_ultimos($actividadId, $limit = 2){
+      $sql = "SELECT * FROM comentario WHERE actividadId = ? ORDER BY fecha DESC LIMIT ? ";
+      $comentarios = $this->db->query($sql, array($actividadId, $limit));
       return array_reverse($comentarios->result());
    }
 
