@@ -6,8 +6,16 @@
             myfecha : fecha
          },
          function(data){
-            console.log(data);
             $("#contedor").html(data);
+         }
+      );
+      $.post(
+         "<?php echo base_url('index.php/agenda/cambiar_semana');?>",
+         {
+            myfecha : fecha
+         },
+         function(data){
+            $("#contedor1").html(data);
          }
       );
    }
@@ -19,9 +27,14 @@
       });
       
       $('#calendar').bind('changeDay', function(event) {
-         var fecha = event.day.valueOf() + '-' + event.month.valueOf() + '-' + event.year.valueOf();
-         Retrieve(fecha);
+         var fecha_retrieve = event.day.valueOf() + '-' + event.month.valueOf() + '-' + event.year.valueOf();
+         var fecha_display  = event.day.valueOf() + '/' + event.month.valueOf() + '/' + event.year.valueOf();
+         
+         $('#actual').text(fecha_display);
+         Retrieve(fecha_retrieve);
       });
+      
+      Retrieve(<?php echo date('d-m-Y'); ?>);
    });
 </script>
 <div class="row-fluid">
@@ -44,155 +57,15 @@
 	  </div>
 	  <div class="tab-content">
 		 <div id="dia" class="tab-pane active">
-			<div id="actual" class="my-encabezado-calendar">
-			   fecha </div>
 			<div id="contedor" class="contenedor">
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 07:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 08:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 09:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 10:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 11:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 12:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 13:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 14:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 15:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 16:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 17:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 18:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 19:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
-			   <div id="rowx" class="renglon">
-				  <div id="horarios" class="my-inline hora">
-					 20:00 </div>
-				  <div id="hora" class="my-inline hora-completa">
-					 <div class="media1">
-						00</div>
-					 <div class="media2">
-						30</div>
-				  </div>
-			   </div>
 			</div>
 		 </div>
-		 <div id="semana" class="tab-pane">
-			b</div>
-		 <div id="mes" class="tab-pane">
-			c</div>
+		 <div id="semana" class="tab-pane" style="overflow:hidden;">
+			<div id="contedor1" class="contenedor">
+			</div>
+		 </div>
+		 <div id="mes" class="tab-pane" style="overflow:hidden;">
+		 </div>
 	  </div>
 	  <script>
        $('#my-tab a').click(function(e){

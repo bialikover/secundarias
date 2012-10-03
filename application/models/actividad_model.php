@@ -216,8 +216,9 @@ class Actividad_model extends CI_Model{
       return $query->result();
     }
     
-    function mostrar_agenda_entre_fechas($fecha1, $fecha2, $usuarioId) {
-      $sql0 = '';
+    function mostrar_agenda_entre_fechas($fecha1, $fecha2, $usuarioId, $order_by = 'asc') {
+      $sql0     = '';
+      $order_by = (strtoupper($order_by) == 'ASC') ? 'ASC' : 'desc';
       
       if ( $this->session->userdata('tipoUsuarioId') == 3 ) {
          $sql0 = 'SELECT
@@ -240,7 +241,8 @@ class Actividad_model extends CI_Model{
                   ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
                WHERE
                   actividad.fecha BETWEEN ? AND ?
-                  AND grupo_docente_materia.grupoId IN ('.$sql0.')';
+                  AND grupo_docente_materia.grupoId IN ('.$sql0.')
+               ORDER BY actividad.fecha '.$order_by;
       
       $bindings = array($fecha1, $fecha2, $usuarioId);
       
