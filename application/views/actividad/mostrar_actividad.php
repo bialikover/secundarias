@@ -39,7 +39,14 @@
 						<div class="date-footer">
 						<span><?=$actividad->fecha;?></span>
 						</div>
-					</div>		
+					</div>
+					<?php if($actividad->rutaActividad != null):?>
+						<div class="span11 my-right">
+						<a href="<?php echo base_url()."assets/uploads/files/".$actividad->rutaActividad; ?>">
+							<span class="btn btn-success"><i class="icon-download icon-white"></i> Descargar Archivo</span>		
+							</div>
+						</a>
+					<?php endif;?>
 				</div>
 			</div>
 		</div>
