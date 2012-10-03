@@ -10,9 +10,15 @@
       }
       
       public function index() {
-         $this->load->view('includes/header-docente');
-         $this->load->view('agenda/index');
-         $this->load->view('includes/footer');
+         if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 3 ) {
+            redirect('login');   
+         } else {
+            $this->load->view('includes/header-docente');
+            $this->load->view('agenda/index');
+            $this->load->view('includes/footer');
+
+         }
+ 
       }
 
       public function guardar() {
@@ -122,4 +128,3 @@
          $this->load->view('includes/footer');
       }  
    }
-?> 

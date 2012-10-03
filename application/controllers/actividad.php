@@ -67,7 +67,7 @@ class Actividad extends CI_Controller {
       }
 
 
-      $crud->set_field_upload('rutaActividad','index.php/assets/uploads/files');
+      $crud->set_field_upload('rutaActividad','assets/uploads/files');
       //$crud->change_field_type('rutaActividad','invisible');
   
       $crud->unset_list();

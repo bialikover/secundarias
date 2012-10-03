@@ -28,8 +28,12 @@ class Panel extends CI_Controller {
             if ($tipoUsuarioId === '1') {
                 redirect("administracion/alta_usuarios");
             } else if ($tipoUsuarioId === '2') {
+                $this->load->model("escuela_model");
+                $this->load->model("actividad_model");
+                $data['escuela'] = $this->escuela_model->mostrar($usuarioId);
+                $data['noticias'] = $this->actividad_model->actividades_noticias_escuela();
                 $this->load->view('includes/header-escuela');
-                $this->load->view('escuela/perfil');
+                $this->load->view('escuela/mostrar', $data);
                 $this->load->view('includes/footer');
             } else if ($tipoUsuarioId === '3') {
                 $data['materias'] = $this->materia_model->materias_docente($usuarioId);
