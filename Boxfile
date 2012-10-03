@@ -5,3 +5,5 @@ web1:
    php_extensions:
       - mysql
       - pdo_mysql
+   shared_writable_dirs:
+      - assets/uploads/files/
