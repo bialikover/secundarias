@@ -9,6 +9,15 @@
 
      function SeleccionarHora(hora,contenido)
        {
+         var hora_split = hora.split(':');
+         var hora_min   = parseInt(hora_split[1]);
+         
+         if ( hora_min >= 0 && hora_min <= 29 ) {
+            hora = hora_split[0] + ':00';
+         } else if ( hora_min <= 60 ) {
+            hora = hora_split[0] + ':30';
+         }
+         
          if (hora=='07:00') id='media11';
          if (hora=='07:30') id='media21';
          if (hora=='08:00') id='media12';
@@ -47,29 +56,20 @@
 
 
 <?php $j=6;?>
-<?php for ($i=1;$i<=20;$i++):?>
-	
-              <div id='rowx' class='renglon'>
-                  <div <?php echo "id='hora$i'"; ?> class='my-inline hora'>
-                    <?php $j++; echo "<script>SetHora('hora$i','$j');</script>";?>
-                  </div>  
-                  <div  class='my-inline hora-completa'>
-                     <div class='media1' <?php echo "id='media1$i'"; ?> ></div>
-                     <div class='media2' <?php echo "id='media2$i'"; ?> ></div>
-                  </div>
-
-
-              </div>
+<?php for ($i=1;$i<=14;$i++):?>
+<div id='rowx' class='renglon'>
+   <div <?php echo "id='hora$i'"; ?> class='my-inline hora'>
+     <?php $j++; echo "<script>SetHora('hora$i','$j');</script>";?>
+   </div>  
+   <div  class='my-inline hora-completa'>
+      <div class='media1' <?php echo "id='media1$i'"; ?> ></div>
+      <div class='media2' <?php echo "id='media2$i'"; ?> ></div>
+   </div>
+</div>
 <?php endfor;?>
 
 <?php $i=0;?>
 <?php foreach ($actividades as $actividad):?>
 	<?php $i++; $hora=substr($actividad->fecha,11,5); echo "<script>SeleccionarHora('$hora','$actividad->nombreActividad');</script>"?>
-
-             
 <?php endforeach;?>
-
-
-
-
 

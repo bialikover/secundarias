@@ -64,15 +64,16 @@
 
        public function cambiar_fecha()
         {
-         // :TODO: Mover a Modelo
-            $fecha=$this->input->post('myfecha');     
+            $this->load->model("actividad_model");
 
-            $fecha1 = date("Y-m-d 00:00:00", strtotime($fecha));   
-            $fecha2 = date("Y-m-d 23:59:59", strtotime($fecha)); 
-
-            $data['actividades'] = $this->db->query("select * FROM actividad WHERE fecha between '$fecha1' AND '$fecha2' AND tipoActividadId = 1 ")->result();
+            $fecha     = $this->input->post('myfecha');     
+            $fecha1    = date("Y-m-d 00:00:00", strtotime($fecha));   
+            $fecha2    = date("Y-m-d 23:59:59", strtotime($fecha)); 
+            $usuarioId = $this->session->userdata('usuarioId');
+            
+            $data['actividades'] = $this->actividad_model->mostrar_agenda_entre_fechas($fecha1, $fecha2, $usuarioId);
+            
             $this->load->view("agenda/actividades", $data);
-
         }
 
 
@@ -81,7 +82,7 @@
         {
 
            $this->load->model("actividad_model");
-           $data['actividad']=$this->actividad_model->mostrar(40)->result();
+           $data['actividad']=$this->actividad_model->mostrar(40);
 
              //var_dump($data);
 

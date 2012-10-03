@@ -215,5 +215,38 @@ class Actividad_model extends CI_Model{
       $query = $this->db->query($sql, array($limit));
       return $query->result();
     }
+    
+    function mostrar_agenda_entre_fechas($fecha1, $fecha2, $usuarioId) {
+      $sql0 = '';
+      
+      if ( $this->session->userdata('tipoUsuarioId') == 3 ) {
+         $sql0 = 'SELECT
+                     grupoId
+                  FROM
+                     grupo_docente_materia
+                  INNER JOIN docente_materia
+                     ON docente_materia.docente_materiaId = grupo_docente_materia.docente_materiaId
+                  WHERE
+                     docente_materia.docenteId = ?';
+      } else {
+         $sql0 = 'SELECT grupodId FROM alumno_grupo WHERE alumnoId = ?';
+      }
+      
+      $sql1 = 'SELECT
+                  *
+               FROM
+                  actividad
+               INNER JOIN grupo_docente_materia
+                  ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
+               WHERE
+                  actividad.fecha BETWEEN ? AND ?
+                  AND grupo_docente_materia.grupoId IN ('.$sql0.')';
+      
+      $bindings = array($fecha1, $fecha2, $usuarioId);
+      
+      $result   = $this->db->query($sql1, $bindings);
+      
+      return $result->result();
+    }
 }
 ?>
