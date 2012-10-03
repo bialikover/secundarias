@@ -9,7 +9,7 @@
       $(id).html(hora);
    }
 
-  function SeleccionarHora(hora,contenido) {
+  function SeleccionarHora(hora,contenido,actid) {
       var hora_split = hora.split(':');
       var hora_min   = parseInt(hora_split[1]);
       
@@ -47,7 +47,7 @@
       if (hora=='19:30') id='media213';
       if (hora=='20:00') id='media114';
       
-      url       = "<?php echo base_url('index.php/agenda/mostrar_actividad');?>";
+      url       = "<?php echo base_url('index.php/actividad/detalle'); ?>" + "/" + actid;
       contenido = "<a href='"+url+"'>"+contenido+"</a>";
       id        = "#" + id;
       
@@ -70,6 +70,6 @@
 
 <?php $i=0;?>
 <?php foreach ($actividades as $actividad):?>
-	<?php $i++; $hora=substr($actividad->fecha,11,5); echo "<script>SeleccionarHora('$hora','$actividad->nombreActividad');</script>"?>
+	<?php $i++; $hora=substr($actividad->fecha,11,5); echo "<script>SeleccionarHora('$hora','$actividad->nombreActividad','$actividad->actividadId');</script>"?>
 <?php endforeach;?>
 

@@ -27,7 +27,7 @@
       $agenda[$cabecera_fecha][] = array(
          'hora'      => date('H:i', $fecha_unix),
          'actividad' => $actividad->nombreActividad,
-         'url'       => base_url('index.php/actividad/detalle/').$actividad->actividadId
+         'url'       => base_url('index.php/actividad/detalle/').'/'.$actividad->actividadId
       );
    }
 ?>
