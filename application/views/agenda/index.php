@@ -19,22 +19,32 @@
          }
       );
    }
+   
+   function RetrieveMonth(fecha) {
+      $.post(
+         "<?php echo base_url('index.php/agenda/cambiar_mes');?>",
+         {
+            myfecha : fecha
+         },
+         function(data){
+            $("#contedor2").html(data);
+         }
+      );
+   }
 </script>
 <script type="text/javascript">
    $(document).ready(function(){
       $('#calendar').Calendar({
-            weekStart : 1
-      });
-      
-      $('#calendar').bind('changeDay', function(event) {
+         weekStart : 1
+      })
+      .on('changeDay', function(event) {
          var fecha_retrieve = event.day.valueOf() + '-' + event.month.valueOf() + '-' + event.year.valueOf();
-         var fecha_display  = event.day.valueOf() + '/' + event.month.valueOf() + '/' + event.year.valueOf();
-         
-         $('#actual').text(fecha_display);
          Retrieve(fecha_retrieve);
+         RetrieveMonth(fecha_retrieve);
       });
       
-      Retrieve(<?php echo date('d-m-Y'); ?>);
+      Retrieve("<?php echo date('d-m-Y'); ?>");
+      RetrieveMonth("<?php echo date('d-m-Y'); ?>");
    });
 </script>
 <div class="row-fluid">
@@ -65,6 +75,8 @@
 			</div>
 		 </div>
 		 <div id="mes" class="tab-pane" style="overflow:hidden;">
+			<div id="contedor2" class="contenedor">
+			</div>
 		 </div>
 	  </div>
 	  <script>

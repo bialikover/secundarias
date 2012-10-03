@@ -87,6 +87,29 @@
          // > Mostrar resultados
          $this->load->view("agenda/actividades_semana", $data);
       }
+      
+      public function cambiar_mes() {
+         $this->load->model("actividad_model");
+         
+         // > Valores de entrada
+         $usuarioId     = $this->session->userdata('usuarioId');
+         $in_fecha      = $this->input->post('myfecha');
+         $in_fecha_unix = strtotime($in_fecha);
+         
+         // > Calcular fecha de 1er día de la semana y fecha del último día de la semana    
+         $fecha_unix1 = strtotime(date('Y-m-01', $in_fecha_unix));
+         $fecha_unix2 = strtotime('+1 month', $fecha_unix1); // 1 del mes + 1 mes
+         $fecha_unix2 = strtotime('-1 day', $fecha_unix2);   // 1 del mes - 1 día (para que sea el mismo mes)
+         
+         $fecha1 = date("Y-m-d 00:00:00", $fecha_unix1);
+         $fecha2 = date("Y-m-d 23:59:59", $fecha_unix2);
+         
+         // > Obtener actividades para el intervalo de fechas calculado
+         $data['actividades'] = $this->actividad_model->mostrar_agenda_entre_fechas($fecha1, $fecha2, $usuarioId);
+         
+         // > Mostrar resultados
+         $this->load->view("agenda/actividades_mes", $data);
+      }
 
       public function mostrar_actividad() {
         $this->load->model("actividad_model");
