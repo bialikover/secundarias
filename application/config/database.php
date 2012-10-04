@@ -16,9 +16,9 @@ $active_group = 'development';
 $active_record = TRUE;
 
 
-$db['production']['hostname'] = 'tunnel.pagodabox.com:3306';
-$db['production']['username'] = 'tarah';
-$db['production']['password'] = '9vFjHLyh';
+$db['production']['hostname'] = 'tunnel.pagodabox.com';
+$db['production']['username'] = 'ricarda';
+$db['production']['password'] = 'BdSA3876';
 $db['production']['database'] = 'secundaria';
 $db['production']['dbdriver'] = 'mysql';
 $db['production']['port']     = '3306';
