@@ -16,12 +16,12 @@ $active_group = 'development';
 $active_record = TRUE;
 
 
-$db['production']['hostname'] = 'tunnel.pagodabox.com';
+$db['production']['hostname'] = 'tunnel.pagodabox.com:3306';
 $db['production']['username'] = 'tarah';
 $db['production']['password'] = '9vFjHLyh';
 $db['production']['database'] = 'secundaria';
 $db['production']['dbdriver'] = 'mysql';
-$db['production']['port']     = '3306';
+//$db['production']['port']     = '3306';
 $db['production']['dbprefix'] = '';
 $db['production']['pconnect'] = TRUE;
 $db['production']['db_debug'] = TRUE;
