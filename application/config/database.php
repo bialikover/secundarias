@@ -12,7 +12,7 @@ switch (ENVIRONMENT) {
         $active_group = 'development';
     break;
 }
-$active_group = 'development';
+//$active_group = 'development';
 $active_record = TRUE;
 
 
