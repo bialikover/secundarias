@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
     	<title>Mi secu</title>
 
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/css/home-secundarias.css">	
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/home-secundarias.css">	
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/jquery-ui-1.8.23.custom.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/secundaria.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/my-perfil.css">
@@ -29,7 +29,7 @@
 		<div class="container-fluid">
 		  <div class="row-fluid">
 		    <div class="span6">
-		      <img src="<?php echo base_url();?>/assets/img/icon/HOMEICON.png">
+		      <img src="<?php echo base_url();?>assets/img/icon/HOMEICON.png">
 		      <span>Mi secu</span>
 		    </div>
 		    <div class="span6">
