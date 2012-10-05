@@ -217,36 +217,45 @@ class Actividad_model extends CI_Model{
     }
     
     function mostrar_agenda_entre_fechas($fecha1, $fecha2, $usuarioId, $order_by = 'asc') {
-      $sql0     = '';
+      $sql     = '';
       $order_by = (strtoupper($order_by) == 'ASC') ? 'ASC' : 'desc';
       
       if ( $this->session->userdata('tipoUsuarioId') == 3 ) {
-         $sql0 = 'SELECT
-                     grupoId
-                  FROM
-                     grupo_docente_materia
-                  INNER JOIN docente_materia
-                     ON docente_materia.docente_materiaId = grupo_docente_materia.docente_materiaId
-                  WHERE
-                     docente_materia.docenteId = ?';
+         $sql = 'SELECT
+                    *
+                 FROM
+                    actividad
+                 INNER JOIN grupo_docente_materia
+                    ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
+                 INNER JOIN docente_materia
+                    ON docente_materia.docente_materiaId = grupo_docente_materia.docente_materiaId
+                 WHERE
+                    actividad.fecha BETWEEN ? AND ? 
+                    AND docente_materia.docenteId = ?
+                 ORDER BY actividad.fecha '.$order_by;
       } else {
-         $sql0 = 'SELECT grupodId FROM alumno_grupo WHERE alumnoId = ?';
+         $sql = 'SELECT
+                    *
+                 FROM
+                    actividad
+                 INNER JOIN grupo_docente_materia
+                    ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
+                 WHERE
+                    actividad.fecha BETWEEN ? AND ?
+                    AND grupo_docente_materia.grupoId IN (
+                       SELECT
+                          grupodId
+                       FROM
+                          alumno_grupo
+                       WHERE
+                          alumnoId = ?
+                    )
+                 ORDER BY actividad.fecha '.$order_by;
       }
-      
-      $sql1 = 'SELECT
-                  *
-               FROM
-                  actividad
-               INNER JOIN grupo_docente_materia
-                  ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
-               WHERE
-                  actividad.fecha BETWEEN ? AND ?
-                  AND grupo_docente_materia.grupoId IN ('.$sql0.')
-               ORDER BY actividad.fecha '.$order_by;
       
       $bindings = array($fecha1, $fecha2, $usuarioId);
       
-      $result   = $this->db->query($sql1, $bindings);
+      $result   = $this->db->query($sql, $bindings);
       
       return $result->result();
     }
