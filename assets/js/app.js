@@ -1,5 +1,4 @@
 $(document).ready(function(){
-var path = window.location.hostname;
 //hace grande el text area del comentario de una forma muy precaria.
 	$(".my-textarea").focus(function(){
 		$(this).css("height", '100px');
@@ -11,7 +10,7 @@ var path = window.location.hostname;
 		var actividadId = $("input:hidden").val();
 
 		console.log(actividadId);
-		$.post(path + "/comentario/nuevo",
+		$.post("/comentario/nuevo",
         		{comentario:comentario, 
         		 actividadId:actividadId},
         		function(data){
@@ -32,7 +31,7 @@ var path = window.location.hostname;
 		var $clicked = $(this)
 		console.log(comentario);
 		
-		$.post(path + "/comentario/nuevo",
+		$.post("/comentario/nuevo",
         		{comentario:comentario, 
         		 actividadId:actividadId, 
         		 stream: 1 },
