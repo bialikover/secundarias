@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+var path = window.location.origin
 //hace grande el text area del comentario de una forma muy precaria.
 	$(".my-textarea").focus(function(){
 		$(this).css("height", '100px');
@@ -11,7 +11,7 @@ $(document).ready(function(){
 		var actividadId = $("input:hidden").val();
 
 		console.log(actividadId);
-		$.post("/secundarias/index.php/comentario/nuevo",
+		$.post(path + "/comentario/nuevo",
         		{comentario:comentario, 
         		 actividadId:actividadId},
         		function(data){
@@ -32,7 +32,7 @@ $(document).ready(function(){
 		var $clicked = $(this)
 		console.log(comentario);
 		
-		$.post("/secundarias/index.php/comentario/nuevo",
+		$.post(path + "/comentario/nuevo",
         		{comentario:comentario, 
         		 actividadId:actividadId, 
         		 stream: 1 },
