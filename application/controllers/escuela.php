@@ -22,8 +22,8 @@ class Escuela extends CI_Controller
 			$crud->set_subject('escuela');
 	    	$crud->set_table('escuela');    	
 
-	    	$crud->columns('escuela','claveEscuela', 'turno' );
-	    	$crud->fields('escuela', 'claveEscuela','turno', 'descEscuela', 'adicional');
+	    	$crud->columns('escuela','claveEscuela' );
+	    	$crud->fields('escuela', 'claveEscuela','descEscuela', 'adicional');
 	    	//$crud->set_relation('administradorId', 'usuario', 'usuarioId');
 	    	//$crud->display_as('administradorId','Administrador Escuela');
 
