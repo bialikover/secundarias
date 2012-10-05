@@ -56,6 +56,7 @@ class Administracion extends CI_Controller
             if($this->session->userdata("tipoUsuarioId")== 1){                
                 $crud->add_action('Contacto','', 'contacto_escuela/index/edit', 'ui-icon-plus');
                 $crud->add_action('Domicilio','', 'domicilio_escuela/index/edit', 'ui-icon-plus');
+                $crud->add_action('Datos de Escuela','', 'escuela/index/edit', 'ui-icon-plus');
             }
             else{
                 $crud->add_action('Contacto','', 'datos_contacto/index/edit', 'ui-icon-plus');
