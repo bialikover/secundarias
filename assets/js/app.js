@@ -1,5 +1,5 @@
 $(document).ready(function(){
-var path = window.location.origin
+var path = window.location.hostname;
 //hace grande el text area del comentario de una forma muy precaria.
 	$(".my-textarea").focus(function(){
 		$(this).css("height", '100px');
