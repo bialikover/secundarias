@@ -69,7 +69,7 @@
 			<div class="my-comentary">
 			<div class="row-fluid">
 				<div class="span2 my-center">
-					<img class="my-foto" src="<?php echo muestra_foto($comentario->usuarioId);?>">
+					<img class="my-foto-mini img-circle" src="<?php echo muestra_foto($comentario->usuarioId);?>">
 				</div>
 				<div class="span10">
 					<h4><?php echo mostrar_nombre($comentario->usuarioId);?></h4>
