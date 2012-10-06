@@ -1,8 +1,11 @@
 */config/development
+*/assets/js/app.js
 */logs/log-*.php
 */logs/!index.html
 */cache/*
 */cache/!index.html
 */config/database.php
 */assets/uploads/*
+*/assets/uploads/fotos/*
+*/assets/uploads/files/*
 .DS_Store
