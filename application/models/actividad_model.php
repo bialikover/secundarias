@@ -186,6 +186,8 @@ class Actividad_model extends CI_Model{
               ON alumno_grupo.grupoId = grupo.grupoId
             JOIN grupo_docente_materia
               ON grupo_docente_materia.grupoId = grupo.grupoId
+            JOIN docente_materia
+              ON grupo_docente_materia.docente_materiaId = docente_materia.docente_materiaId
             JOIN actividad 
               ON actividad.grupo_docente_materiaId = grupo_docente_materia.grupo_docente_materiaId
             JOIN tipo_actividad 
