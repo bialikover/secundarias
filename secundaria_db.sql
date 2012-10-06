@@ -118,6 +118,7 @@ CREATE TABLE IF NOT EXISTS `datos_personal` (
   `aMaterno` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `genero` enum('M','F') COLLATE utf8_bin DEFAULT NULL,
   `fechaNac` date DEFAULT NULL,
+  `rutaFoto` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`usuarioId`),
   KEY `usuarioId` (`usuarioId`),
   CONSTRAINT `datos_personal_ibfk_1` FOREIGN KEY (`usuarioId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE

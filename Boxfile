@@ -7,6 +7,7 @@ web1:
       - pdo_mysql
    shared_writable_dirs:
       - assets/uploads/files/
+      - assets/uploads/fotos/
    db1: #component type & number 
       name: secundaria
       type: mysql

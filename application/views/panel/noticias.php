@@ -46,12 +46,14 @@
                         <div class="my-comentary-header">
                             <?php echo ucfirst($actividad->tipoActividad);?> 
                             para el grupo: 
-                            <?php echo $actividad->claveGrupo;?> 
+                            <?php echo $actividad->claveGrupo;?>
+                            de la materia:
+                            <?php echo $actividad->nombreMateria;?>
                         </div>
                         <div class="my-comentary">
                             <div class="row-fluid">
                                 <div class="span2 my-center">
-                                    <img class="my-foto-mini" src="<?php echo base_url(); ?>/assets/img/user1.png">
+                                    <img class="my-foto-mini img-circle" src="<?php echo muestra_foto($actividad->docenteId);?>">
                                 </div>
                                 <div class="span10">
                                     <h4><?php echo anchor("actividad/detalle/".$actividad->actividadId , strtoupper($actividad->nombreActividad)); ?></h4>
@@ -79,7 +81,7 @@
 
                                 <div class="row-fluid">
                                     <div class="span2 my-center">
-                                        <img class="my-foto-mini" src="<?php echo base_url(); ?>/assets/img/user1.png">
+                                        <img class="my-foto-mini img-circle" src="<?php echo muestra_foto($comentario->usuarioId);?>">
                                     </div>
                                     <div class="span10">
                                         <h4><?php echo mostrar_nombre($comentario->usuarioId); ?></h4>
@@ -95,7 +97,7 @@
                         <div class="my-comentary">
                             <div class="row-fluid">
                                 <div class="span2 my-center">
-                                    <img class="my-foto-mini" src="<?php echo base_url();?>/assets/img/user1.png">
+                                    <img class="my-foto-mini img-circle" src="<?php echo muestra_foto($this->session->userdata("usuarioId"));?>">
                                 </div>
                                 <div class="span10">
                                     <input type="hidden" name="actividadId" value="<?php echo $actividad->actividadId;?>">

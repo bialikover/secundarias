@@ -19,14 +19,14 @@
                         <div class="my-comentary">
                             <div class="row-fluid">
                                 <div class="span2 my-center">
-                                    <img class="my-foto-mini" src="<?php echo base_url(); ?>/assets/img/user1.png">
+                                    <img class="my-foto-mini img-circle" src="<?php echo muestra_foto($actividad->docenteId);?>">
                                 </div>
                                 <div class="span10">
                                     <h4><?php  echo muestra_nombre_docente($actividad->actividadId);?></h4>
                                     <p><?php echo $actividad->descActividad; ?></p>
 
                                     <div class="date-footer">
-                                        <span><?php $actividad->fecha; ?></span>
+                                        <span><?php echo $actividad->fecha; ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
 
                                 <div class="row-fluid">
                                     <div class="span2 my-center">
-                                        <img class="my-foto-mini" src="<?php echo base_url(); ?>/assets/img/user1.png">
+                                        <img class="my-foto-mini img-circle" src="<?php echo muestra_foto($comentario->usuarioId);?>">
                                     </div>
                                     <div class="span10">
                                         <h4><?php echo mostrar_nombre($comentario->usuarioId); ?></h4>
@@ -62,7 +62,7 @@
                         <div class="my-comentary">
                             <div class="row-fluid">
                                 <div class="span2 my-center">
-                                    <img class="my-foto-mini" src="<?php echo base_url();?>/assets/img/user1.png">
+                                    <img class="my-foto-mini img-circle" src="<?php echo muestra_foto($this->session->userdata("usuarioId"));?>">
                                 </div>
                                 <div class="span10">
                                     <input type="hidden" name="actividadId" value="<?php echo $actividad->actividadId;?>">
