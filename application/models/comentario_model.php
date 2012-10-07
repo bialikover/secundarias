@@ -9,7 +9,7 @@ class Comentario_model extends CI_Model{
 
     public function guardar()
     {
-      $data['comentario'] = $this->input->post('comentario');
+      $data['comentario'] = htmlentities($this->input->post('comentario', TRUE));
       $data['usuarioId'] = $this->session->userdata('usuarioId');      
       $data['actividadId'] = $this->input->post('actividadId');
       $data['fecha'] = date("Y-m-d H:i:s");      
