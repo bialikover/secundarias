@@ -10,7 +10,7 @@
       }
       
       public function index() {
-         if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 3 ) {
+         if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') > 4 || $this->session->userdata('tipoUsuarioId') < 3 ) {
             redirect('login');   
          } else {
             $this->load->view('includes/header-docente');
@@ -28,7 +28,7 @@
       }
 
       public function guardaractividad() {
-         if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 3 ) {
+         if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') != 3  ) {
             redirect('login');
       } else { 
             $crud = new grocery_CRUD();
