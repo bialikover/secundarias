@@ -10,7 +10,7 @@ class Panel extends CI_Controller {
     }
 
     public function index() {
-
+        
         $this->load->database("secundaria");
         $usuarioId = $this->session->userdata('usuarioId');
         $tipoUsuarioId = $this->session->userdata("tipoUsuarioId");
@@ -18,6 +18,7 @@ class Panel extends CI_Controller {
         
         $this->load->model('actividad_model');
         $this->load->model('materia_model');
+        $this->load->model('comentario_model');
         
 
         if (!$this->session->userdata('validated')) {
@@ -25,22 +26,29 @@ class Panel extends CI_Controller {
 
         } else {
             if ($tipoUsuarioId === '1') {
-                redirect("alta_usuario");
+                redirect("administracion/alta_usuarios");
             } else if ($tipoUsuarioId === '2') {
+                $this->load->model("escuela_model");
+                $this->load->model("actividad_model");
+                $data['escuela'] = $this->escuela_model->mostrar($usuarioId);
+                $data['noticias'] = $this->actividad_model->actividades_noticias_escuela();
                 $this->load->view('includes/header-escuela');
-                $this->load->view('escuela/perfil');
+                $this->load->view('escuela/mostrar', $data);
                 $this->load->view('includes/footer');
             } else if ($tipoUsuarioId === '3') {
                 $data['materias'] = $this->materia_model->materias_docente($usuarioId);
-                $data['contenidos'] = $this->actividad_model->actividades_docente($usuarioId);
+                $actividades = $this->actividad_model->actividades_docente($usuarioId);
+                $data['actividades'] = $this->comentario_model->ultimos($actividades);
+                
                 $this->load->view('includes/header-docente');
-                $this->load->view('pruebas/noticias', $data);
+                $this->load->view('panel/noticias', $data);
                 $this->load->view('includes/footer');
             } else if ($tipoUsuarioId === '4') {
                 $data['materias'] = $this->materia_model->materias_alumno($usuarioId);
-                $data['contenidos'] = $this->actividad_model->actividades_alumno($usuarioId);
+                $actividades = $this->actividad_model->actividades_alumno($usuarioId);
+                $data['actividades'] = $this->comentario_model->ultimos($actividades);
                 $this->load->view('includes/header-alumno');
-                $this->load->view('pruebas/noticias', $data);
+                $this->load->view('panel/noticias', $data);
                 $this->load->view('includes/footer');
             } else {
                 $this->load->view('includes/header-padre');
@@ -48,40 +56,41 @@ class Panel extends CI_Controller {
                 $this->load->view('includes/footer');
             }
         }
+    }
+    public function noticias_materia()
+    {
+        $tipoUsuarioId = $this->session->userdata("tipoUsuarioId");
+        if(($tipoUsuarioId == 3 || $tipoUsuarioId == 4 )&& $this->session->userdata("validated")){
+            $grupo_docente_materiaId = $this->uri->segment(3);        
+            $usuarioId = $this->session->userdata('usuarioId');         
+            $this->load->model('materia_model');
+            $this->load->model('actividad_model');
+            $this->load->model('comentario_model');            
+            
+            $es_mi_grupo = $this->actividad_model->es_mi_grupo($usuarioId, $tipoUsuarioId, $grupo_docente_materiaId);
+            $data['materia'] = $this->materia_model->mostrar_materia_y_grupo($grupo_docente_materiaId);
+            if($es_mi_grupo && $data['materia'] != null ){
+                $actividades = $this->actividad_model->mostrar_actividades_por_grupo_docente_materia($grupo_docente_materiaId, $usuarioId);            
+                $data['actividades'] = $this->comentario_model->ultimos($actividades);
+                
+                if($tipoUsuarioId == 3){
+                    $this->load->view('includes/header-docente');
+                } else{
+                    $this->load->view('includes/header-alumno');
+                }
+                $this->load->view('panel/noticias_materia',$data); 
+                $this->load->view('includes/footer');
+            }
+            else{
+                redirect("login");
+            }
+        }
 
 
-
-
-        /*
-          $usuarioId = $this->session->userdata("usuarioId");
-          $id_docentes = $this->db->query("select id_docentes from docentes where id_docentes =". $perfil_id);
-          $id_docentes = $id_docentes->row()->id_docentes;
-          $materias = $this->db->query(
-          "select nombre,id_materia from `materias` where `id_materia` IN (
-          select `id_materia` from `docente_materias` where `id_docente` =". $id_docentes. "
-          );"
-          );
-
->>>>>>> 86254a56f5eb4930163cd91a1b77d9d3cf1945cb
-          $materia = $materias->result();
-          $perfil_id = $this->session->userdata("perfil_id");
-          $id_docentes = $this->db->query("select id_docentes from docentes where id_docentes =". $perfil_id);
-          $id_docentes = $id_docentes->row()->id_docentes;
-
-          $materias = $this->db->query(
-          "select nombre,id_materia from `materias` where `id_materia` IN (
-          select `id_materia` from `docente_materias` where `id_docente` =". $id_docentes. "
-          );"
-          );
-
-          $materia = $materias->result();
-
-
-          //$consulta =
-          $this->load->database("secundaria");
-          $usuarioId = $this->session->userdata('usuarioId');
-          $tipoUsuarioId = $this->session->userdata("tipoUsuarioId");
-          $perfil_id = $this->session->userdata("usuario"); */
+        else{
+            redirect('login');
+        }
+        
     }
 
 }

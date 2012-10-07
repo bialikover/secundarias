@@ -12,13 +12,13 @@ switch (ENVIRONMENT) {
         $active_group = 'development';
     break;
 }
-$active_group = 'development';
+//$active_group = 'development';
 $active_record = TRUE;
 
 
 $db['production']['hostname'] = 'tunnel.pagodabox.com';
-$db['production']['username'] = 'blair';
-$db['production']['password'] = 'yGTheIwC';
+$db['production']['username'] = 'ricarda';
+$db['production']['password'] = 'BdSA3876';
 $db['production']['database'] = 'secundaria';
 $db['production']['dbdriver'] = 'mysql';
 $db['production']['port']     = '3306';

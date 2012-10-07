@@ -39,6 +39,7 @@
 									</li>
 								</ul>
 
+
 								<ul class="nav pull-right">
 
 									<li><a class="my-a"  href="<?php echo base_url("index.php/administracion/alta_usuarios/index")?>">  
@@ -82,6 +83,9 @@
 										<div id="tab8_t" class="my-tex-nav">Salir</div>
 										</a>
 									</li>
+									<li>						  					
+						  					<div id="tab9_t"><span><?php echo mostrar_nombre($this->session->userdata('usuarioId'));?></span></div>						  					
+						  			</li>
 								</ul>
 							</div>
 						</div>

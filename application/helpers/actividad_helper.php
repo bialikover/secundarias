@@ -16,5 +16,12 @@
         $u = $usuario->nombre. " " .$usuario->aPaterno. " ".$usuario->aMaterno;
         return $u;
 	}
+	function es_mi_actividad($usuarioId, $tipoUsuarioId, $actividadId){
+		$ci=& get_instance();
+        $ci->load->database(); 
+		$ci->load->model('actividad_model');
+		return $ci->actividad_model->es_mi_actividad($usuarioId, $tipoUsuarioId, $actividadId);
+	
+	}
 
 ?>

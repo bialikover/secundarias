@@ -9,33 +9,25 @@ class Comentario_model extends CI_Model{
 
     public function guardar()
     {
-
-      $actividadId = $this->input->post('actividadId');
-      $this->db->select('grupo_docente_materia_actividadId');
-      $this->db->from('grupo_docente_materia_actividad');
-      $this->db->where('actividadId', $actividadId);
-      $query = $this->db->get();
-      $data['comentario'] = $this->input->post('comentario');
+      $data['comentario'] = htmlentities($this->input->post('comentario', TRUE));
       $data['usuarioId'] = $this->session->userdata('usuarioId');      
-      $data['grupo_docente_materia_actividadId'] = $query->row()->grupo_docente_materia_actividadId;
-      $data['fecha'] = date("Y-m-d H:i:s");
-      $estatus = $this->db->insert('comentario', $data);
-      $data2['comentario'] = $data['comentario'];
-      $data2['fecha'] = $data['fecha'];
-      $usuario = $this->db->get_where('datos_personal', array('usuarioId'=>$data['usuarioId']))->row();
-      $data2['usuario'] = $usuario->nombre. " " .$usuario->aPaterno. " ".$usuario->aMaterno;
-      $html = $this->load->view("contenido/comentario", $data2, true);
-      return $html;
-
+      $data['actividadId'] = $this->input->post('actividadId');
+      $data['fecha'] = date("Y-m-d H:i:s");      
+      $result['status'] = $this->db->insert('comentario', $data);
+      $result['data'] = $data;
+      return $result;
    }
 
-   public function mostrar($id){
-      $this->db->select('grupo_docente_materia_actividadId');
-      $this->db->from('grupo_docente_materia_actividad');
-      $this->db->where('actividadId', $id);
-      $gdma = $this->db->get()->row();
-      $registro = $this->db->query("SELECT * FROM comentario WHERE grupo_docente_materia_actividadId = ".$gdma->grupo_docente_materia_actividadId);
-      return $registro;
+   public function mostrar($actividadId){
+
+      $sql = "SELECT * FROM comentario WHERE actividadId = ?";
+      $comentarios = $this->db->query($sql, array($actividadId));
+      return $comentarios->result();
+   }
+  public function mostrar_ultimos($actividadId, $limit = 2){
+      $sql = "SELECT * FROM comentario WHERE actividadId = ? ORDER BY fecha DESC LIMIT ? ";
+      $comentarios = $this->db->query($sql, array($actividadId, $limit));
+      return array_reverse($comentarios->result());
    }
 
    public function eliminar($id){    
@@ -49,6 +41,16 @@ class Comentario_model extends CI_Model{
     } else{
       return false;
     }
+
+   }
+
+   public function ultimos($actividades){
+    $actividades_y_coments = array();
+    foreach($actividades as $actividad){
+       $actividad->comentarios = $this->mostrar_ultimos($actividad->actividadId);
+       array_push($actividades_y_coments,$actividad );
+    }
+    return $actividades_y_coments;
 
    }
 

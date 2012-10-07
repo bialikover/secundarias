@@ -24,7 +24,8 @@ class Datos_personal extends CI_Controller
 
 
             $crud->columns('nombre','aPaterno','aMaterno');
-            $crud->fields('nombre','aPaterno','aMaterno','genero','fechaNac');         
+            $crud->fields('nombre','aPaterno','aMaterno','genero','fechaNac', 'rutaFoto');
+            $crud->set_field_upload('rutaFoto','assets/uploads/fotos');
 
             $crud->display_as('aPaterno','Apellido Paterno');
             $crud->display_as('aMaterno','Apellido Materno');
@@ -36,6 +37,7 @@ class Datos_personal extends CI_Controller
             $crud->unset_export();
             $crud->unset_print();
             $crud->unset_back_to_list();
+
 
             $crud->set_rules('nombre','Nombre','max_length[100]');
             $crud->set_rules('aPaterno','Apellido Paterno','max_length[100]');

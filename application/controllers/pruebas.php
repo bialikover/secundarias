@@ -23,11 +23,11 @@ class Pruebas extends CI_Controller
 	{
 		$tipoUsuarioId = $this->session->userdata("tipoUsuarioId");
 	    if($tipoUsuarioId == 3 || $tipoUsuarioId == 4){
-			$materiaId = $this->uri->segment(3);		
+			$grupo_docente_materiaId = $this->uri->segment(3);		
 			$usuarioId = $this->session->userdata('usuarioId');			
 			$this->load->model('materia_model');
 			$this->load->model('actividad_model');
-			$data['materia'] = $this->materia_model->mostrar($materiaId);
+			$data['materia'] = $this->materia_model->mostrar_materia_y_grupo($grupo_docente_materiaId);
 			//$data['materia']['docente'] = $this->materia_model->mostrar_docente($materiaId);        	
         	$data['actividades'] = $this->actividad_model->mostrar_por_materia($materiaId, $usuarioId);
         	$this->load->view('includes/header-docente');

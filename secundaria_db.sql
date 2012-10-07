@@ -21,41 +21,6 @@ SET time_zone = "+00:00";
 --
 
 --
--- Table structure for table `tipo_actividad`
---
-
-DROP TABLE IF EXISTS `tipo_actividad`;
-CREATE TABLE IF NOT EXISTS `tipo_actividad` (
-  `tipoActividadId` int(2) NOT NULL AUTO_INCREMENT,
-  `tipoActividad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`tipoActividadId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
-
-
--- --------------------------------------------------------
-
-
---
--- Table structure for table `actividad`
---
-
-DROP TABLE IF EXISTS `actividad`;
-CREATE TABLE IF NOT EXISTS `actividad` (
-  `actividadId` bigint(20) NOT NULL AUTO_INCREMENT,
-  `tipoActividadId` int(2) DEFAULT NULL,
-  `nombreActividad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `descActividad` text COLLATE utf8_bin,
-  `rutaActividad` text COLLATE utf8_bin,
-  `fecha` datetime DEFAULT NULL,
-  PRIMARY KEY (`actividadId`),
-  KEY `tipoActividadId` (`tipoActividadId`),
-  CONSTRAINT `actividad_ibfk_1` FOREIGN KEY (`tipoActividadId`) REFERENCES `tipo_actividad` (`tipoActividadId`)
-
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tipo_usuario`
 --
 
@@ -93,7 +58,6 @@ CREATE TABLE IF NOT EXISTS `usuario` (
    INSERT INTO `usuario` VALUES (1,'sa','admin',1);
    UNLOCK TABLES;
    */
-
 
 -- --------------------------------------------------------
 
@@ -154,6 +118,7 @@ CREATE TABLE IF NOT EXISTS `datos_personal` (
   `aMaterno` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `genero` enum('M','F') COLLATE utf8_bin DEFAULT NULL,
   `fechaNac` date DEFAULT NULL,
+  `rutaFoto` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`usuarioId`),
   KEY `usuarioId` (`usuarioId`),
   CONSTRAINT `datos_personal_ibfk_1` FOREIGN KEY (`usuarioId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -199,7 +164,6 @@ CREATE TABLE IF NOT EXISTS `escuela` (
   `escuelaId` bigint(20) NOT NULL,
   `escuela` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `claveEscuela` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `turno` enum('Matutino','Vespertino') COLLATE utf8_bin DEFAULT NULL,
   `descEscuela` text COLLATE utf8_bin,
   `adicional` text COLLATE utf8_bin,
   PRIMARY KEY (`escuelaId`),
@@ -285,12 +249,12 @@ CREATE TABLE IF NOT EXISTS `grupo` (
   `claveGrupo` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `cicloEscolar` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `grado` enum('1','2','3') COLLATE utf8_bin DEFAULT NULL,
+  `turno` enum('Matutino','Vespertino') COLLATE utf8_bin DEFAULT NULL,
   `escuelaId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`grupoId`),
   KEY `escuelaId` (`escuelaId`),
   CONSTRAINT `grupo_ibfk_1` FOREIGN KEY (`escuelaId`) REFERENCES `escuela` (`escuelaId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
-
 
 --
 -- Table structure for table `materia`
@@ -345,7 +309,6 @@ CREATE TABLE IF NOT EXISTS `municipio` (
 
 -- --------------------------------------------------------
 
-
 --
 -- Triggers `usuario`
 --
@@ -378,7 +341,7 @@ CREATE TRIGGER `insertar_usuario` AFTER INSERT ON `usuario`
             INSERT INTO datos_contacto VALUES (NEW.usuarioId, '', '', '');
             INSERT INTO domicilio VALUES (NEW.usuarioId,'', '', '', '', '');
             IF tipoUsuarioId = 2 THEN
-                INSERT INTO escuela VALUES (NEW.usuarioId, '', '', '', '', '');
+                INSERT INTO escuela VALUES (NEW.usuarioId, '', '', '', '');
             ELSEIF tipoUsuarioId = 3 THEN
                 INSERT INTO docente VALUES (NEW.usuarioId, NEW.usuario);
             ELSEIF tipoUsuarioId = 4 THEN
@@ -407,7 +370,7 @@ CREATE TRIGGER `actualizar_datos_personal` AFTER UPDATE ON `datos_personal`
             ELSEIF tipoUsuarioId = 4 THEN
                 UPDATE alumno SET nombre=(SELECT CONCAT(NEW.nombre, ' ', NEW.aPaterno, ' ', NEW.aMaterno)) WHERE alumnoId=OLD.usuarioId;
             ELSEIF tipoUsuarioId = 5 THEN
-                UPDATE padre SET nombre=(SELECT CONCAT(NEW.nombre, ' ', NEW.aPaterno, ' ', NEW.aMaterno)) WHERE padreId=OLD.usuarioId;
+                UPDATE padre SET nombrePadre=(SELECT CONCAT(NEW.nombre, ' ', NEW.aPaterno, ' ', NEW.aMaterno)) WHERE padreId=OLD.usuarioId;
             END IF;
         END
 //
@@ -425,23 +388,6 @@ CREATE TABLE IF NOT EXISTS `docente` (
   KEY `docenteId` (`docenteId`),
   CONSTRAINT `docente_ibfk_1` FOREIGN KEY (`docenteId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;  
-
-/**************************************************************************************************
-//Trigger AFTER INSERT on docente_materia
-//**************************************************************************************************/
-/*
-DELIMITER ;
-DROP TRIGGER IF EXISTS `actualizar_docente`;
-DELIMITER //
-CREATE TRIGGER `actualizar_docente` AFTER UPDATE ON `docente`
- FOR EACH ROW BEGIN
-            DECLARE nombreDocente varchar(100);
-            SELECT docente.nombre INTO nombreDocente FROM docente WHERE docenteId=NEW.docenteId;
-            UPDATE docente_materia SET nombre=nombreDocente WHERE docenteId=NEW.docenteId;
-        END
-//
-DELIMITER ;
-*/
 
 --
 -- Table structure for table `alumno`
@@ -464,7 +410,7 @@ DROP TABLE IF EXISTS `padre`;
 CREATE TABLE IF NOT EXISTS `padre` (
   `padreId` bigint(20) NOT NULL,
   `alumnoId` bigint(20),
-  `nombre` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `nombrePadre` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`padreId`),
   KEY `padreId` (`padreId`),
   CONSTRAINT `padre_ibfk_1` FOREIGN KEY (`padreId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -478,7 +424,7 @@ CREATE TABLE IF NOT EXISTS `padre` (
 DROP TABLE IF EXISTS `docente_materia`;
 CREATE TABLE IF NOT EXISTS `docente_materia` (
   `docente_materiaId` bigint(20) NOT NULL AUTO_INCREMENT,
-  `docenteId` bigint(20) NOT NULL,	
+  `docenteId` bigint(20) NOT NULL,  
   `materiaId` bigint(20) NOT NULL,
   `nombre` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `nombreMateria` varchar(100) COLLATE utf8_bin DEFAULT NULL,
@@ -489,35 +435,31 @@ CREATE TABLE IF NOT EXISTS `docente_materia` (
   CONSTRAINT `docente_materia_ibfk_2` FOREIGN KEY (`materiaId`) REFERENCES `materia` (`materiaId`) ON DELETE CASCADE ON UPDATE CASCADE 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
 
-
-/**************************************************************************************************
-//Trigger AFTER INSERT on docente_materia
-//**************************************************************************************************/
-/*
-DELIMITER ;
-DROP TRIGGER IF EXISTS `insertar_docente_materia`;
-DELIMITER //
-CREATE TRIGGER `insertar_docente_materia` AFTER INSERT ON `docente_materia`
- FOR EACH ROW BEGIN
-            DECLARE nombreMateria varchar(100);
-            DECLARE nombreDocente varchar(100);
-            SELECT materia.materia INTO nombreMateria FROM materia WHERE materiaId=NEW.materiaId;
-            SELECT docente.nombre INTO nombreDocente FROM docente WHERE docenteId=NEW.docenteId;
-            UPDATE docente_materia SET nombre=(SELECT CONCAT(nombreMateria, '-', nombreDocente)) WHERE docenteId=NEW.docenteId AND materiaId=NEW.materiaId;
-        END
-//
-DELIMITER ;
-*/
 --
 -- Table structure for table `alumno_grupo`
 --
 
 DROP TABLE IF EXISTS `alumno_grupo`;
 CREATE TABLE IF NOT EXISTS `alumno_grupo` (
-  `alumnoId` bigint(20) NOT NULL,	
-  `grupoId` bigint(20) NOT NULL ,	
+  `alumnoId` bigint(20) NOT NULL, 
+  `grupoId` bigint(20) NOT NULL , 
+  `lista` INT DEFAULT  NULL ,
   CONSTRAINT `alumno_grupo_ibfk_1` FOREIGN KEY (`alumnoId`) REFERENCES `alumno` (`alumnoId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `alumno_grupo_ibfk_2` FOREIGN KEY (`grupoId`) REFERENCES `grupo` (`grupoId`) ON DELETE CASCADE ON UPDATE CASCADE
+
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
+
+--
+-- Table structure for table `padre_alumno`
+--
+
+DROP TABLE IF EXISTS `padre_alumno`;
+CREATE TABLE IF NOT EXISTS `padre_alumno` (
+  `padreId` bigint(20) NOT NULL, 
+  `alumnoId` bigint(20) NOT NULL , 
+  `lista` INT DEFAULT  NULL ,
+  CONSTRAINT `padre_alumno_ibfk_1` FOREIGN KEY (`padreId`) REFERENCES `padre` (`padreId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `padre_alumno_ibfk_2` FOREIGN KEY (`alumnoId`) REFERENCES `alumno` (`alumnoId`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
 
@@ -528,10 +470,10 @@ CREATE TABLE IF NOT EXISTS `alumno_grupo` (
 DROP TABLE IF EXISTS `grupo_docente_materia`;
 CREATE TABLE IF NOT EXISTS `grupo_docente_materia` (
   `grupo_docente_materiaId` bigint(20) NOT NULL AUTO_INCREMENT,
-  `grupoId` bigint(20) NOT NULL,	
+  `grupoId` bigint(20) NOT NULL,  
   `docente_materiaId` bigint(20) NOT NULL,
   `claveGrupo` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `nombreMateria` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `nombreMateria1` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`grupo_docente_materiaId`),
   KEY `grupoId` (`grupoId`),
   KEY `docente_materiaId` (`docente_materiaId`),
@@ -541,20 +483,43 @@ CREATE TABLE IF NOT EXISTS `grupo_docente_materia` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
 
 --
--- Table structure for table `grupo_docente_materia_actividad`
+-- Table structure for table `tipo_actividad`
 --
 
-DROP TABLE IF EXISTS `grupo_docente_materia_actividad`;
-CREATE TABLE IF NOT EXISTS `grupo_docente_materia_actividad` (
-  `grupo_docente_materia_actividadId` bigint(20) NOT NULL AUTO_INCREMENT,
-  `grupo_docente_materiaId` bigint(20) NOT NULL,	
-  `actividadId` bigint(20) NOT NULL,
-  PRIMARY KEY (`grupo_docente_materia_actividadId`),
-  KEY `grupo_docente_materiaId` (`grupo_docente_materiaId`),
-  KEY `actividadId` (`actividadId`),
-  CONSTRAINT `grupo_docente_materia_actividad_ibfk_1` FOREIGN KEY (`grupo_docente_materiaId`) REFERENCES `grupo_docente_materia` (`grupo_docente_materiaId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `grupo_docente_materia_actividad_ibfk_2` FOREIGN KEY (`actividadId`) REFERENCES `actividad` (`actividadId`) ON DELETE CASCADE ON UPDATE CASCADE
+DROP TABLE IF EXISTS `tipo_actividad`;
+CREATE TABLE IF NOT EXISTS `tipo_actividad` (
+  `tipoActividadId` int(2) NOT NULL AUTO_INCREMENT,
+  `tipoActividad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`tipoActividadId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
+
+LOCK TABLES `tipo_actividad` WRITE;
+   INSERT INTO `tipo_actividad` VALUES (1,'evento'),(2,'publicacion'),(3,'noticia');
+UNLOCK TABLES;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `actividad`
+--
+
+DROP TABLE IF EXISTS `actividad`;
+CREATE TABLE IF NOT EXISTS `actividad` (
+  `actividadId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `tipoActividadId` int(2) DEFAULT NULL,
+  `nombreActividad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `descActividad` text COLLATE utf8_bin,
+  `rutaActividad` text COLLATE utf8_bin,
+  `fecha` datetime DEFAULT NULL,
+  `grupo_docente_materiaId` bigint(20) NULL,
+  PRIMARY KEY (`actividadId`),
+  KEY `tipoActividadId` (`tipoActividadId`),
+  KEY `grupo_docente_materiaId` (`grupo_docente_materiaId`),
+  CONSTRAINT `actividad_ibfk_1` FOREIGN KEY (`tipoActividadId`) REFERENCES `tipo_actividad` (`tipoActividadId`)ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `actividad_ibfk_2` FOREIGN KEY (`grupo_docente_materiaId`) REFERENCES `grupo_docente_materia` (`grupo_docente_materiaId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `comentario`
@@ -562,14 +527,14 @@ CREATE TABLE IF NOT EXISTS `grupo_docente_materia_actividad` (
 
 DROP TABLE IF EXISTS `comentario`;
 CREATE TABLE IF NOT EXISTS `comentario` (
-  `comentarioId` bigint(20) NOT NULL,
+  `comentarioId` bigint(20) NOT NULL AUTO_INCREMENT,
   `comentario` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `usuarioId` bigint(20) NOT NULL,
   `fecha` datetime DEFAULT NULL,
-  `grupo_docente_materia_actividadId` bigint(20) NOT NULL,
+  `actividadId` bigint(20) NOT NULL,
   PRIMARY KEY (`comentarioId`),
-  KEY `grupo_docente_materia_actividadId` (`grupo_docente_materia_actividadId`),
-  CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`grupo_docente_materia_actividadId`) REFERENCES `grupo_docente_materia_actividad` (`grupo_docente_materia_actividadId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `actividadId` (`actividadId`),
+  CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`actividadId`) REFERENCES `actividad` (`actividadId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin ;  
 
  
@@ -631,10 +596,8 @@ CREATE PROCEDURE `procedure_grupo_docente_materia`()
                 SELECT grupo.claveGrupo INTO claveGrupo FROM grupo WHERE grupoId=grupoCur;
 
                 UPDATE grupo_docente_materia SET claveGrupo=claveGrupo WHERE grupoId=grupoCur;
-                UPDATE grupo_docente_materia SET nombreMateria=nombreMate WHERE docente_materiaId=docente_materiaCur;
+                UPDATE grupo_docente_materia SET nombreMateria1=nombreMate WHERE docente_materiaId=docente_materiaCur;
 
-                #UPDATE docente_materia SET nombre='el factor miedo' 
-                #WHERE docenteId=docenteCur AND materiaId=materiaCur;
             UNTIL done end REPEAT;
         CLOSE nombres;
 
