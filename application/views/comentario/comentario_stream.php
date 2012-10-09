@@ -10,7 +10,7 @@
 
                                         <div class="date-footer">
                                             <span><?php echo $fecha; ?></span>
-                                            <button class="close"><i class="icon-trash"></i></button>
+                                            <button class="close" value = "<?php echo $comentarioId;?>"><i class="icon-trash"></i></button>
                                         </div>
                                     </div>
                                 </div></div>

@@ -256,7 +256,7 @@ class Actividad_model extends CI_Model{
                     actividad.fecha BETWEEN ? AND ?
                     AND grupo_docente_materia.grupoId IN (
                        SELECT
-                          grupodId
+                          grupoId
                        FROM
                           alumno_grupo
                        WHERE

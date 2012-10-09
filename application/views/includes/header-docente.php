@@ -40,20 +40,28 @@
 
 									</ul>
 									<ul class="nav pull-right">
+										<li><a class="my-a"  href="<?php echo base_url("agenda")?>">  
+						  					<img id="tab4" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/calendar.png">
+						  					<div id="tab4_t" class="my-tex-nav">Calendario</div>
+						  					</a>
+						  				</li>										
 	
 										<li><a  href="<?php echo base_url("index.php/mensaje/index")?>"> 
 						  					<img id="tab2" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
 						  					<div id="tab2_t" class="my-tex-nav">Mensajes</div>
 						    				</a>
 										</li>
-										<li><a class="my-a"  href="<?php echo base_url("index.php/welcome/do_logout")?>">  
+						  				<li>
+						  					<a class="my-a"  href="#">						  					
+						  					<img id="tab5" class="img-circle  my-img-tab" src="<?php echo muestra_foto($this->session->userdata('usuarioId')) ?>">
+						  					<div id="tab5_t"  class="my-tex-nav"><?php echo mostrar_nombre($this->session->userdata('usuarioId'));?></div>						  					
+						  					</a>
+						  				</li>										
+										<li><a class=""  href="<?php echo base_url("index.php/welcome/do_logout")?>">  
 						  					<img id="tab3" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/salir-bco.png">
 						  					<div id="tab3_t" class="my-tex-nav">Salir</div>
 						  					</a>
-						  				</li>
-						  				<li>						  					
-						  					<div id="tab4_t"><span><?php echo mostrar_nombre($this->session->userdata('usuarioId'));?></span></div>						  					
-						  				</li>
+						  				</li>						  				
 									</ul>	
 								</div>
 							</div>
