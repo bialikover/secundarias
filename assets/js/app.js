@@ -40,7 +40,7 @@ $(document).ready(function(){
           			console.log(data);
         			$clicked.parent().parent().parent().before(data);
         			$clicked.prev().val("");
-          				
+          			$('.close').attr('onclick','close_click(this)');	
           		}
 				
 		);

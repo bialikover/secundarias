@@ -45,6 +45,7 @@ $route['default_controller'] = "welcome";
 
 $route['404_override'] = '';
 $route['escuelas'] = "escuela/mostrar_todas";
+$route['escuelas_json'] = "escuela/mostrar_todas_json";
 
 
 /* End of file routes.php */

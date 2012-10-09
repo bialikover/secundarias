@@ -127,6 +127,16 @@ class Escuela extends CI_Controller
 
      }
 
+     public function mostrar_todas_json(){
+     	$this->load->model("escuela_model");
+     	$escuelas = $this->escuela_model->mostrar_todas();
+     	foreach ($escuelas as $escuela){
+     		$escuela->descEscuela = htmlentities($escuela->descEscuela);
+     	}
+     	echo json_encode($escuelas);
+
+     }
+
 }
 
 
