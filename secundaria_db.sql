@@ -166,6 +166,7 @@ CREATE TABLE IF NOT EXISTS `escuela` (
   `claveEscuela` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `descEscuela` text COLLATE utf8_bin,
   `adicional` text COLLATE utf8_bin,
+  `rutaFotoEscuela` text COLLATE utf8_bin,
   PRIMARY KEY (`escuelaId`),
   KEY `escuelaId` (`escuelaId`),
   CONSTRAINT `escuela_ibfk_1` FOREIGN KEY (`escuelaId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -201,8 +202,9 @@ CREATE TABLE IF NOT EXISTS `domicilio_escuela` (
   `sector` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `municipioId` bigint(20) DEFAULT NULL,
   `localidad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `latitud` float DEFAULT NULL,
-  `longitud` float DEFAULT NULL,
+  `latitud` double DEFAULT NULL,
+  `longitud` double DEFAULT NULL,
+  `direccion` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`escuelaId`),
   KEY `escuelaId` (`escuelaId`),
   CONSTRAINT `domicilio_escuela_ibfk_1` FOREIGN KEY (`escuelaId`) REFERENCES `escuela` (`escuelaId`) ON DELETE CASCADE ON UPDATE CASCADE

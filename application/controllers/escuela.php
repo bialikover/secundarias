@@ -23,7 +23,8 @@ class Escuela extends CI_Controller
 	    	$crud->set_table('escuela');    	
 
 	    	$crud->columns('escuela','claveEscuela' );
-	    	$crud->fields('escuela', 'claveEscuela','descEscuela', 'adicional');
+	    	$crud->fields('escuela', 'claveEscuela','descEscuela', 'adicional', 'rutaFotoEscuela');
+	    	$crud->set_field_upload('rutaFotoEscuela','assets/uploads/fotosEscuela');
 	    	//$crud->set_relation('administradorId', 'usuario', 'usuarioId');
 	    	//$crud->display_as('administradorId','Administrador Escuela');
 
