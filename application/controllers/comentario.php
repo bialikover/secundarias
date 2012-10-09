@@ -28,6 +28,22 @@ class Comentario extends CI_Controller {
         
     }
 
+    function eliminar(){
+        $comentarioId = $this->input->post("comentarioId") ;
+        $this->load->model('comentario_model');
+        $result = $this->comentario_model->eliminar($comentarioId);
+        if($this->session->userdata("validated") && $result['status'] == true){
+            /*if($this->input->post('stream') != false){
+                echo true;
+            }*/
+            return true;
+        } else{
+
+            return false;
+        }
+
+    }
+
 }
 
 ?>

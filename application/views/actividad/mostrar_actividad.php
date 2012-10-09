@@ -78,9 +78,10 @@
 						<div class="date-footer">
 						<span><?php echo $comentario->fecha;?></span>
 
-						<?php if(es_mi_actividad($this->session->userdata('usuarioId'), $this->session->userdata('tipoUsuarioId'), $actividad->actividadId) 
+						<?php if((es_mi_actividad($this->session->userdata('usuarioId'), $this->session->userdata('tipoUsuarioId'), $actividad->actividadId) 
+								 && $this->session->userdata('tipoUsuarioId') == 3)
 									|| es_mi_comentario($this->session->userdata('usuarioId'), $comentario->comentarioId)):?>
-							<button class="close"><i class="icon-trash"></i></button>
+							<button class="close" value = "<?php echo $comentario->comentarioId;?>"><i class="icon-trash"></i></button>
 						<?php endif;?>
 					</div>
 				</div>

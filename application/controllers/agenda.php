@@ -13,7 +13,12 @@
          if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') > 4 || $this->session->userdata('tipoUsuarioId') < 3 ) {
             redirect('login');   
          } else {
-            $this->load->view('includes/header-docente');
+            if($this->session->userdata('tipoUsuarioId') == 3){
+               $this->load->view('includes/header-docente');
+            } else{
+               $this->load->view('includes/header-alumno');
+            }
+
             $this->load->view('agenda/index');
             $this->load->view('includes/footer');
 

@@ -14,6 +14,7 @@ class Comentario_model extends CI_Model{
       $data['actividadId'] = $this->input->post('actividadId');
       $data['fecha'] = date("Y-m-d H:i:s");      
       $result['status'] = $this->db->insert('comentario', $data);
+      $data['comentarioId'] = $this->db->insert_id();
       $result['data'] = $data;
       return $result;
    }
@@ -31,7 +32,7 @@ class Comentario_model extends CI_Model{
    }
 
    public function eliminar($id){    
-    $this->db->delete('comentario', array('comentarioId' => $id)); 
+    return $this->db->delete('comentario', array('comentarioId' => $id)); 
    }
 
    public function es_mi_comentario($usuarioId, $comentarioId){
