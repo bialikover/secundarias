@@ -23,7 +23,8 @@ class Escuela extends CI_Controller
 	    	$crud->set_table('escuela');    	
 
 	    	$crud->columns('escuela','claveEscuela' );
-	    	$crud->fields('escuela', 'claveEscuela','descEscuela', 'adicional');
+	    	$crud->fields('escuela', 'claveEscuela','descEscuela', 'adicional', 'rutaFotoEscuela');
+	    	$crud->set_field_upload('rutaFotoEscuela','assets/uploads/fotosEscuela');
 	    	//$crud->set_relation('administradorId', 'usuario', 'usuarioId');
 	    	//$crud->display_as('administradorId','Administrador Escuela');
 
@@ -123,6 +124,16 @@ class Escuela extends CI_Controller
           
           $this->load->view('escuela/todas', $data);
         $this->load->view('includes/footer');
+
+     }
+
+     public function mostrar_todas_json(){
+     	$this->load->model("escuela_model");
+     	$escuelas = $this->escuela_model->mostrar_todas();
+     	foreach ($escuelas as $escuela){
+     		$escuela->descEscuela = htmlentities($escuela->descEscuela);
+     	}
+     	echo json_encode($escuelas);
 
      }
 

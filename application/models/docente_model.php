@@ -8,9 +8,17 @@
     
 
     //filtrado por escuela???
-	function all()
+	function todos()
     {
-    	$query = $this->db->get("docente");
+        $sql = "SELECT * from docente
+                JOIN usuario 
+                    ON docente.docenteId = usuario.usuarioId 
+                JOIN datos_personal
+                    ON datos_personal.usuarioId = usuario.usuarioId
+                JOIN adicional
+                    ON adicional.usuarioId = usuario.usuarioId 
+                ";
+    	$query = $this->db->query($sql);
     	return $query->result();
     }
 

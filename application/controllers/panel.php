@@ -72,7 +72,12 @@ class Panel extends CI_Controller {
             if($es_mi_grupo && $data['materia'] != null ){
                 $actividades = $this->actividad_model->mostrar_actividades_por_grupo_docente_materia($grupo_docente_materiaId, $usuarioId);            
                 $data['actividades'] = $this->comentario_model->ultimos($actividades);
-                $this->load->view('includes/header-docente');
+                
+                if($tipoUsuarioId == 3){
+                    $this->load->view('includes/header-docente');
+                } else{
+                    $this->load->view('includes/header-alumno');
+                }
                 $this->load->view('panel/noticias_materia',$data); 
                 $this->load->view('includes/footer');
             }

@@ -8,7 +8,7 @@ body
 
 header
 {
-
+	margin-bottom: 20px;
 }
 
 footer
@@ -178,4 +178,22 @@ padding-top: 20px;
 {
 	min-width:690px;	
 	resize: none; 
+}
+.my-img-secu
+{
+	width: 100%;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+
+}
+.my-img-lisdocente
+{
+	width: 50%;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+.my-text-lisdocente
+{
+	width: 45%;
+	float: right;
 }

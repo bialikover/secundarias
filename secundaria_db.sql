@@ -71,7 +71,6 @@ CREATE TABLE IF NOT EXISTS `adicional` (
   `curp` varchar(18) COLLATE utf8_bin DEFAULT NULL,
   `especialidad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `matricula` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `rutaFoto` text COLLATE utf8_bin,
   PRIMARY KEY (`usuarioId`),
   KEY `usuarioId` (`usuarioId`),
   CONSTRAINT `adicional_ibfk_1` FOREIGN KEY (`usuarioId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -118,6 +117,7 @@ CREATE TABLE IF NOT EXISTS `datos_personal` (
   `aMaterno` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `genero` enum('M','F') COLLATE utf8_bin DEFAULT NULL,
   `fechaNac` date DEFAULT NULL,
+  `rutaFoto` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`usuarioId`),
   KEY `usuarioId` (`usuarioId`),
   CONSTRAINT `datos_personal_ibfk_1` FOREIGN KEY (`usuarioId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -165,6 +165,7 @@ CREATE TABLE IF NOT EXISTS `escuela` (
   `claveEscuela` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `descEscuela` text COLLATE utf8_bin,
   `adicional` text COLLATE utf8_bin,
+  `rutaFotoEscuela` text COLLATE utf8_bin,
   PRIMARY KEY (`escuelaId`),
   KEY `escuelaId` (`escuelaId`),
   CONSTRAINT `escuela_ibfk_1` FOREIGN KEY (`escuelaId`) REFERENCES `usuario` (`usuarioId`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -200,8 +201,9 @@ CREATE TABLE IF NOT EXISTS `domicilio_escuela` (
   `sector` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `municipioId` bigint(20) DEFAULT NULL,
   `localidad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `latitud` float DEFAULT NULL,
-  `longitud` float DEFAULT NULL,
+  `latitud` double DEFAULT NULL,
+  `longitud` double DEFAULT NULL,
+  `direccion` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`escuelaId`),
   KEY `escuelaId` (`escuelaId`),
   CONSTRAINT `domicilio_escuela_ibfk_1` FOREIGN KEY (`escuelaId`) REFERENCES `escuela` (`escuelaId`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -218,7 +220,7 @@ DELIMITER //
 CREATE TRIGGER `insertar_escuela` AFTER INSERT ON `escuela`
  FOR EACH ROW BEGIN
             INSERT INTO contacto_escuela VALUES (NEW.escuelaId,'','');
-            INSERT INTO domicilio_escuela VALUES (NEW.escuelaId,'','','','','','');
+            INSERT INTO domicilio_escuela VALUES (NEW.escuelaId,'','','','','','','');
         END
 //
 DELIMITER ;
@@ -335,12 +337,12 @@ CREATE TRIGGER `insertar_usuario` AFTER INSERT ON `usuario`
  FOR EACH ROW BEGIN
             DECLARE tipoUsuarioId INT(2);
             SET tipoUsuarioId = NEW.tipoUsuarioId;
-            INSERT INTO datos_personal VALUES (NEW.usuarioId, '', '', '', '', '');
-            INSERT INTO adicional VALUES ( NEW.usuarioId, '', '', '', '');
+            INSERT INTO datos_personal VALUES (NEW.usuarioId, '', '', '', '', '', '');
+            INSERT INTO adicional VALUES ( NEW.usuarioId, '', '', '');
             INSERT INTO datos_contacto VALUES (NEW.usuarioId, '', '', '');
             INSERT INTO domicilio VALUES (NEW.usuarioId,'', '', '', '', '');
             IF tipoUsuarioId = 2 THEN
-                INSERT INTO escuela VALUES (NEW.usuarioId, '', '', '', '');
+                INSERT INTO escuela VALUES (NEW.usuarioId, '', '', '', '', '');
             ELSEIF tipoUsuarioId = 3 THEN
                 INSERT INTO docente VALUES (NEW.usuarioId, NEW.usuario);
             ELSEIF tipoUsuarioId = 4 THEN

@@ -27,8 +27,12 @@ class Actividad extends CI_Controller {
             if($data['actividad'] != null){
               if($this->actividad_model->es_mi_actividad($usuarioId, $tipoUsuarioId, $data['actividad']->actividadId)){
                 $data['comentarios'] = $this->comentario_model->mostrar($data['actividad']->actividadId);
-                $this->load->view('includes/header-alumno');
-    	       //var_dump($data['actividad']);
+                if($tipoUsuarioId == 3 ){
+                  $this->load->view('includes/header-docente');  
+                } else{
+                  $this->load->view('includes/header-alumno');
+                }
+    	       
                 $this->load->view("actividad/mostrar_actividad", $data);  
                 $this->load->view('includes/footer');
               } else{
