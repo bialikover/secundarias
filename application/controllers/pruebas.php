@@ -12,6 +12,12 @@ class Pruebas extends CI_Controller
     	$this->load->view('pruebas/home');
     	$this->load->view('includes/footer');
 	}
+	public function perfilsecu()
+	{
+    	$this->load->view('includes/header0');
+    	$this->load->view('pruebas/perfilsecu');
+    	$this->load->view('includes/footer');
+	}
 	public function listasecu()
 	{
     	$this->load->view('includes/header0');
