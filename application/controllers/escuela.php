@@ -85,7 +85,7 @@ class Escuela extends CI_Controller
                 }
 
            }
-            $this->load->view('escuela/mostrar', $data);
+            $this->load->view('escuela/perfilsecu', $data);
         	$this->load->view('includes/footer');
 		} else {
 
