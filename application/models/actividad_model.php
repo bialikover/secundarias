@@ -192,7 +192,8 @@ class Actividad_model extends CI_Model{
               ON actividad.grupo_docente_materiaId = grupo_docente_materia.grupo_docente_materiaId
             JOIN tipo_actividad 
               ON tipo_actividad.tipoActividadId = actividad.tipoActividadId
-            WHERE alumnoId = ?";
+            WHERE alumnoId = ?
+            ORDER BY fecha DESC";
 
 	    $query = $this->db->query($sql, array($usuarioId));
         return $query->result ();
@@ -215,7 +216,8 @@ class Actividad_model extends CI_Model{
                 ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
               JOIN tipo_actividad 
                 ON  actividad.tipoActividadId = tipo_actividad.tipoActividadId 
-              WHERE docente_materia.docenteId = ?";
+              WHERE docente_materia.docenteId = ?
+              ORDER BY fecha DESC";
     	$query = $this->db->query($sql, array($usuarioId));
       return $query->result();
 

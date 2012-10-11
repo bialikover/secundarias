@@ -35,7 +35,7 @@
 <br>
 <h1>Lo Nuevo</h1>
 <?php if(! empty($actividades)):?>
-        <?php foreach (array_reverse($actividades) as $actividad): ?>
+        <?php foreach ($actividades as $actividad): ?>
 <div class="row-fluid">
         <div class="span6">
             <div class="row-fluid"> 
