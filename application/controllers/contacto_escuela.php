@@ -16,13 +16,14 @@ class Contacto_Escuela extends CI_Controller
 	public function index(){
 		$crud = new grocery_CRUD();
 		$crud->set_theme('datatables');
-		$crud->set_subject('contacto_escuela');
+		$crud->set_subject('datos de contacto escuela');
     	$crud->set_table('contacto_escuela');    	
 
     	$crud->columns('telEscuela','emailEscuela');
     	$crud->fields('telEscuela','emailEscuela');
     	$crud->set_relation('escuelaId', 'escuela', 'escuelaId');
-    	$crud->display_as('administradorId','Administrador Escuela');
+    	$crud->display_as('telEscuela','Teléfono de la Escuela');
+    	$crud->display_as('emailEscuela','Correo Electrónico de la Escuela');
 		$crud->unset_add();
 		$crud->unset_list();
 		$crud->unset_back_to_list();		

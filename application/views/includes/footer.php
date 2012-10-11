@@ -5,7 +5,7 @@
 	</div>
 </div>
 	<footer>
-		Copyright | . All rights reserved
+		Copyright | . All rights reserved Martín Mtz.
 	</footer>
 
 	</body>

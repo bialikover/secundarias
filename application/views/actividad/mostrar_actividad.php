@@ -19,7 +19,7 @@
 			<div class="my-public-header">
 				<div class="row-fluid"> 
 					<div id="my-menu" class="span4 ">
-						<img class="my-foto" src="<?php echo base_url();?>/assets/img/user1.png">
+						<img class="my-foto" src="<?php echo muestra_foto($actividad->docenteId);?>">
 					</div>
 
 					<div id="my-menu" class="span8">
@@ -69,7 +69,7 @@
 			<div class="my-comentary">
 			<div class="row-fluid">
 				<div class="span2 my-center">
-					<img class="my-foto-mini" src="<?php echo base_url();?>/assets/img/user1.png">
+					<img class="my-foto-mini img-circle" src="<?php echo muestra_foto($comentario->usuarioId);?>">
 				</div>
 				<div class="span10">
 					<h4><?php echo mostrar_nombre($comentario->usuarioId);?></h4>
@@ -78,9 +78,10 @@
 						<div class="date-footer">
 						<span><?php echo $comentario->fecha;?></span>
 
-						<?php if(es_mi_actividad($this->session->userdata('usuarioId'), $this->session->userdata('tipoUsuarioId'), $actividad->actividadId) 
+						<?php if((es_mi_actividad($this->session->userdata('usuarioId'), $this->session->userdata('tipoUsuarioId'), $actividad->actividadId) 
+								 && $this->session->userdata('tipoUsuarioId') == 3)
 									|| es_mi_comentario($this->session->userdata('usuarioId'), $comentario->comentarioId)):?>
-							<button class="close"><i class="icon-trash"></i></button>
+							<button class="close" value = "<?php echo $comentario->comentarioId;?>"><i class="icon-trash"></i></button>
 						<?php endif;?>
 					</div>
 				</div>
@@ -92,7 +93,7 @@
 				<div class="my-comentary">
 					<div class="row-fluid">
 						<div class="span2 my-center">
-							<img class="my-foto-mini" src="<?php echo base_url();?>/assets/img/user1.png">
+							<img class="my-foto-mini img-circle" src="<?php echo muestra_foto($this->session->userdata("usuarioId"));?>">
 						</div>
 						<div class="span10">
 							

@@ -25,21 +25,16 @@
 						<div class="row-fluid"> 
 							<div id="my-menu" class="span12">
 								<ul class="nav">
-									<li><a class="" href="<?php echo base_url("index.php/welcome")?>">
+									<li><a class="" href="<?php echo base_url("/welcome")?>">
 										<img id="tab1" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/home-bco.png">
 										<div id="tab1_t"  class="my-tex-nav">Inicio</div>
 										</a>
 									</li>
 								</ul>
 								<ul class="nav pull-right">
-									<li><a class="my-a"  href="<?php echo base_url("index.php/alta_usuario/index")?>">  
-									  	<img id="tab2" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/docente-bco.png">
-									  	<div id="tab2_t" class="my-tex-nav">Usuarios</div>
-									  	</a>
-									</li>
-									<li><a class="my-a"  href="<?php echo base_url("index.php/welcome/do_logout")?>">  
-						  				<img id="tab3" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/salir-bco.png">
-						  				<div id="tab3_t" class="my-tex-nav">Salir</div>
+									<li><a class="my-a"  href="<?php echo base_url("/welcome/do_logout")?>">  
+						  				<img id="tab2" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/salir-bco.png">
+						  				<div id="tab2_t" class="my-tex-nav">Salir</div>
 						  				</a>
 						  			</li>
 

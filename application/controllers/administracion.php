@@ -19,6 +19,8 @@ class Administracion extends CI_Controller
             $crud->set_theme('datatables');
             $crud->set_subject('usuario');
             $crud->set_table('usuario');
+            $crud->unset_print();
+            $crud->unset_export();
 
             if($this->session->userdata("tipoUsuarioId")== 1){
                 $crud->where('usuario.tipoUsuarioId',' 2' );
@@ -32,7 +34,7 @@ class Administracion extends CI_Controller
             }
 
 
-            $crud->columns('usuarioId', 'usuario','password', 'tipoUsuarioId');
+            $crud->columns('usuario','password', 'tipoUsuarioId');
             $crud->fields('usuario','password', 'verificar_password', 'tipoUsuarioId');
             $crud->display_as('tipoUsuarioId','Tipo de usuario');
     
@@ -139,16 +141,21 @@ class Administracion extends CI_Controller
         } else {
             $crud = new grocery_CRUD();
             $crud->set_theme('datatables');
-            $crud->set_subject('padre');
+            $crud->set_subject('padre y alumnos');
             $crud->set_table('padre');
             $crud->columns('nombrePadre','alumnos');
             $crud->set_relation('padreId', 'padre', '{padreId} - {nombrePadre}');
             $crud->set_relation_n_n('alumnos', 'padre_alumno', 'alumno', 'padreId', 'alumnoId', '{nombre}', 'lista');
+            $crud->display_as('nombrePadre', 'Nombre del padre');
+            $crud->display_as('padreId', 'Nombre del padre');
+
                         
                         
             $crud->fields('padreId', 'alumnos');            
             $crud->unset_add();
             $crud->unset_delete();
+            $crud->unset_export();
+            $crud->unset_print();
             
             $output = $crud->render();
             
@@ -169,12 +176,17 @@ class Administracion extends CI_Controller
             $crud = new grocery_CRUD();
             $crud->set_theme('datatables');
             $crud->set_table('docente');
+            $crud->set_subject('Materias del docente');
             $crud->unset_add();
             $crud->unset_delete();
             $crud->set_relation('docenteId', 'docente', '{docenteId} - {nombre}');
             $crud->set_relation_n_n('materiaId', 'docente_materia', 'materia', 'docenteId', 'materiaId', 'materia');
             $crud->columns('nombre','materiaId');
             $crud->fields('docenteId', 'materiaId');
+            $crud->display_as('docenteId', 'Docente');
+            $crud->display_as('materiaId', 'Materias');
+            $crud->unset_print();
+            $crud->unset_export();
 
             $crud->callback_after_update(array($this, 'callback_docente_materia'));
 
@@ -203,12 +215,18 @@ class Administracion extends CI_Controller
 
             $crud = new grocery_CRUD();
             $crud->set_theme('datatables');
-            //$crud->set_subject('Grupo');
+            $crud->set_subject('Grupo');
             $crud->set_table('grupo');
       
-            $crud->columns('claveGrupo','cicloEscolar','grado','alumnoId');
-            $crud->fields('claveGrupo','cicloEscolar','grado','escuelaId','alumnoId','docente_materiaId'); 
+            $crud->columns('claveGrupo','cicloEscolar','grado','alumnoId', 'turno');
+            $crud->fields('claveGrupo','cicloEscolar','grado','escuelaId','alumnoId','docente_materiaId', 'turno'); 
             $crud->change_field_type('escuelaId','invisible');
+            $crud->display_as('claveGrupo', 'Clave');
+            $crud->display_as('alumnoId', 'Alumnos');
+            $crud->display_as('cicloEscolar', 'Ciclo Escolar');
+            $crud->display_as('docente_materiaId', 'Docente y materia');
+            $crud->unset_export();
+            $crud->unset_print();
             //$crud->callback_add_field('escuelaId',array($this,'add_field_callback_1'));
             $crud->callback_before_insert(array($this,'set_escuela_id'));
             $crud->callback_after_insert(array($this, 'callback_grupo_docente_materia'));
@@ -261,6 +279,8 @@ class Administracion extends CI_Controller
             //$crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));
 
             $crud->unset_add();
+            $crud->unset_print();
+            $crud->unset_export();
 
             $output = $crud->render();
             

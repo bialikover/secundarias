@@ -11,12 +11,13 @@ $(document).ready(function(){
 
 		console.log(actividadId);
 		$.post("/comentario/nuevo",
+		//	$.post("/secundarias/index.php/comentario/nuevo",
         		{comentario:comentario, 
         		 actividadId:actividadId},
         		function(data){
           			console.log(data);
         			$(".my-comentary-header").after(data);
-          				
+     				$('.close').attr('onclick','close_click(this)');
           		}
 
 		);
@@ -25,13 +26,14 @@ $(document).ready(function(){
 
 	$('.comentario').click(function(){
 		
-		var comentario = $(this).prev().val();
-		//var actividadId = $("input:hidden").val();
+		var comentario = $(this).prev().val();		
 		var actividadId = $(this).prev().prev().val();
 		var $clicked = $(this)
 		console.log(comentario);
 		
 		$.post("/comentario/nuevo",
+		//$.post("/secundarias/index.php/comentario/nuevo",
+
         		{comentario:comentario, 
         		 actividadId:actividadId, 
         		 stream: 1 },
@@ -39,10 +41,27 @@ $(document).ready(function(){
           			console.log(data);
         			$clicked.parent().parent().parent().before(data);
         			$clicked.prev().val("");
-          				
+          			$('.close').attr('onclick','close_click(this)');	
           		}
 				
 		);
 	});
 
+
+	$(".close").attr('onclick', 'close_click(this)');
+
 });
+
+	function close_click(e){		
+		var comentarioId = $(e).val();
+		var nodo = $(e).parent().parent().parent().parent();
+		console.log(comentarioId);
+		$.post("/comentario/eliminar",
+		//$.post("/secundarias/comentario/eliminar",
+        		{comentarioId:comentarioId}, 
+        		function(data){
+        			console.log(data);        			
+        			nodo.hide("slow");
+        		});
+
+	}

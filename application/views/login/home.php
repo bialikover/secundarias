@@ -92,7 +92,7 @@
 				<div class="span10">
 			  <div>
 			<img src="<?php echo base_url();?>assets/img/Icon/ESCUELA-BLANCOICON.png">
-		      <span class="my-mapa-text">Mostrar Mapa</span>
+		      <a href="<?php echo base_url("/escuelas");?>"><span class="my-mapa-text">Mostrar Escuelas</span></a>
 		    </div>
 				<!--	<iframe width="1100" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.mx/?ie=UTF8&amp;t=m&amp;ll=19.433572,-99.131699&amp;spn=0.323763,0.754623&amp;z=11&amp;output=embed"></iframe></div>
 				</div>

@@ -16,7 +16,7 @@ class Domicilio_Escuela extends CI_Controller
 	public function index(){
 		$crud = new grocery_CRUD();
 		$crud->set_theme('datatables');
-		$crud->set_subject('domicilio_escuela');
+		$crud->set_subject('Domicilio de la Escuela');
     	$crud->set_table('domicilio_escuela');    	
 
     	$crud->columns('zona','sector', 'municipioId', 'localidad', 
@@ -28,6 +28,9 @@ class Domicilio_Escuela extends CI_Controller
     	
 		$crud->unset_add();
 		$crud->unset_list();
+		$crud->unset_export();
+        $crud->unset_print();
+        $crud->unset_back_to_list();
 
     	$output = $crud->render();
     	

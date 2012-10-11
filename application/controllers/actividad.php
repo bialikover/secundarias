@@ -27,8 +27,12 @@ class Actividad extends CI_Controller {
             if($data['actividad'] != null){
               if($this->actividad_model->es_mi_actividad($usuarioId, $tipoUsuarioId, $data['actividad']->actividadId)){
                 $data['comentarios'] = $this->comentario_model->mostrar($data['actividad']->actividadId);
-                $this->load->view('includes/header-alumno');
-    	       //var_dump($data['actividad']);
+                if($tipoUsuarioId == 3 ){
+                  $this->load->view('includes/header-docente');  
+                } else{
+                  $this->load->view('includes/header-alumno');
+                }
+    	       
                 $this->load->view("actividad/mostrar_actividad", $data);  
                 $this->load->view('includes/footer');
               } else{
@@ -51,31 +55,38 @@ class Actividad extends CI_Controller {
       $crud = new grocery_CRUD();
       $crud->set_table('actividad');
       $crud->set_theme('datatables');
+      $crud->set_subject('Contenido');
 
       $crud->columns('nombreActividad','descActividad');
-      
-
+      $crud->unset_export();
+      $crud->unset_print();
+      $crud->display_as('nombreActividad','Título');
+      $crud->display_as('descActividad','Descripción');      
+      $crud->display_as('tipoActividadId','Tipo');      
+      $crud->display_as('rutaActividad','Foto ó Documento');      
       if($this->session->userdata('tipoUsuarioId') == 3){
         $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad', 'grupo_docente_materiaId');
         $crud->set_relation('tipoActividadId', 'tipo_actividad', 'tipoActividad',  array('tipoActividadId < ' => '3' ));
         $crud->set_relation('grupo_docente_materiaId', 'grupo_docente_materia', '{claveGrupo} - {nombreMateria}');
-        $crud->display_as('grupo_docente_materiaId','Grupo Materia');      
-        $crud->callback_add_field('grupo_docente_materiaId',array($this,'materias'));        
+        $crud->display_as('grupo_docente_materiaId','Grupo Materia');
+
+        $crud->callback_add_field('grupo_docente_materiaId',array($this,'materias'));
+        $crud->unset_list();
+        $crud->unset_back_to_list();      
+        $this->load->view('includes/header-docente');  
       } else{
         $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad');
-        $crud->set_relation('tipoActividadId', 'tipo_actividad', 'tipoActividad',  array('tipoActividadId' => '3' ));        
+        $crud->where('actividad.tipoActividadId >=','3' );
+        $crud->set_relation('tipoActividadId', 'tipo_actividad', 'tipoActividad',  array('tipoActividadId >=' => '3' ));        
+        $this->load->view('includes/header-escuela');
       }
 
 
       $crud->set_field_upload('rutaActividad','assets/uploads/files');
       //$crud->change_field_type('rutaActividad','invisible');
   
-      $crud->unset_list();
-      $crud->unset_back_to_list();
-      
-  
       $output = $crud->render();
-      $this->load->view('includes/header-docente');
+      //$this->load->view('includes/header-docente');
       $this->load->view('actividad/new', $output);
       $this->load->view('includes/footer');
     }

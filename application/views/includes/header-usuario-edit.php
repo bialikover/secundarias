@@ -26,7 +26,7 @@
 							<div id="my-menu" class="span12">
 
 									<ul class="nav">
-										<li><a class="" href="<?php echo base_url("index.php/welcome")?>">
+										<li><a class="" href="<?php echo base_url("welcome")?>">
 										  	<img id="tab1" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/home-bco.png">
 										  	<div id="tab1_t"  class="my-tex-nav">Inicio</div>
 										  	</a>
@@ -34,15 +34,19 @@
 									</ul>
 
 									<ul class="nav pull-right">
-						  				<li><a class="my-a"  href="<?php echo base_url("index.php/alta_usuario")?>">  
+						  				<li><a class="my-a"  href="<?php echo base_url("administracion/alta_usuarios")?>">  
 						  					<img id="tab2" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/regresar-bco.png">
 						  					<div id="tab2_t" class="my-tex-nav">Regresar</div>
 						  					</a>
 						  				</li>
+						  				<li><a class="my-a"  href="<?php echo base_url("/welcome/do_logout")?>">  
+						  					<img id="tab3" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/salir-bco.png">
+						  					<div id="tab3_t" class="my-tex-nav">Salir</div>
+						  					</a>
+						  				</li>
 									</ul>
 
-							</div>
-							<a  href="<?php echo base_url("index.php/welcome/do_logout")?>"> Salir</a>	
+							</div>							
 						</div>
 					</div>
 				</div>

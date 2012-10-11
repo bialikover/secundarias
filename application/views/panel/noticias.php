@@ -34,24 +34,24 @@
 </div>
 <br>
 <h1>Lo Nuevo</h1>
+<?php if(! empty($actividades)):?>
+        <?php foreach ($actividades as $actividad): ?>
 <div class="row-fluid">
-    <?php if(! empty($actividades)):?>
-        <?php foreach (array_reverse($actividades) as $actividad): ?>
         <div class="span6">
-            
             <div class="row-fluid"> 
-
                 <div class="span12">
                     <div class="my-comentary-container">
                         <div class="my-comentary-header">
                             <?php echo ucfirst($actividad->tipoActividad);?> 
                             para el grupo: 
-                            <?php echo $actividad->claveGrupo;?> 
+                            <?php echo $actividad->claveGrupo;?>
+                            de la materia:
+                            <?php echo $actividad->nombreMateria;?>
                         </div>
                         <div class="my-comentary">
                             <div class="row-fluid">
                                 <div class="span2 my-center">
-                                    <img class="my-foto-mini" src="<?php echo base_url(); ?>/assets/img/user1.png">
+                                    <img class="my-foto-mini img-circle" src="<?php echo muestra_foto($actividad->docenteId);?>">
                                 </div>
                                 <div class="span10">
                                     <h4><?php echo anchor("actividad/detalle/".$actividad->actividadId , strtoupper($actividad->nombreActividad)); ?></h4>
@@ -79,7 +79,7 @@
 
                                 <div class="row-fluid">
                                     <div class="span2 my-center">
-                                        <img class="my-foto-mini" src="<?php echo base_url(); ?>/assets/img/user1.png">
+                                        <img class="my-foto-mini img-circle" src="<?php echo muestra_foto($comentario->usuarioId);?>">
                                     </div>
                                     <div class="span10">
                                         <h4><?php echo mostrar_nombre($comentario->usuarioId); ?></h4>
@@ -87,6 +87,11 @@
 
                                         <div class="date-footer">
                                             <span><?php echo $comentario->fecha; ?></span>
+                                            <?php if((es_mi_actividad($this->session->userdata('usuarioId'), $this->session->userdata('tipoUsuarioId'), $actividad->actividadId) 
+                                 && $this->session->userdata('tipoUsuarioId') == 3)
+                                    || es_mi_comentario($this->session->userdata('usuarioId'), $comentario->comentarioId)):?>
+                            <button class="close" value = "<?php echo $comentario->comentarioId;?>"><i class="icon-trash"></i></button>
+                        <?php endif;?>
                                         </div>
                                     </div>
                                 </div></div>
@@ -95,7 +100,7 @@
                         <div class="my-comentary">
                             <div class="row-fluid">
                                 <div class="span2 my-center">
-                                    <img class="my-foto-mini" src="<?php echo base_url();?>/assets/img/user1.png">
+                                    <img class="my-foto-mini img-circle" src="<?php echo muestra_foto($this->session->userdata("usuarioId"));?>">
                                 </div>
                                 <div class="span10">
                                     <input type="hidden" name="actividadId" value="<?php echo $actividad->actividadId;?>">
@@ -116,6 +121,7 @@
             </div>
 
         </div>
+    </div>
         <?php endforeach;?>
     <?php endif;?>
     <br>

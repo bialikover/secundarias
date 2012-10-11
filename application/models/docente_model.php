@@ -8,12 +8,27 @@
     
 
     //filtrado por escuela???
-	function all()
+	function todos()
     {
-    	$query = $this->db->get("docente");
+        $sql = "SELECT * from docente
+                JOIN usuario 
+                    ON docente.docenteId = usuario.usuarioId 
+                JOIN datos_personal
+                    ON datos_personal.usuarioId = usuario.usuarioId
+                JOIN adicional
+                    ON adicional.usuarioId = usuario.usuarioId 
+                ";
+    	$query = $this->db->query($sql);
     	return $query->result();
     }
 
+    function todos_materias($docentes){        
+        $this->load->model("materia_model");
+        foreach ($docentes as $docente) {
+            $docente->materias = $this->materia_model->materias_docente($docente->docenteId);
+        }
+        return $docentes;
+    }
 
     function relaciona_materia($array_materias, $usuarioId){
     	   //var_dump($array_materias);

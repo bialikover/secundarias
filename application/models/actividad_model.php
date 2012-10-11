@@ -7,7 +7,12 @@ class Actividad_model extends CI_Model{
      
    public function mostrar($id)
    {
-       $sql = "select * FROM actividad WHERE actividadId = ?";
+       $sql = "SELECT * FROM actividad 
+               JOIN grupo_docente_materia
+                ON actividad.grupo_docente_materiaId = grupo_docente_materia.grupo_docente_materiaId
+               JOIN docente_materia
+                ON docente_materia.docente_materiaId = grupo_docente_materia.docente_materiaId
+               WHERE actividad.actividadId = ?";
        $query = $this->db->query($sql , array($id));
        return $query->row();
    }
@@ -25,7 +30,12 @@ class Actividad_model extends CI_Model{
    }
    public function mostrar_actividades_por_grupo_docente_materia($grupo_docente_materiaId){
 
-    $sql = "SELECT * from actividad WHERE grupo_docente_materiaId = ?";
+    $sql = "SELECT * from actividad 
+            JOIN grupo_docente_materia 
+              ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
+            JOIN docente_materia 
+              ON grupo_docente_materia.docente_materiaId = docente_materia.docente_materiaId
+            WHERE actividad.grupo_docente_materiaId = ?";
     $query = $this->db->query($sql, array($grupo_docente_materiaId) );
     return $query->result();
 
@@ -176,11 +186,14 @@ class Actividad_model extends CI_Model{
               ON alumno_grupo.grupoId = grupo.grupoId
             JOIN grupo_docente_materia
               ON grupo_docente_materia.grupoId = grupo.grupoId
+            JOIN docente_materia
+              ON grupo_docente_materia.docente_materiaId = docente_materia.docente_materiaId
             JOIN actividad 
               ON actividad.grupo_docente_materiaId = grupo_docente_materia.grupo_docente_materiaId
             JOIN tipo_actividad 
               ON tipo_actividad.tipoActividadId = actividad.tipoActividadId
-            WHERE alumnoId = ?";
+            WHERE alumnoId = ?
+            ORDER BY fecha DESC";
 
 	    $query = $this->db->query($sql, array($usuarioId));
         return $query->result ();
@@ -193,9 +206,9 @@ class Actividad_model extends CI_Model{
     			SELECT `actividadId` FROM `grupo_docente_materia_actividad` WHERE `grupo_docente_materiaId` IN (      					
     			SELECT `grupo_docente_materiaId` FROM `grupo_docente_materia` WHERE `docente_materiaId` IN ( 
     			SELECT `docente_materiaId` FROM `docente_materia` WHERE `docenteId` = ".$usuarioId.")))"; */
-      $sql = "SELECT docente_materia.nombreMateria, grupo_docente_materia.claveGrupo, actividad.actividadId, 
-                     actividad.nombreActividad, actividad.descActividad, actividad.fecha,
-                     actividad.rutaActividad, tipo_actividad.tipoActividad
+      $sql = "SELECT docente_materia.docenteId, docente_materia.nombreMateria, grupo_docente_materia.claveGrupo, 
+                     actividad.actividadId, actividad.nombreActividad, actividad.descActividad,
+                     actividad.fecha, actividad.rutaActividad, tipo_actividad.tipoActividad
               FROM docente_materia
               JOIN grupo_docente_materia 
                 ON grupo_docente_materia.docente_materiaId = docente_materia.docente_materiaId
@@ -203,7 +216,8 @@ class Actividad_model extends CI_Model{
                 ON grupo_docente_materia.grupo_docente_materiaId = actividad.grupo_docente_materiaId
               JOIN tipo_actividad 
                 ON  actividad.tipoActividadId = tipo_actividad.tipoActividadId 
-              WHERE docente_materia.docenteId = ?";
+              WHERE docente_materia.docenteId = ?
+              ORDER BY fecha DESC";
     	$query = $this->db->query($sql, array($usuarioId));
       return $query->result();
 
@@ -244,7 +258,7 @@ class Actividad_model extends CI_Model{
                     actividad.fecha BETWEEN ? AND ?
                     AND grupo_docente_materia.grupoId IN (
                        SELECT
-                          grupodId
+                          grupoId
                        FROM
                           alumno_grupo
                        WHERE

@@ -12,13 +12,14 @@
         <div class="row-fluid"> 
             <div class="span3">
                 <div class="my-foto">
-                    <img src="<?php echo base_url(); ?>/assets/img/user1.png">
+                    <img src="<?php echo muestra_foto($docente->docenteId);?>">
                 </div>
             </div>
             <div class="span9">
                 <h1><?php echo mostrar_nombre($docente->usuarioId);?></h1>
             </div>
         </div>
+        <?php if($this->session->userdata("validated")):?>
         <div class="row-fluid">
             <div class="span12 my-sub-header-perfil">
                 <h3>Datos Personales</h3>
@@ -37,6 +38,8 @@
                 <h4><span class="my-perfil-datos"><?php echo $docente->email; ?></span></h4>
             </div>
         </div>
+        <?php endif;?>
+
         <div class="row-fluid">
             <div class="span12 my-sub-header-perfil">
                 <h3>Datos Académicos</h3>

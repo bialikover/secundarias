@@ -28,12 +28,17 @@
 	<header>
 		<div class="container-fluid">
 		  <div class="row-fluid">
+		  	<a href="<?php echo base_url();?>">
 		    <div class="span6">
 		      <img src="<?php echo base_url();?>assets/img/icon/HOMEICON.png">
 		      <span>Mi secu</span>
 		    </div>
+		    </a>
 		    <div class="span6">
-		    	<form class="form-inline" action="<?php echo base_url();?>index.php/login/process" method="post" name="process">
+		    	<?php if (isset($msg)):?>
+		    		<?php echo $msg;?>
+		    	<?php endif;?>
+		    	<form class="form-inline" action="<?php echo base_url();?>login/process" method="post" name="process">
 		    	
 			      <input type="text" name='usuario' id='usuario' placeholder="Usuario">
 			      <input type="password" name="password" id='password' placeholder="Contraseña">
