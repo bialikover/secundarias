@@ -28,10 +28,12 @@
 	<header>
 		<div class="container-fluid">
 		  <div class="row-fluid">
+		  	<a href="<?php echo base_url();?>">
 		    <div class="span6">
 		      <img src="<?php echo base_url();?>assets/img/icon/HOMEICON.png">
 		      <span>Mi secu</span>
 		    </div>
+		    </a>
 		    <div class="span6">
 		    	<?php if (isset($msg)):?>
 		    		<?php echo $msg;?>

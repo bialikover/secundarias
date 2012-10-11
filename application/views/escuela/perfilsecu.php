@@ -14,8 +14,8 @@
         <div class="carousel-inner">
           <?php foreach ($noticias as $noticia):?>
           
-          <div class="item">
-            <img src="<?php echo base_url("assets/uploads/fotosEscuela/".$noticia->rutaActividad);?>">
+          <div class="active item">
+            <img src="<?php echo base_url("assets/uploads/files/".$noticia->rutaActividad);?>">
             <div class="carousel-caption">
               <h4><?php echo $noticia->nombreActividad;?></h4>
                 <p><?php echo $noticia->descActividad;?></p>

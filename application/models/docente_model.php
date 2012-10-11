@@ -22,6 +22,13 @@
     	return $query->result();
     }
 
+    function todos_materias($docentes){        
+        $this->load->model("materia_model");
+        foreach ($docentes as $docente) {
+            $docente->materias = $this->materia_model->materias_docente($docente->docenteId);
+        }
+        return $docentes;
+    }
 
     function relaciona_materia($array_materias, $usuarioId){
     	   //var_dump($array_materias);

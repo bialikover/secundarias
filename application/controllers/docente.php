@@ -13,8 +13,11 @@ class Docente extends CI_Controller
 	public function index()
 	{		
         $this->load->model("docente_model");
-        $data['docentes'] = $this->docente_model->todos();
-        
+        $docentes = $this->docente_model->todos();
+        $data['docentes'] = $this->docente_model->todos_materias($docentes);
+
+        //var_dump($data);
+        //die();
         if(!$this->session->userdata('validated')){
             $this->load->view('includes/header0');           
         } else{
