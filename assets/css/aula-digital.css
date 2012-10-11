@@ -22,8 +22,11 @@
 	font-weight: bold;
 	padding: 10px;
 	border-bottom: 1px solid #eee;
-	background-image: url('../img/texture-green5.png');
+	/*background-image: url('../img/texture-green5.png');*/
+	background-color: RGBA(131,187,38,1);
 	border-radius: 5px 5px 0 0;
+	color: RGBA(250,250,250,1);
+
 }
 
 .my-comentary
@@ -44,7 +47,9 @@
 
 .date-footer
 {
-	color: #555;
+	color: #919090;
 	padding-top:20px;
-	text-align: left;
+	text-align: right;
+	font-size: 13px;
+
 }
