@@ -8,6 +8,11 @@ body
 
 header
 {
+	background-color:#eee;
+	height: 50px;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 1.3em;
 
 }
 
@@ -29,18 +34,15 @@ footer
 
 .my-nav
 {
-	background-color: #eee;
-	background-image: url('../img/texture-gray1.png');
-	border-bottom: 1px solid #bbb;
 }
 
 .my-img-tab
 {
-	padding: 20px;
+	/*padding: 20px;
 	width: 50px;
 	height: 50px;	
 	background-color:#8DD404;
-	background-image: url('../img/texture-green5.png');
+	background-image: url('../img/texture-green5.png');*/
 	-webkit-transition:.3s;
 }
 

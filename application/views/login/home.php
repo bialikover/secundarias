@@ -4,22 +4,59 @@
 			  	<div class="span1">
 			  	</div>
 			    <div class="span3">
-			      
-			      <div><img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/MAESTROICON.png">
-			      	<span>Conoce a los maestros que son parte de tú escuela.</span>
+			      <div>
+			      		<div class="row-fluid">
+			      			<div class="span3">
+									<img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/MAESTROICON.png">
+			      			</div> 
+			      			<div span="span9">
+									<span>Conoce a los maestros que son parte de tú escuela.</span>
+			      			</div>   
+			      		</div>
 			      </div>
-			      <div><img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/ESCUELAICON.png">
+			      <div>
+			      		<div class="row-fluid">
+			      			<div class="span3">
+									<img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/ESCUELAICON.png">
+			      			</div> 
+			      			<div span="span9">
+									<span>Encuentra la secundaria que mas se adapte a tus necesidades.</span>
+			      			</div>   
+			      		</div>
+			      </div>
+			       <div>
+			      		<div class="row-fluid">
+			      			<div class="span3">
+									<img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/GRUPOICON.png">
+			      			</div> 
+			      			<div span="span9">
+									<span>Interactua con otros alumnos dentro de tu salón digital.</span>
+			      			</div>   
+			      		</div>
+			      </div>
+			       <div>
+			      		<div class="row-fluid">
+			      			<div class="span3">
+									<img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/MATERIAICON.png">
+			      			</div> 
+			      			<div span="span9">
+									<span>Navega a través de tus materias para tus actividades extraclase.</span>
+			      			</div>   
+			      		</div>
+			      </div>
+
+			      <!--div><img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/ESCUELAICON.png">
 			      	<span>Encuentra la secundaria que mas se adapte a tus necesidades.</span>
 			      </div>
 			      <div><img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/GRUPOICON.png">
 			      	<span>Interactua con otros alumnos dentro de tu salón digital.</span>
-			      </div>
+			      </div>-->
 			      <!--<div><img class="my-img-home" src="<?php echo base_url();?>/assets/img/icon/ALUMNOICON.png">
 			      	<span>Chalala</span></div>
 			      <div><img class="my-img-home" src="<?php echo base_url();?>/assets/img/icon/HOMEICON.png"><span>Chalala</span></div>-->
-			      <div><img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/MATERIAICON.png">
+			      <!--div><img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/MATERIAICON.png">
 			      	<span>Navega a través de tus materias para tus actividades extraclase</span>
-			      </div>
+			      </div>-->
 
 			    </div>
 			    <div class="span7">
