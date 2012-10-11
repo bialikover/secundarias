@@ -77,7 +77,11 @@
 									  	<div id="tab7_t" class="my-tex-nav">Mensajes</div>
 									    </a>
 									</li>
-
+									<li><a  href="<?php echo base_url("index.php/actividad/crear")?>"> 
+									  	<img id="tab10" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/actividad.png">
+									  	<div id="tab10_t" class="my-tex-nav">Actividades</div>
+									    </a>
+									</li>
 									<li><a class="my-a"  href="<?php echo base_url("index.php/welcome/do_logout")?>">  
 										<img id="tab8" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/salir-bco.png">
 										<div id="tab8_t" class="my-tex-nav">Salir</div>

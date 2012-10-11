@@ -33,6 +33,9 @@
 		      <span>Mi secu</span>
 		    </div>
 		    <div class="span6">
+		    	<?php if (isset($msg)):?>
+		    		<?php echo $msg;?>
+		    	<?php endif;?>
 		    	<form class="form-inline" action="<?php echo base_url();?>index.php/login/process" method="post" name="process">
 		    	
 			      <input type="text" name='usuario' id='usuario' placeholder="Usuario">

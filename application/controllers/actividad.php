@@ -64,22 +64,23 @@ class Actividad extends CI_Controller {
         $crud->set_relation('tipoActividadId', 'tipo_actividad', 'tipoActividad',  array('tipoActividadId < ' => '3' ));
         $crud->set_relation('grupo_docente_materiaId', 'grupo_docente_materia', '{claveGrupo} - {nombreMateria}');
         $crud->display_as('grupo_docente_materiaId','Grupo Materia');      
-        $crud->callback_add_field('grupo_docente_materiaId',array($this,'materias'));        
+        $crud->callback_add_field('grupo_docente_materiaId',array($this,'materias'));
+        $crud->unset_list();
+        $crud->unset_back_to_list();      
+        $this->load->view('includes/header-docente');  
       } else{
         $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad');
-        $crud->set_relation('tipoActividadId', 'tipo_actividad', 'tipoActividad',  array('tipoActividadId' => '3' ));        
+        $crud->where('actividad.tipoActividadId >=','3' );
+        $crud->set_relation('tipoActividadId', 'tipo_actividad', 'tipoActividad',  array('tipoActividadId >=' => '3' ));        
+        $this->load->view('includes/header-escuela');
       }
 
 
       $crud->set_field_upload('rutaActividad','assets/uploads/files');
       //$crud->change_field_type('rutaActividad','invisible');
   
-      $crud->unset_list();
-      $crud->unset_back_to_list();
-      
-  
       $output = $crud->render();
-      $this->load->view('includes/header-docente');
+      //$this->load->view('includes/header-docente');
       $this->load->view('actividad/new', $output);
       $this->load->view('includes/footer');
     }
