@@ -25,9 +25,9 @@ class Datos_contacto extends CI_Controller
 
             $crud->columns('telefono','telMovil','email');
             $crud->fields('telefono','telMovil','email');
-
+            $crud->display_as('telefono','Teléfono');
             $crud->display_as('telMovil','Celular');
-            $crud->display_as('email','Correo Electronico');         
+            $crud->display_as('email','Correo Electrónico');         
 
             $crud->unset_delete();
             $crud->unset_add_fields();

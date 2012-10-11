@@ -9,7 +9,7 @@
 <h2>Lo Nuevo</h2>
 <?php foreach ($actividades as $actividad): ?>
     <?php //var_dump($actividad);?>
-<div class="row-floud">
+<div class="row-fluid">
         <div class="span6">
             <div class="row-fluid"> 
                 <div class="span12">
@@ -89,3 +89,4 @@
         </div>
 </div>
 <?php endforeach; ?>
+</div>

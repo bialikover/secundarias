@@ -24,20 +24,19 @@ class Escuela extends CI_Controller
 
 	    	$crud->columns('escuela','claveEscuela' );
 	    	$crud->fields('escuela', 'claveEscuela','descEscuela', 'adicional', 'rutaFotoEscuela');
-	    	$crud->set_field_upload('rutaFotoEscuela','assets/uploads/fotosEscuela');
-	    	//$crud->set_relation('administradorId', 'usuario', 'usuarioId');
-	    	//$crud->display_as('administradorId','Administrador Escuela');
+	    	$crud->set_field_upload('rutaFotoEscuela','assets/uploads/fotosEscuela');	    	
+	    	$crud->display_as('claveEscuela','Clave de la Escuela');
+        $crud->display_as('descEscuela','Descripción de la Escuela');
+        $crud->display_as('adicional','Información Adicional de la Escuela');
+        $crud->display_as('rutaFotoEscuela','Imagen de la Escuela');
 
 	    	$crud->add_action('Contacto','', 'contacto_escuela/index/edit', 'ui-icon-plus');
-	        $crud->add_action('Domicilio','', 'domicilio_escuela/index/edit', 'ui-icon-plus');
-	    	//$crud->add_action('Contacto','', '', 'ui-icon-plus', array($this, '_idContacto'));
-			//$crud->add_action('Domicilio','', '', 'ui-icon-plus', array($this, '_idDomicilio'));
-
-			$crud->unset_add();
+	      $crud->add_action('Domicilio','', 'domicilio_escuela/index/edit', 'ui-icon-plus');
+			  $crud->unset_add();
 
 	    	$output = $crud->render();
 	    	
-	    	$this->load->view('includes/header-escuela');
+	    	$this->load->view('includes/header-usuario-edit');
 	    	$this->load->view('escuela/index',$output);
 	    	$this->load->view('includes/footer');
     	}

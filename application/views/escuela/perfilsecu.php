@@ -9,7 +9,7 @@
       <img class="my-img-secu" src="<?php echo base_url("assets/uploads/fotosEscuela/".$escuela->rutaFotoEscuela);?>">
       <h3>Datos</h3>
 
-      <h4>Direccion</h4>
+      <h4>Dirección</h4>
       <p><?php echo $escuela->direccion;?></p>
       <h4>Clave</h4>
       <p><?php echo $escuela->claveEscuela;?></p>

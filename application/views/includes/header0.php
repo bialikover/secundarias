@@ -38,7 +38,7 @@
 		    	<?php if (isset($msg)):?>
 		    		<?php echo $msg;?>
 		    	<?php endif;?>
-		    	<form class="form-inline" action="<?php echo base_url();?>index.php/login/process" method="post" name="process">
+		    	<form class="form-inline" action="<?php echo base_url();?>login/process" method="post" name="process">
 		    	
 			      <input type="text" name='usuario' id='usuario' placeholder="Usuario">
 			      <input type="password" name="password" id='password' placeholder="Contraseña">

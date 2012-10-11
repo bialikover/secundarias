@@ -19,13 +19,14 @@ class Domicilio extends CI_Controller
 
             $crud->set_theme('datatables');
             $crud->set_table('domicilio');
+            $crud->set_subject('Domicilio');
 
 
             $crud->columns('municipioId','calle','numero','colonia');
             $crud->fields('municipioId','calle','numero','colonia','cp'); 
-
+            $crud->display_as('numero','Número');
             $crud->display_as('municipioId','Municipio');        
-            $crud->display_as('cp','Codigo Postal');
+            $crud->display_as('cp','Código Postal');
             $crud->set_relation('municipioId', 'municipio', 'municipio');
 
             $crud->unset_delete();

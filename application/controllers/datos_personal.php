@@ -30,6 +30,7 @@ class Datos_personal extends CI_Controller
             $crud->display_as('aPaterno','Apellido Paterno');
             $crud->display_as('aMaterno','Apellido Materno');
             $crud->display_as('fechaNac','Fecha de Nacimiento');
+            $crud->display_as('rutaFoto','Foto del usuario');
 
             $crud->unset_delete();
             $crud->unset_add_fields();

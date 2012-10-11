@@ -34,13 +34,11 @@
 </div>
 <br>
 <h1>Lo Nuevo</h1>
-<div class="row-fluid">
-    <?php if(! empty($actividades)):?>
+<?php if(! empty($actividades)):?>
         <?php foreach (array_reverse($actividades) as $actividad): ?>
+<div class="row-fluid">
         <div class="span6">
-            
             <div class="row-fluid"> 
-
                 <div class="span12">
                     <div class="my-comentary-container">
                         <div class="my-comentary-header">
@@ -61,9 +59,6 @@
 
                                     <div class="date-footer">
                                         <span><?php echo $actividad->fecha; ?></span>
-
-
-
                                     </div>
                                 </div>
                             </div>
@@ -126,6 +121,7 @@
             </div>
 
         </div>
+    </div>
         <?php endforeach;?>
     <?php endif;?>
     <br>

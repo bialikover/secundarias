@@ -55,15 +55,21 @@ class Actividad extends CI_Controller {
       $crud = new grocery_CRUD();
       $crud->set_table('actividad');
       $crud->set_theme('datatables');
+      $crud->set_subject('Contenido');
 
       $crud->columns('nombreActividad','descActividad');
-      
-
+      $crud->unset_export();
+      $crud->unset_print();
+      $crud->display_as('nombreActividad','Título');
+      $crud->display_as('descActividad','Descripción');      
+      $crud->display_as('tipoActividadId','Tipo');      
+      $crud->display_as('rutaActividad','Foto ó Documento');      
       if($this->session->userdata('tipoUsuarioId') == 3){
         $crud->fields('nombreActividad','descActividad', 'tipoActividadId', 'fecha', 'rutaActividad', 'grupo_docente_materiaId');
         $crud->set_relation('tipoActividadId', 'tipo_actividad', 'tipoActividad',  array('tipoActividadId < ' => '3' ));
         $crud->set_relation('grupo_docente_materiaId', 'grupo_docente_materia', '{claveGrupo} - {nombreMateria}');
-        $crud->display_as('grupo_docente_materiaId','Grupo Materia');      
+        $crud->display_as('grupo_docente_materiaId','Grupo Materia');
+
         $crud->callback_add_field('grupo_docente_materiaId',array($this,'materias'));
         $crud->unset_list();
         $crud->unset_back_to_list();      
