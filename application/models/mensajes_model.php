@@ -14,8 +14,9 @@ class mensajes_model extends CI_Model {
     public function read_mensajes() {
         $usuarioId = $this->session->userdata('usuarioId');
         $this->db->where(array('receptorId' => $usuarioId));
-        $eventos = $this->db->get('mensaje');
         $this->db->order_by("fechaMensaje", "desc"); 
+        
+        $eventos = $this->db->get('mensaje');
         return $eventos->result_array();
     }
 

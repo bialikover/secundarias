@@ -21,7 +21,7 @@ class Mensaje extends CI_Controller {
 
     public function insertar() {                    
         $data = array(
-            'fechaMensaje' => date("Y-m-d"),
+            'fechaMensaje' => date("Y-m-d_H:i:s"),
             'emisorId' => $this->session->userdata('usuarioId'),
             'receptorId' => $this->input->post('id_destino'),
             'mensaje' => $this->input->post('mensaje')
