@@ -65,8 +65,8 @@
 			    <div class="item">
 			    	<img src="<?=base_url().'assets/img/img2.jpg'?>">
 			    	<div class="carousel-caption">
-			    		<h4>Información</h4>
-			    			<p>Más información, Más información, Más información, Más información...</p>
+			    		<h4>Mis Materias</h4>
+			    			<p>Navega a través de tus materias para tus actividades extraclase.</p>
 			    	</div>
 			    </div>
 
@@ -82,7 +82,7 @@
 					<img src="<?=base_url().'assets/img/img4.jpg'?>">
 					<div class="carousel-caption">
 			    		<h4>Información</h4>
-			    			<p>Más información, Más información, Más información, Más información...</p>
+			    			<p>Navega a través de tus materias para tus actividades extraclase.</p>
 			    	</div>
 			    </div>
 
