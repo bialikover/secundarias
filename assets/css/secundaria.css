@@ -44,6 +44,7 @@ footer
 	height: 50px;	
 	background-color:#8DD404;
 	background-image: url('../img/texture-green5.png');*/
+	width: 55px;
 	-webkit-transition:.3s;
 }
 

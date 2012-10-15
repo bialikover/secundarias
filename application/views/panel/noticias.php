@@ -54,6 +54,7 @@
                                     <img class="my-foto-mini img-circle" src="<?php echo muestra_foto($actividad->docenteId);?>">
                                 </div>
                                 <div class="span10">
+                                    <h4><?php  echo muestra_nombre_docente($actividad->actividadId);?></h4>
                                     <h4><?php echo anchor("actividad/detalle/".$actividad->actividadId , strtoupper($actividad->nombreActividad)); ?></h4>
                                     <p><?php echo $actividad->descActividad; ?></p>
 
