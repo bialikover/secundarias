@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `datos_personal` (
   `nombre` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `aPaterno` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `aMaterno` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `genero` enum('M','F') COLLATE utf8_bin DEFAULT NULL,
+  `genero` enum('Hombre','Mujer') COLLATE utf8_bin DEFAULT NULL,
   `fechaNac` date DEFAULT NULL,
   `rutaFoto` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`usuarioId`),
@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `domicilio_escuela` (
   `localidad` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `latitud` double DEFAULT NULL,
   `longitud` double DEFAULT NULL,
-  `direccion` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `direccion` varchar(140) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`escuelaId`),
   KEY `escuelaId` (`escuelaId`),
   CONSTRAINT `domicilio_escuela_ibfk_1` FOREIGN KEY (`escuelaId`) REFERENCES `escuela` (`escuelaId`) ON DELETE CASCADE ON UPDATE CASCADE
