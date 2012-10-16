@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="assets/jquery_ui_custom/jquery-ui.css" />
 <script>
    function Retrieve(fecha) {
       $.post(
@@ -80,7 +81,7 @@
 </script>
 <div class="row-fluid">
    <div class="span4 divalignright">
-	  <div id="calendar" class="divalignright">
+	  <div id="calendar" class="divalignleft">
 	  </div>
    </div>
    <div class="span8">
