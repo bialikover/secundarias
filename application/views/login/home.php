@@ -7,7 +7,7 @@
 			      <div>
 			      		<div class="row-fluid">
 			      			<div class="span3">
-									<img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/MAESTROICON.png">
+									<img class="my-img-home" src="<?php echo base_url();?>assets/img/MAESTROICON.png">
 			      			</div> 
 			      			<div span="span9">
 									<span>Conoce a los maestros que son parte de tú escuela.</span>
@@ -17,7 +17,7 @@
 			      <div>
 			      		<div class="row-fluid">
 			      			<div class="span3">
-									<img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/ESCUELAICON.png">
+									<img class="my-img-home" src="<?php echo base_url();?>assets/img/ESCUELAICON.png">
 			      			</div> 
 			      			<div span="span9">
 									<span>Encuentra la secundaria que mas se adapte a tus necesidades.</span>
@@ -27,7 +27,7 @@
 			       <div>
 			      		<div class="row-fluid">
 			      			<div class="span3">
-									<img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/GRUPOICON.png">
+									<img class="my-img-home" src="<?php echo base_url();?>assets/img/GRUPOICON.png">
 			      			</div> 
 			      			<div span="span9">
 									<span>Interactua con otros alumnos dentro de tu salón digital.</span>
@@ -37,7 +37,7 @@
 			       <div>
 			      		<div class="row-fluid">
 			      			<div class="span3">
-									<img class="my-img-home" src="<?php echo base_url();?>assets/img/icon/MATERIAICON.png">
+									<img class="my-img-home" src="<?php echo base_url();?>assets/img/MATERIAICON.png">
 			      			</div> 
 			      			<div span="span9">
 									<span>Navega a través de tus materias para tus actividades extraclase.</span>
