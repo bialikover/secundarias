@@ -45,8 +45,8 @@ class Administracion extends CI_Controller
             $crud->unset_edit_fields('tipoUsuarioId', 'Tipo de usuario');
             
             //callbacks
-            $crud->callback_before_insert(array($this,'encrypt_password_callback'));
-            $crud->callback_before_update(array($this,'encrypt_password_callback'));
+            //$crud->callback_before_insert(array($this,'encrypt_password_callback'));
+            //$crud->callback_before_update(array($this,'encrypt_password_callback'));
             $crud->callback_edit_field('password',array($this,'decrypt_password_callback'));
             $crud->callback_before_insert(array($this,'unset_verification'));
             $crud->callback_before_update(array($this,'unset_verification'));
@@ -88,11 +88,15 @@ class Administracion extends CI_Controller
         }
     }
 
-    function encrypt_password_callback($post_array, $primary_key = null){
+    function encrypt_password_callback($post_array){
+
+        var_dump($post_array['password']);
+        die();
         $this->load->library('encrypt');
  
         $key = 'k1PAjW3tuHCjewV7p7gFEiHps501b68d';
         $post_array['password'] = $this->encrypt->encode($post_array['password'], $key);
+
         return $post_array;
     }
  
@@ -107,6 +111,9 @@ class Administracion extends CI_Controller
 
     function unset_verification($post_array) {
            unset($post_array['verificar_password']);
+           $this->load->library('encrypt');
+           $key = 'k1PAjW3tuHCjewV7p7gFEiHps501b68d';
+           $post_array['password'] = $this->encrypt->encode($post_array['password'], $key);
            return $post_array;
     }
 

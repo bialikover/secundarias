@@ -44,6 +44,7 @@
 $route['default_controller'] = "welcome";
 
 $route['404_override'] = '';
+$route['recuperar'] = 'login/recupera_contrasena';
 $route['escuelas'] = "escuela/mostrar_todas";
 $route['escuelas_json'] = "escuela/mostrar_todas_json";
 

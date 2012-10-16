@@ -30,7 +30,7 @@
 							<div class="row-fluid"> 
 								<div id="my-menu" class="span12">
 									<ul class="nav">
-										<li><a class="" href="<?php echo base_url("index.php/welcome")?>">
+										<li><a class="" href="<?php echo base_url("welcome")?>">
 										  	<img id="tab1" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/home-bco.png">
 										  	<div id="tab1_t"  class="my-tex-nav">Inicio</div>
 										  	</a>
@@ -46,7 +46,7 @@
 						  					</a>
 						  				</li>										
 	
-										<li><a  href="<?php echo base_url("index.php/mensaje/index")?>"> 
+										<li><a  href="<?php echo base_url("mensaje/index")?>"> 
 						  					<img id="tab2" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/mensaje-bco.png">
 						  					<div id="tab2_t" class="my-tex-nav">Mensajes</div>
 						    				</a>
@@ -57,7 +57,7 @@
 						  					<div id="tab5_t"  class="my-tex-nav"><?php echo mostrar_nombre($this->session->userdata('usuarioId'));?></div>						  					
 						  					</a>
 						  				</li>										
-										<li><a class=""  href="<?php echo base_url("index.php/welcome/do_logout")?>">  
+										<li><a class=""  href="<?php echo base_url("welcome/do_logout")?>">  
 						  					<img id="tab3" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/salir-bco.png">
 						  					<div id="tab3_t" class="my-tex-nav">Salir</div>
 						  					</a>

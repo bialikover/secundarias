@@ -36,5 +36,14 @@ class Login_model extends CI_Model{
         // then return false.
         return false;
     }
+
+    public function get_usuario($email){
+        $sql = "SELECT * FROM usuario 
+                JOIN datos_contacto
+                    ON datos_contacto.usuarioId = usuario.usuarioId
+                WHERE datos_contacto.email = ?";
+        $query = $this->db->query($sql, $email);
+        return $query->row();
+    }
 }
 ?>

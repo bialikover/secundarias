@@ -1,0 +1,1 @@
+<h1> En momentos llegara a tu email la contraseña.</h1>

@@ -8,7 +8,7 @@
 	</div>
     <?php if ($this->session->userdata("tipoUsuarioId")== 3):?>
 	<div class="span4 my-right">
-		<a href="<?php echo base_url()?>index.php/actividad/crear/index/add"  id = "nuevo-contenido"  class="btn btn-success "><i class="icon-plus icon-white"></i> Crear Actividad o Evento</a>
+		<a href="<?php echo base_url()?>actividad/crear/index/add"  id = "nuevo-contenido"  class="btn btn-success "><i class="icon-plus icon-white"></i> Crear Actividad o Evento</a>
 	</div>
     <!--<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     </div>-->
@@ -20,7 +20,7 @@
     <div class="12">
         <div class="my-container-materias">
             <?php foreach ($materias as $materia): ?>
-            <a href="<?php echo base_url().'index.php/panel/noticias_materia/'.$materia->grupo_docente_materiaId;?>">
+            <a href="<?php echo base_url().'panel/noticias_materia/'.$materia->grupo_docente_materiaId;?>">
                 <div class="img-circle my-materia">
                     <span>
                         <?php echo $materia->materia; ?></br></br>

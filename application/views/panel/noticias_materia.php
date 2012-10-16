@@ -15,7 +15,7 @@
                 <div class="span12">
                     <div class="my-comentary-container">
                         <div class="my-comentary-header"><?php echo $actividad->nombreActividad;?></div>
-                        <a href="<?php echo base_url()."index.php/actividad/detalle/".$actividad->actividadId;?>">
+                        <a href="<?php echo base_url()."actividad/detalle/".$actividad->actividadId;?>">
                         <div class="my-comentary">
                             <div class="row-fluid">
                                 <div class="span2 my-center">

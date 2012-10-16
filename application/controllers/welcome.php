@@ -26,6 +26,7 @@ class Welcome extends CI_Controller {
         redirect('login');
     }
 
+    
 }
 
 /* End of file welcome.php */

@@ -42,8 +42,10 @@
 		    	
 			      <input type="text" name='usuario' id='usuario' placeholder="Usuario">
 			      <input type="password" name="password" id='password' placeholder="Contraseña">
-			      <input type="submit" value ="entrar"class="btn btn-success">
-		   </form>
+			      <input type="submit" value ="entrar"class="btn btn-success"></br>			      
+			      <a href= "<?php echo base_url("recuperar");?>"><span class="recupera">Se te olvidó tu contrseña?</span></a>
+		   		</form>
+
 		    </div>
 		  </div>
 		  </header>
