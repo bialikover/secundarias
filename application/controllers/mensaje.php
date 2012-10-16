@@ -14,7 +14,27 @@ class Mensaje extends CI_Controller {
 
         $data['mensajes'] = $this->mensajes_model->read_mensajes();
         $data['posible_targets'] = $this->mensajes_model->get_posible_targets();
-        $this->load->view('includes/header-alumno');
+        
+
+         switch($this->session->userdata('tipoUsuarioId')){
+                  case 1:
+                       $this->load->view('includes/header-sa');
+                       break;
+                  case 2:
+                       $this->load->view('includes/header-escuela');
+                       break;
+                  case 3:
+                       $this->load->view('includes/header-docente');
+                       break;
+                  case 4:
+                       $this->load->view('includes/header-alumno');
+                       break;
+                  case 5:
+                       $this->load->view('includes/header-padre');
+                       break;
+             }
+        
+
         $this->load->view('mensaje/index', $data);
         $this->load->view('includes/footer');
     }

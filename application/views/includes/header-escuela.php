@@ -43,7 +43,7 @@
 								<ul class="nav pull-right">
 
 									<li><a class="my-a"  href="<?php echo base_url("administracion/alta_usuarios/index")?>">  
-									  	<img id="tab2" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/docente-bco.png">
+									  	<img id="tab2" class="img-circle  my-img-tab" src="<?php echo base_url();?>/assets/img/usuarios.png">
 									  	<div id="tab2_t" class="my-tex-nav">Usuarios</div>
 									  	</a>
 									</li>
@@ -55,7 +55,7 @@
 									 </li>
 
 									<li><a  href="<?php echo base_url("administracion/alumnos/index")?>"> 
-									  	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/alumno-bco.png">
+									  	<img id="tab4" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/padresehijos.png">
 									  	<div id="tab4_t" class="my-tex-nav">Padres y Alumnos</div>
 									  </a>
 									</li>

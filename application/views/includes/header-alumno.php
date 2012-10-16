@@ -37,7 +37,7 @@
 									</ul>
 									<ul class="nav pull-right">
 										<li><a  href="<?php echo base_url("agenda")?>"> 
-						  					<img id="tab2" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/calendar.png">
+						  					<img id="tab2" class="img-circle my-img-tab" src="<?php echo base_url();?>/assets/img/calendario.png">
 						  					<div id="tab2_t" class="my-tex-nav">Calendario</div>
 						    				</a>
 										</li>

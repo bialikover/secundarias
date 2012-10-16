@@ -32,10 +32,11 @@
                 <?php //var_dump($posible_targets); ?>
                 <div class="my-comentary-header"> Enviar Mensaje </div>
                 <label>Destinatario:</label>
-                <select id="destino">
+                
+                <select id="destino">                    
                     <?php
                     foreach ($posible_targets as $target) {
-                        echo '<option value="' . $target['usuarioId'] . '">' . $target['nombre'] . '</option>';
+                        echo '<option value="' . $target['usuarioId'] . '">' . $target['nombre'] ." ". $target['aPaterno']." " .$target['aMaterno']." ". $target['tipoUsuario'].'</option>';
                     }
                     ?>
                 </select>

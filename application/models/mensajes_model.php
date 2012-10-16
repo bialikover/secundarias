@@ -25,22 +25,33 @@ class mensajes_model extends CI_Model {
         $tipoUsuarioId = $this->session->userdata('tipoUsuarioId');
         switch ($tipoUsuarioId) {
             case 2: // Escuela
-                $this->db->or_where('tipoUsuarioId', 3);
-                $this->db->or_where('tipoUsuarioId', 4);
-                $posible_targets = $this->db->get('usuario');
+                $this->db->select('*');
+                $this->db->from('usuario');
+                $this->db->join('datos_personal', 'datos_personal.usuarioId = usuario.usuarioId');
+                $this->db->join('tipo_usuario', 'tipo_usuario.tipoUsuarioId = usuario.tipoUsuarioId');
+                $this->db->or_where('usuario.tipoUsuarioId', 3);
+                $this->db->or_where('usuario.tipoUsuarioId', 4);
+                $posible_targets = $this->db->get();
                 break;
             case 3: // Docente
                 $this->db->select('*');
                 $this->db->from('usuario');
                 $this->db->join('datos_personal', 'datos_personal.usuarioId = usuario.usuarioId');
-                $this->db->or_where('tipoUsuarioId', 3);
-                //$this->db->or_where('tipoUsuarioId', 4);
+                $this->db->join('tipo_usuario', 'tipo_usuario.tipoUsuarioId = usuario.tipoUsuarioId');
+                $this->db->or_where('usuario.tipoUsuarioId', 3);
+                $this->db->or_where('usuario.tipoUsuarioId', 4);
                 $this->db->where('usuario.usuarioId !=', $usuarioId);
                 $posible_targets = $this->db->get();
                 break;
             case 4: // Alumno
                 break;
             case 5: // Padre
+                $this->db->select('*');
+                $this->db->from('usuario');
+                $this->db->join('datos_personal', 'datos_personal.usuarioId = usuario.usuarioId');
+                $this->db->join('tipo_usuario', 'tipo_usuario.tipoUsuarioId = usuario.tipoUsuarioId');
+                $this->db->or_where('usuario.tipoUsuarioId', 3);
+                $posible_targets = $this->db->get();
                 break;
             default:
                 break;

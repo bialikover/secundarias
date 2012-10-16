@@ -51,9 +51,10 @@ class Panel extends CI_Controller {
                 $this->load->view('panel/noticias', $data);
                 $this->load->view('includes/footer');
             } else {
-                $this->load->view('includes/header-padre');
+                redirect("mensaje");
+                /*$this->load->view('includes/header-padre');
                 $this->load->view('alumnos/index');
-                $this->load->view('includes/footer');
+                $this->load->view('includes/footer');*/
             }
         }
     }

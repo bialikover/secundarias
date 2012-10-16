@@ -5,7 +5,7 @@
 	</div>
 </div>
 	<footer>
-		Copyright | . All rights reserved Martín Mtz.
+		Copyright | . All rights reserved Octahedro.
 	</footer>
 
 	</body>
