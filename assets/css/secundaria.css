@@ -62,6 +62,8 @@ footer
 	padding-top: 15px;
 	text-align: center;
 	-webkit-transition:.3s;
+	width: 50px;
+	overflow: visible;
 }
 
 .my-show-tex
