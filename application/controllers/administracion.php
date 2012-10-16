@@ -111,9 +111,8 @@ class Administracion extends CI_Controller
 
     function unset_verification($post_array) {
            unset($post_array['verificar_password']);
-           $this->load->library('encrypt');
-           $key = 'k1PAjW3tuHCjewV7p7gFEiHps501b68d';
-           $post_array['password'] = $this->encrypt->encode($post_array['password'], $key);
+           $this->load->library('encrypt');           
+           $post_array['password'] = $this->encrypt->encode($post_array['password']);
            return $post_array;
     }
 

@@ -80,7 +80,7 @@ class Login extends CI_Controller {
         $this->email->subject('Contraseña Solicitada');        
         $key = 'k1PAjW3tuHCjewV7p7gFEiHps501b68d';
         $decrypted_password = $this->encrypt->decode($usuario->password, $key);
-        $this->email->message('Tu password es: '.$decrypted_password);  
+        $this->email->message('Tu usuario es: '.$usuario->usuario.' y Tu password es: '.$decrypted_password);  
         $this->email->send();
     }
 

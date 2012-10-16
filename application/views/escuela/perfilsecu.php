@@ -36,9 +36,12 @@
         <div id="myCarousel" class="carousel slide ">
           <!-- Carousel items -->
           <div class="carousel-inner">
-            <?php foreach ($noticias as $noticia):?>
-            
-            <div class="active item">
+            <?php foreach ($noticias as $key => $noticia):?>
+            <?php if ($key == 0):?>
+              <div class="active item">            
+            <?php else:?>
+              <div class="item">
+            <?php endif;?>
               <img src="<?php echo base_url("assets/uploads/files/".$noticia->rutaActividad);?>">
               <div class="carousel-caption">
                 <h4><?php echo $noticia->nombreActividad;?></h4>
