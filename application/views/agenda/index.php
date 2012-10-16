@@ -21,30 +21,61 @@
    }
    
    function RetrieveMonth(fecha) {
+      console.log(fecha);
       $.post(
          "<?php echo base_url('index.php/agenda/cambiar_mes');?>",
          {
             myfecha : fecha
          },
          function(data){
+            console.log(data);
             $("#contedor2").html(data);
          }
       );
    }
-</script>
-<script type="text/javascript">
+
    $(document).ready(function(){
-      $('#calendar').Calendar({
-         weekStart : 1
-      })
-      .on('changeDay', function(event) {
-         var fecha_retrieve = event.day.valueOf() + '-' + event.month.valueOf() + '-' + event.year.valueOf();
-         Retrieve(fecha_retrieve);
-         RetrieveMonth(fecha_retrieve);
+      $('#calendar').datepicker({
+         // Meses
+         monthNames : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+         monthNamesShort : ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+      
+         // Días
+         dayNames : ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+         dayNamesMin : ['Do','Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+         dayNamesShort : ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+         
+         // Eventos
+         onChangeMonthYear : function (year, month, inst) {
+            if ( month.toString().length == 1 )
+               month = '0' + month;
+            
+            RetrieveMonth('01-' + month + '-' + year);
+         },
+         
+         onSelect : function (date_str) {
+            date = new Date(date_str);
+            
+            date_formatted  = ((date.getDate().toString().length == 1) ? '0' : '') + date.getDate() + '-';
+            date_formatted += (((date.getMonth() + 1).toString().length == 1) ? '0' : '') + (date.getMonth() + 1) + '-';
+            date_formatted += date.getFullYear();
+            
+            Retrieve(date_formatted);
+         }
       });
       
-      Retrieve("<?php echo date('d-m-Y'); ?>");
-      RetrieveMonth("<?php echo date('d-m-Y'); ?>");
+      date = new Date();
+      
+      today_formatted  = ((date.getDate().toString().length == 1) ? '0' : '') + date.getDate() + '-';
+      today_formatted += (((date.getMonth() + 1).toString().length == 1) ? '0' : '') + (date.getMonth() + 1) + '-';
+      today_formatted += date.getFullYear();
+      
+      month_formatted  = '01-';
+      month_formatted += (((date.getMonth() + 1).toString().length == 1) ? '0' : '') + (date.getMonth() + 1) + '-';
+      month_formatted += date.getFullYear();
+      
+      Retrieve(today_formatted);
+      RetrieveMonth(month_formatted);
    });
 </script>
 <div class="row-fluid">
