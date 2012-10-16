@@ -30,8 +30,9 @@ class mensajes_model extends CI_Model {
                 $this->db->join('datos_personal', 'datos_personal.usuarioId = usuario.usuarioId');
                 $this->db->join('tipo_usuario', 'tipo_usuario.tipoUsuarioId = usuario.tipoUsuarioId');
                 $this->db->or_where('usuario.tipoUsuarioId', 3);
-                $this->db->or_where('usuario.tipoUsuarioId', 4);
+                $this->db->where('usuario.usuarioId !=', $usuarioId);                
                 $this->db->or_where('usuario.tipoUsuarioId', 5);
+                
                 $posible_targets = $this->db->get();
                 break;
             case 3: // Docente
@@ -40,8 +41,8 @@ class mensajes_model extends CI_Model {
                 $this->db->join('datos_personal', 'datos_personal.usuarioId = usuario.usuarioId');
                 $this->db->join('tipo_usuario', 'tipo_usuario.tipoUsuarioId = usuario.tipoUsuarioId');
                 $this->db->or_where('usuario.tipoUsuarioId', 3);
-                $this->db->or_where('usuario.tipoUsuarioId', 2);
                 $this->db->where('usuario.usuarioId !=', $usuarioId);
+                $this->db->or_where('usuario.tipoUsuarioId', 2);                
                 $posible_targets = $this->db->get();
                 break;
             case 4: // Alumno
@@ -51,8 +52,9 @@ class mensajes_model extends CI_Model {
                 $this->db->from('usuario');
                 $this->db->join('datos_personal', 'datos_personal.usuarioId = usuario.usuarioId');
                 $this->db->join('tipo_usuario', 'tipo_usuario.tipoUsuarioId = usuario.tipoUsuarioId');
-                $this->db->or_where('usuario.tipoUsuarioId', 3);
-                $this->db->or_where('usuario.tipoUsuarioId', 2);
+                                
+                $this->db->or_where('usuario.tipoUsuarioId', 2);                
+                $this->db->where('usuario.usuarioId !=', $usuarioId);
                 $posible_targets = $this->db->get();
                 break;
             default:
