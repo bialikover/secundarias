@@ -10,7 +10,9 @@ class Mensaje extends CI_Controller {
     }
 
     public function index() {
-        //if($this->session->userdata('role') != 'Escuela')
+      if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') == 4) {
+            redirect('login');   
+      } else {
 
         $data['mensajes'] = $this->mensajes_model->read_mensajes();
         $data['posible_targets'] = $this->mensajes_model->get_posible_targets();
@@ -37,9 +39,13 @@ class Mensaje extends CI_Controller {
 
         $this->load->view('mensaje/index', $data);
         $this->load->view('includes/footer');
+      }
     }
 
     public function insertar() {                    
+    if (!$this->session->userdata('validated') ||  $this->session->userdata('tipoUsuarioId') == 4) {
+            redirect('login');   
+    } else {
         $data = array(
             'fechaMensaje' => date("Y-m-d_H:i:s"),
             'emisorId' => $this->session->userdata('usuarioId'),
@@ -52,6 +58,7 @@ class Mensaje extends CI_Controller {
         else
             echo "Error al enviar el mensaje";
     }
+  }
     
     public function getFriends(){
         $resultado = $this->mensajes_model->get_posible_targets();
