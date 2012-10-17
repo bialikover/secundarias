@@ -93,10 +93,12 @@
 			   <li><a href="#mes">Mes</a></li>
 			</ul>
 		 </div>
+       <?php if($this->session->userdata('tipoUsuarioId') == 3):?>
 		 <div class="my-inline">
 			<a class="btn btn-success" href="<?php echo base_url('index.php/actividad/crear/index/add');?>">
 			<i class="icon-plus icon-white"></i>Nueva Actividad </a></div>
-	  </div>
+	     </div>
+      <?php endif;?>
 	  <div class="tab-content">
 		 <div id="dia" class="tab-pane active">
 			<div id="contedor" class="contenedor">
